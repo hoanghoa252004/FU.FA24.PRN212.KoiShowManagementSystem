@@ -1,0 +1,22 @@
+﻿<Window x:Class="KoiShowManagementSystemWPF.Member.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Member"
+        mc:Ignorable="d"
+        Title="RegistrationWindow" Height="770" Width="1275">
+    <Grid>
+        <Label Content="Registration" HorizontalAlignment="Center" Height="63" Margin="0,10,0,0" VerticalAlignment="Top" Width="250" FontWeight="ExtraBold" FontSize="40" />
+        <DataGrid HorizontalAlignment="Left" Height="440" Margin="81,101,0,0" VerticalAlignment="Top" Width="1117" 
+                  AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{StaticResource}"/>
+                <DataGridTextColumn Header="Koi" Binding="{StaticResource}"/>
+                <DataGridTextColumn Header="TotalScore" Binding="{StaticResource}"/>
+                <DataGridTextColumn Header="Rank" Binding="{StaticResource}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

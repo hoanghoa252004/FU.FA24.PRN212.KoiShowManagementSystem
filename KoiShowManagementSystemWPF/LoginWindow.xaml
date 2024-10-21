@@ -1,0 +1,23 @@
+﻿<Window x:Class="KoiShowManagementSystemWPF.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KoiShowManagementSystemWPF"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="558" Width="598">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Rectangle HorizontalAlignment="Center" Height="482" Margin="0,24,0,0" Stroke="Black" VerticalAlignment="Top" Width="528" />
+
+        <Label Content="LOGIN" HorizontalAlignment="Center" Height="73" Margin="0,32,0,0" VerticalAlignment="Top" Width="136" FontWeight="ExtraBold" FontSize="40" />
+        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,144,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="318"/>
+        <TextBox HorizontalAlignment="Left" Height="52" Margin="192,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="318"/>
+        <Label Content="User name" HorizontalAlignment="Left" Height="60" Margin="51,146,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
+        <Label Content="Password" HorizontalAlignment="Left" Height="60" Margin="51,305,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
+        <Button Content="Sign Up" HorizontalAlignment="Left" Height="50" Margin="99,424,0,0" VerticalAlignment="Top" Width="101"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Height="48" Margin="359,424,0,0" VerticalAlignment="Top" Width="101"/>
+    </Grid>
+</Window>
