@@ -7,14 +7,30 @@
         mc:Ignorable="d"
         Title="ShowManagementWindow" Height="680" Width="1220">
     <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="441" Margin="76,148,0,0" VerticalAlignment="Top" Width="882" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-        <Button Content="Create" HorizontalAlignment="Left" Height="41" Margin="1036,148,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button Content="Create" HorizontalAlignment="Left" Height="41" Margin="1036,148,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button Content="Update" HorizontalAlignment="Left" Height="40" Margin="1036,228,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Height="39" Margin="1036,308,0,0" VerticalAlignment="Top" Width="80"/>
+        <DataGrid HorizontalAlignment="Left" Height="448" Margin="76,141,0,0" VerticalAlignment="Top" Width="643" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button Content="Create" HorizontalAlignment="Left" Height="41" Margin="799,603,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="-0.104,0.359"/>
+        <Button Content="Update" HorizontalAlignment="Left" Height="40" Margin="960,603,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Height="39" Margin="1102,603,0,0" VerticalAlignment="Top" Width="80"/>
         <Label Content="Show Management" HorizontalAlignment="Center" Height="59" Margin="0,10,0,0" VerticalAlignment="Top" Width="396" FontWeight="ExtraBold" FontSize="40"/>
         <TextBlock HorizontalAlignment="Left" Height="28" Margin="1055,26,0,0" TextWrapping="Wrap" Text="Welcome, Amin" VerticalAlignment="Top" Width="142" FontSize="18"/>
-        <Image HorizontalAlignment="Left" Height="58" Margin="22,26,0,0" VerticalAlignment="Top" Width="81"/>
 
+
+        <Label Content="Id" HorizontalAlignment="Left" Height="35" Margin="761,141,0,0" VerticalAlignment="Top" Width="76" FontSize="15" />
+        <Label Content="Title" HorizontalAlignment="Left" Height="35" Margin="761,202,0,0" VerticalAlignment="Top" Width="76" FontSize="15" />
+        <Label Content="Description" HorizontalAlignment="Left" Height="35" Margin="761,262,0,0" VerticalAlignment="Top" Width="99" RenderTransformOrigin="0.638,2.973" FontSize="15" />
+        <Label Content="Register Start Date" HorizontalAlignment="Left" Height="36" Margin="761,343,0,0" VerticalAlignment="Top" Width="139" FontSize="15" />
+        <Label Content="Register End Date" HorizontalAlignment="Left" Height="36" Margin="761,407,0,0" VerticalAlignment="Top" Width="139" RenderTransformOrigin="0.456,1.992" FontSize="15" />
+        <Label Content="Banner" HorizontalAlignment="Left" Height="36" Margin="761,464,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.526,2.399" FontSize="15" />
+        <Label Content="Status" HorizontalAlignment="Left" Height="36" Margin="761,524,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.526,2.399" FontSize="15" />
+        <ComboBox HorizontalAlignment="Left" Height="30" Margin="916,526,0,0" VerticalAlignment="Top" Width="180"/>
+        <TextBox HorizontalAlignment="Left" Height="40" Margin="916,466,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="281"/>
+        <TextBox HorizontalAlignment="Left" Height="70" Margin="916,266,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="281"/>
+        <TextBox HorizontalAlignment="Left" Height="40" Margin="916,206,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="281"/>
+        <TextBox HorizontalAlignment="Left" Height="41" Margin="917,145,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="280"/>
+        <DatePicker HorizontalAlignment="Left" Margin="916,344,0,0" VerticalAlignment="Top" Height="42" Width="281"/>
+        <DatePicker HorizontalAlignment="Left" Margin="916,406,0,0" VerticalAlignment="Top" Height="38" Width="281"/>
+        <TextBox HorizontalAlignment="Left" Height="42" Margin="180,83,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="400"/>
+        <Button Content="Search" HorizontalAlignment="Left" Height="31" Margin="593,89,0,0" VerticalAlignment="Top" Width="66" />
+        <Label Content="Search" HorizontalAlignment="Left" Height="30" Margin="80,83,0,0" VerticalAlignment="Top" Width="59" FontSize="16" />
     </Grid>
 </Window>
