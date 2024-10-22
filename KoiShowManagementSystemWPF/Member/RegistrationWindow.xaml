@@ -5,18 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Member"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="770" Width="1275">
-    <Grid>
+        Title="RegistrationWindow" Height="678" Width="921">
+    <Grid Height="754" VerticalAlignment="Top">
         <Label Content="Registration" HorizontalAlignment="Center" Height="63" Margin="0,10,0,0" VerticalAlignment="Top" Width="250" FontWeight="ExtraBold" FontSize="40" />
-        <DataGrid HorizontalAlignment="Left" Height="440" Margin="81,101,0,0" VerticalAlignment="Top" Width="1117" 
-                  AutoGenerateColumns="False" >
+        <DataGrid HorizontalAlignment="Left" Height="484" VerticalAlignment="Center" Width="840" 
+                  AutoGenerateColumns="False" Margin="41,0,0,0" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{StaticResource}"/>
-                <DataGridTextColumn Header="Koi" Binding="{StaticResource}"/>
+                <DataGridTextColumn Header="Koi Id" Binding="{StaticResource}"/>
                 <DataGridTextColumn Header="TotalScore" Binding="{StaticResource}"/>
                 <DataGridTextColumn Header="Rank" Binding="{StaticResource}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBox HorizontalAlignment="Left" Height="39" Margin="173,86,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="402"/>
+        <Button Content="Search" HorizontalAlignment="Left" Height="31" Margin="590,89,0,0" VerticalAlignment="Top" Width="66" />
+        <Label Content="Search" HorizontalAlignment="Left" Height="29" Margin="74,86,0,0" VerticalAlignment="Top" Width="60" FontSize="16" />
 
     </Grid>
 </Window>

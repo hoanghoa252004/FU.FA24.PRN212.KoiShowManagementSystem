@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Manager\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Member\images.jpg" />
   </ItemGroup>
 
