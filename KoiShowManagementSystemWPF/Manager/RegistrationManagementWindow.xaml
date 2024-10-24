@@ -9,9 +9,9 @@
     <Grid>
         <DataGrid HorizontalAlignment="Left" Height="484" Margin="80,183,0,0" VerticalAlignment="Top" Width="881" d:ItemsSource="{d:SampleData ItemCount=5}"/>
         <Button Content="Publish Score" HorizontalAlignment="Left" Height="81" Margin="1039,344,0,0" VerticalAlignment="Top" Width="161" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Height="42" Margin="159,108,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="402"/>
-        <Button Content="Search" HorizontalAlignment="Left" Height="32" Margin="579,113,0,0" VerticalAlignment="Top" Width="61" />
-        <Label Content="Search" HorizontalAlignment="Left" Height="31" Margin="60,108,0,0" VerticalAlignment="Top" Width="60" FontSize="16" />
+        <TextBox HorizontalAlignment="Left" Height="42" Margin="159,108,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="402" Padding="15,10,0,0"/>
+        <Button Content="Search" HorizontalAlignment="Left" Height="38" Margin="579,110,0,0" VerticalAlignment="Top" Width="66" FontSize="20" />
+        <Label Content="Search" HorizontalAlignment="Left" Height="37" Margin="60,108,0,0" VerticalAlignment="Top" Width="78" FontSize="22" />
         <Label Content=" Registration Management" HorizontalAlignment="Left" Height="64" Margin="360,24,0,0" VerticalAlignment="Top" Width="560" FontSize="40" FontWeight="ExtraBold" />
 
     </Grid>

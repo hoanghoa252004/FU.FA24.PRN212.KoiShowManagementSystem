@@ -11,21 +11,21 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="SIGN UP" HorizontalAlignment="Center" Height="73" VerticalAlignment="Top" Width="180" FontWeight="ExtraBold" FontSize="40" Margin="0,22,0,0" />
-        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,100,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="318"/>
-        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,160,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="318"/>
-        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,220,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="318"/>
-        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,280,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="318"/>
+        <Label Content="SIGN UP" HorizontalAlignment="Center" Height="73" VerticalAlignment="Top" Width="226" FontWeight="ExtraBold" FontSize="50" Margin="0,22,0,0" />
+        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,100,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
+        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,160,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
+        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,220,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
+        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,280,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
 
-        <Label Content="Name" HorizontalAlignment="Left" Height="60" Margin="51,100,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
-        <Label Content="Email" HorizontalAlignment="Left" Height="60" Margin="51,160,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
-        <Label Content="Password" HorizontalAlignment="Left" Height="60" Margin="51,220,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
-        <Label Content="Phone" HorizontalAlignment="Left" Height="60" Margin="51,280,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
-        <Label Content="Date of Birth" HorizontalAlignment="Left" Height="60" Margin="51,340,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
+        <Label Content="Name" HorizontalAlignment="Left" Height="60" Margin="51,100,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
+        <Label Content="Email" HorizontalAlignment="Left" Height="60" Margin="51,160,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
+        <Label Content="Password" HorizontalAlignment="Left" Height="60" Margin="51,220,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
+        <Label Content="Phone" HorizontalAlignment="Left" Height="60" Margin="51,280,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
+        <Label Content="Date of Birth" HorizontalAlignment="Left" Height="60" Margin="51,340,0,0" VerticalAlignment="Top" Width="141" FontWeight="DemiBold" FontSize="22" />
 
-        <Button Content="Cancel" HorizontalAlignment="Left" Height="53" Margin="80,450,0,0" VerticalAlignment="Top" Width="112"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Height="53" Margin="235,450,0,0" VerticalAlignment="Top" Width="111"/>
-        <Button Content="Reset" HorizontalAlignment="Left" Height="53" Margin="389,450,0,0" VerticalAlignment="Top" Width="112"/>
-        <DatePicker HorizontalAlignment="Left" Height="54" Margin="213,346,0,0" VerticalAlignment="Top" Width="188"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Height="53" Margin="80,450,0,0" VerticalAlignment="Top" Width="112" FontSize="20" />
+        <Button Content="Submit" HorizontalAlignment="Left" Height="53" Margin="235,450,0,0" VerticalAlignment="Top" Width="111" FontSize="20" />
+        <Button Content="Reset" HorizontalAlignment="Left" Height="53" Margin="389,450,0,0" VerticalAlignment="Top" Width="112" FontSize="20" />
+        <DatePicker HorizontalAlignment="Left" Height="54" Margin="213,346,0,0" VerticalAlignment="Top" Width="188" FontSize="22" />
     </Grid>
 </Window>

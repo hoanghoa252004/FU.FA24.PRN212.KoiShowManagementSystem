@@ -15,15 +15,13 @@ using System.Windows.Shapes;
 namespace KoiShowManagementSystemWPF.Manager
 {
     /// <summary>
-    /// Interaction logic for ShowManagementWindow.xaml
+    /// Interaction logic for ManagerProfileWindow.xaml
     /// </summary>
-    public partial class ShowManagementWindow : Window
+    public partial class ManagerProfileWindow : Window
     {
-        public ShowManagementWindow()
+        public ManagerProfileWindow()
         {
             InitializeComponent();
         }
-
-        
     }
 }
