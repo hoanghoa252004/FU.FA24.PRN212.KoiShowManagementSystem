@@ -22,8 +22,5 @@
 	  <Folder Include="Manager\" />
 	  <Folder Include="PopupDialog\" />
   </ItemGroup>
-	<ItemGroup>
-	  <Resource Include="Member\images.jpg" />
-  </ItemGroup>
 
 </Project>
