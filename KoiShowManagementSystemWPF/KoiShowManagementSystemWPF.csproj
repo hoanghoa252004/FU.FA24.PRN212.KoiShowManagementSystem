@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Member\images.jpg" />
+    <None Remove="Referee\images.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,12 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Manager\" />
-    <Folder Include="PopupDialog\" />
+	  <Folder Include="Manager\" />
+	  <Folder Include="PopupDialog\" />
   </ItemGroup>
-
-  <ItemGroup>
-	  <Resource Include="Image\images.jpg" />
+	<ItemGroup>
+	  <Resource Include="Member\images.jpg" />
   </ItemGroup>
 
 </Project>

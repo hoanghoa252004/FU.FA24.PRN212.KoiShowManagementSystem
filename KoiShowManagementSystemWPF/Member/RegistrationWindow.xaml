@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Member"
         mc:Ignorable="d"
         Title="RegistrationWindow" Height="678" Width="921">
-    <Grid Height="754" VerticalAlignment="Top">
-        <Label Content="Registration" HorizontalAlignment="Center" Height="63" Margin="0,10,0,0" VerticalAlignment="Top" Width="250" FontWeight="ExtraBold" FontSize="40" />
-        <DataGrid HorizontalAlignment="Left" Height="484" VerticalAlignment="Center" Width="840" 
-                  AutoGenerateColumns="False" Margin="41,0,0,0" >
+    <Grid Height="663" VerticalAlignment="Center">
+        <Label Content="Registration" HorizontalAlignment="Center" Height="81" VerticalAlignment="Top" Width="319" FontWeight="ExtraBold" FontSize="50" />
+        <DataGrid HorizontalAlignment="Center" Height="430" VerticalAlignment="Top" Width="840" 
+                  AutoGenerateColumns="False" Margin="0,166,0,0" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{StaticResource}"/>
                 <DataGridTextColumn Header="Koi Id" Binding="{StaticResource}"/>
@@ -17,9 +17,9 @@
                 <DataGridTextColumn Header="Rank" Binding="{StaticResource}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" Height="39" Margin="173,86,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="402"/>
-        <Button Content="Search" HorizontalAlignment="Left" Height="31" Margin="590,89,0,0" VerticalAlignment="Top" Width="66" />
-        <Label Content="Search" HorizontalAlignment="Left" Height="29" Margin="74,86,0,0" VerticalAlignment="Top" Width="60" FontSize="16" />
+        <TextBox HorizontalAlignment="Left" Height="46" Margin="173,86,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="402" Padding="15,10,0,0" FontSize="22" />
+        <Button Content="Search" HorizontalAlignment="Left" Height="41" Margin="591,88,0,0" VerticalAlignment="Top" Width="71" FontSize="20" />
+        <Label Content="Search" HorizontalAlignment="Left" Height="34" Margin="74,88,0,0" VerticalAlignment="Top" Width="85" FontSize="22" />
 
     </Grid>
 </Window>
