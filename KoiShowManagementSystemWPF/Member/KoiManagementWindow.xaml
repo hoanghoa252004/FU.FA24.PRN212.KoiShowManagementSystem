@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="127*"/>
                 <ColumnDefinition Width="117*"/>
             </Grid.ColumnDefinitions>
-            <Grid>
+            <Grid Margin="10,0,10,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="17*"/>
                     <RowDefinition Height="97*"/>
@@ -34,7 +34,7 @@
                 </Grid.Background>
                 <Label Content="Koi:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="22"/>
                 <TextBox TextWrapping="Wrap" Text="Midorya Izuku" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="60,18,145,0"/>
-                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="540,0,0,0"/>
+                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="534,18,0,0"/>
                 <DataGrid AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,10" Grid.Row="1" FontSize="18">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" MinWidth="50" Header="Id" Binding="{Binding Id}"/>
@@ -45,7 +45,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" Margin="0,0,10,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="12*"/>
                     <ColumnDefinition Width="35*"/>

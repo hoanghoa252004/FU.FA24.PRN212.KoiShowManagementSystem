@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Manager\" />
+    <Folder Include="PopupDialog\" />
   </ItemGroup>
 
   <ItemGroup>
