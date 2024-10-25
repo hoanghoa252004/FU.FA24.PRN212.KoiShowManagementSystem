@@ -69,7 +69,7 @@
                 <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="aaaaaaaaaaaaaaaaa" VerticalAlignment="Center" Height="179" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="2"/>
                 <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="Kohaku" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="3"/>
                 <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="45.5" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="4"/>
-                <Button Content="REGISTER NOW" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="160" Height="57" Margin="140,92,0,0" Grid.Column="1" Grid.Row="5" Click="Button_Click"/>
+                <Button Content="REGISTER NOW" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="160" Height="57" Margin="140,92,0,0" Grid.Column="1" Grid.Row="5"/>
                 <Label Content="Status:" Margin="10,10,23,0" VerticalAlignment="Top" FontSize="22" Grid.Row="5" Height="39"/>
                 <Label Content="Register End Date:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="4" Height="39"/>
                 <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="On Going" VerticalAlignment="Top" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,10,25,0" Grid.Row="5"/>
