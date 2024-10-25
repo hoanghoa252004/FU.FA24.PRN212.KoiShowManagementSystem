@@ -12,16 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KoiShowManagementSystemWPF.Referee
+namespace KoiShowManagementSystemWPF.Member
 {
     /// <summary>
-    /// Interaction logic for RefereeScoreWindow.xaml
+    /// Interaction logic for KoiShowWindow.xaml
     /// </summary>
-    public partial class RefereeScoreWindow : Window
+    public partial class KoiShowWindow : Window
     {
-        public RefereeScoreWindow()
+        public KoiShowWindow()
         {
             InitializeComponent();
         }
+
     }
 }

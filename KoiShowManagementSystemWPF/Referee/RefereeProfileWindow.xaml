@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Referee"
         mc:Ignorable="d"
-        Title="RefereeProfile" Height="770" Width="1275">
-    <Grid Margin="0,0,10,-6">
+        Title="RefereeProfileWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="208*"/>
@@ -16,14 +17,16 @@
                 <SolidColorBrush Color="#FFBC7A7A" Opacity="0.305"/>
             </Grid.Background>
             <Grid.RowDefinitions>
-                <RowDefinition Height="74*"/>
-                <RowDefinition Height="199*"/>
-                <RowDefinition Height="97*"/>
+                <RowDefinition Height="67*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="88*"/>
             </Grid.RowDefinitions>
-            <Button Content="Scoring" Grid.Row="1" VerticalAlignment="Top" FontSize="20" Width="200" Height="50" HorizontalAlignment="Left" Margin="15,222,0,0"/>
-            <Button Content="Profile" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="20" Width="200" Height="50" Margin="15,93,0,0"/>
+            <Button Content="Scoring" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" FontSize="20" Width="200" Height="50"/>
+            <Button Content="Profile" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="20" Width="200" Height="50"/>
         </Grid>
-        <Grid Grid.Column="1" Margin="0,10,0,10">
+        <Grid Margin="215,10,0,10" Grid.ColumnSpan="2">
             <Grid.Background>
                 <SolidColorBrush Color="#FFE9EA19" Opacity="0.3"/>
             </Grid.Background>
@@ -61,6 +64,5 @@
                 <PasswordBox Grid.Column="1" Margin="15,0,15,0" Grid.Row="3" VerticalAlignment="Center" Height="58" FontSize="22" Padding="15,10,0,0" Password="*******************" HorizontalContentAlignment="Stretch"/>
             </Grid>
         </Grid>
-
     </Grid>
 </Window>

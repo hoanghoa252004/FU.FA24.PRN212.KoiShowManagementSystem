@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Member\images.jpg" />
-    <Resource Include="Referee\images.jpg" />
+	  <Folder Include="Manager\" />
+	  <Folder Include="PopupDialog\" />
   </ItemGroup>
 
 </Project>
