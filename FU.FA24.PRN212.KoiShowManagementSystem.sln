@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoiShowManagementSystemWPF", "KoiShowManagementSystemWPF\KoiShowManagementSystemWPF.csproj", "{00542194-D154-4904-8191-8AA959EE31E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoiShowManagementSystemWPF", "KoiShowManagementSystemWPF\KoiShowManagementSystemWPF.csproj", "{00542194-D154-4904-8191-8AA959EE31E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{83F5B098-FA18-4EC4-8A17-51C18CF4D32A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{83F5B098-FA18-4EC4-8A17-51C18CF4D32A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{EF4FD5CF-6D79-4EBE-A0B5-3DFDC83638BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{EF4FD5CF-6D79-4EBE-A0B5-3DFDC83638BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{436A5E39-2F1C-4DC9-BEDF-5445F28B25A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{436A5E39-2F1C-4DC9-BEDF-5445F28B25A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTOs\DTOs.csproj", "{69BABA88-5283-45A7-B939-5B60711CA6F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTOs", "DTOs\DTOs.csproj", "{69BABA88-5283-45A7-B939-5B60711CA6F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

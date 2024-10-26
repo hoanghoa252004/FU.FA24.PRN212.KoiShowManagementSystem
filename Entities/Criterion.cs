@@ -7,15 +7,15 @@ public partial class Criterion
 {
     public int Id { get; set; }
 
-    public string? Name { get; set; }
+    public string Name { get; set; } = null!;
 
-    public string? Description { get; set; }
+    public string Description { get; set; } = null!;
 
-    public decimal? Percentage { get; set; }
-
-    public bool Status { get; set; }
+    public decimal Percentage { get; set; }
 
     public int ShowId { get; set; }
+
+    public bool Status { get; set; }
 
     public virtual ICollection<Score> Scores { get; set; } = new List<Score>();
 
