@@ -9,17 +9,17 @@ public partial class Koi
 
     public string Name { get; set; } = null!;
 
-    public string? Description { get; set; }
+    public string Description { get; set; } = null!;
 
     public decimal Size { get; set; }
 
-    public bool Status { get; set; }
-
-    public string? Image { get; set; }
+    public byte[] Image { get; set; } = null!;
 
     public int UserId { get; set; }
 
     public int VarietyId { get; set; }
+
+    public bool Status { get; set; }
 
     public virtual ICollection<Registration> Registrations { get; set; } = new List<Registration>();
 

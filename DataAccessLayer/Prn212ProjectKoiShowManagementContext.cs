@@ -44,7 +44,7 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
     {
         modelBuilder.Entity<Criterion>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Criteria__3214EC078B87E301");
+            entity.HasKey(e => e.Id).HasName("PK__Criteria__3214EC0710F6C804");
 
             entity.Property(e => e.Description).HasColumnType("text");
             entity.Property(e => e.Name).HasMaxLength(100);
@@ -60,12 +60,11 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
 
         modelBuilder.Entity<Koi>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Koi__3214EC07E9826816");
+            entity.HasKey(e => e.Id).HasName("PK__Koi__3214EC07628442F5");
 
             entity.ToTable("Koi");
 
             entity.Property(e => e.Description).HasColumnType("text");
-            entity.Property(e => e.Image).HasColumnType("text");
             entity.Property(e => e.Name).HasMaxLength(50);
             entity.Property(e => e.Size).HasColumnType("decimal(5, 2)");
             entity.Property(e => e.Status).HasDefaultValue(true);
@@ -85,7 +84,7 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
 
         modelBuilder.Entity<RefereeDetail>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__RefereeD__3214EC0741BC1A57");
+            entity.HasKey(e => e.Id).HasName("PK__RefereeD__3214EC0768D73FC4");
 
             entity.ToTable("RefereeDetail");
 
@@ -105,7 +104,7 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
 
         modelBuilder.Entity<Registration>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Registra__3214EC07AEBEB951");
+            entity.HasKey(e => e.Id).HasName("PK__Registra__3214EC07F0992DD5");
 
             entity.ToTable("Registration");
 
@@ -117,23 +116,26 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
             entity.Property(e => e.Size).HasColumnType("decimal(5, 2)");
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .HasDefaultValue("Pending");
             entity.Property(e => e.TotalScore)
                 .HasColumnType("decimal(5, 2)")
                 .HasColumnName("Total_score");
 
             entity.HasOne(d => d.Koi).WithMany(p => p.Registrations)
                 .HasForeignKey(d => d.KoiId)
-                .HasConstraintName("FK__Registrat__Koi_i__5441852A");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Registrat__Koi_i__5629CD9C");
 
             entity.HasOne(d => d.Show).WithMany(p => p.Registrations)
                 .HasForeignKey(d => d.ShowId)
-                .HasConstraintName("FK__Registrat__Show___534D60F1");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Registrat__Show___5535A963");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Role__3214EC07B4A771F7");
+            entity.HasKey(e => e.Id).HasName("PK__Role__3214EC0707138B16");
 
             entity.ToTable("Role");
 
@@ -143,7 +145,7 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
 
         modelBuilder.Entity<Score>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Score__3214EC074848A91C");
+            entity.HasKey(e => e.Id).HasName("PK__Score__3214EC075BEF711E");
 
             entity.ToTable("Score");
 
@@ -156,20 +158,23 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
 
             entity.HasOne(d => d.Criteria).WithMany(p => p.Scores)
                 .HasForeignKey(d => d.CriteriaId)
-                .HasConstraintName("FK__Score__Criteria___59063A47");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Score__Criteria___5BE2A6F2");
 
             entity.HasOne(d => d.RefereeDetail).WithMany(p => p.Scores)
                 .HasForeignKey(d => d.RefereeDetailId)
-                .HasConstraintName("FK__Score__Referee_d__5812160E");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Score__Referee_d__5AEE82B9");
 
             entity.HasOne(d => d.Registration).WithMany(p => p.Scores)
                 .HasForeignKey(d => d.RegistrationId)
-                .HasConstraintName("FK__Score__Registrat__571DF1D5");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Score__Registrat__59FA5E80");
         });
 
         modelBuilder.Entity<Show>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Show__3214EC0778A7B389");
+            entity.HasKey(e => e.Id).HasName("PK__Show__3214EC075D3F9B0C");
 
             entity.ToTable("Show");
 
@@ -206,13 +211,13 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__User__3214EC07E90633A1");
+            entity.HasKey(e => e.Id).HasName("PK__User__3214EC0740EE1023");
 
             entity.ToTable("User");
 
-            entity.Property(e => e.Email).HasMaxLength(255);
-            entity.Property(e => e.Name).HasMaxLength(100);
-            entity.Property(e => e.Password).HasMaxLength(255);
+            entity.Property(e => e.Email).HasMaxLength(200);
+            entity.Property(e => e.Name).HasMaxLength(200);
+            entity.Property(e => e.Password).HasMaxLength(200);
             entity.Property(e => e.Phone).HasMaxLength(15);
             entity.Property(e => e.RoleId).HasColumnName("Role_Id");
             entity.Property(e => e.Status).HasDefaultValue(true);
@@ -225,7 +230,7 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
 
         modelBuilder.Entity<Variety>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Variety__3214EC079474A2ED");
+            entity.HasKey(e => e.Id).HasName("PK__Variety__3214EC079F3DA6EF");
 
             entity.ToTable("Variety");
 

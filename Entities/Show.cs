@@ -9,15 +9,15 @@ public partial class Show
 
     public string Title { get; set; } = null!;
 
-    public string? Description { get; set; }
+    public string Description { get; set; } = null!;
 
-    public DateOnly? RegisterStartDate { get; set; }
+    public DateOnly RegisterStartDate { get; set; }
 
-    public DateOnly? RegisterEndDate { get; set; }
+    public DateOnly RegisterEndDate { get; set; }
 
-    public decimal? EntranceFee { get; set; }
+    public decimal EntranceFee { get; set; }
 
-    public string? Status { get; set; }
+    public string Status { get; set; } = null!;
 
     public virtual ICollection<Criterion> Criteria { get; set; } = new List<Criterion>();
 
