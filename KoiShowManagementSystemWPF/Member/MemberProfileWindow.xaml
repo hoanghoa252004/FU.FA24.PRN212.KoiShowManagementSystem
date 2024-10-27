@@ -56,11 +56,11 @@
                 <Label Content="Phone:" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Margin="34,0,0,0"/>
                 <Label Content="Password:" VerticalAlignment="Center" FontSize="22" Grid.Row="3" Margin="34,0,0,0"/>
                 <Label Content="Date Of Birth:" VerticalAlignment="Center" FontSize="22" Grid.Row="4" Margin="34,0,0,0"/>
-                <TextBox Grid.Column="1" TextWrapping="Wrap" Text="Tran Hoang Hoa" VerticalAlignment="Center" Width="722" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch"/>
+                <TextBox x:Name="txtName" Grid.Column="1" TextWrapping="Wrap" Text="Tran Hoang Hoa" VerticalAlignment="Center" Width="722" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch"/>
                 <DatePicker Grid.Column="1" Margin="10,0,479,0" Grid.Row="4" VerticalAlignment="Center" Height="56" Width="252" FontSize="22" Padding="15,10,19,2"/>
                 <Button Content="Edit Information" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Margin="306,0,0,0" Grid.Column="1"/>
                 <Button Content="Change Password" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Margin="536,0,0,0" Grid.Column="1"/>
-                <TextBox Grid.Column="1" TextWrapping="Wrap" Text="HoaTHSE184053@fpt.edu.vn" VerticalAlignment="Top" Width="722" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="1" Margin="0,35,0,0"/>
+                <TextBox x:Name="txtEmail" Grid.Column="1" TextWrapping="Wrap" Text="HoaTHSE184053@fpt.edu.vn" VerticalAlignment="Top" Width="722" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="1" Margin="0,35,0,0"/>
                 <TextBox Grid.Column="1" TextWrapping="Wrap" Text="0393147372" VerticalAlignment="Center" Width="722" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="2"/>
                 <PasswordBox Grid.Column="1" Margin="15,0,15,0" Grid.Row="3" VerticalAlignment="Center" Height="58" FontSize="22" Padding="15,10,0,0" Password="*******************" HorizontalContentAlignment="Stretch"/>
             </Grid>

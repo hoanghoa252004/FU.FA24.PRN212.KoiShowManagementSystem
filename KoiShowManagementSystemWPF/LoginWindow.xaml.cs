@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BusinessLogicLayer.Implementation;
+using BusinessLogicLayer.Interface;
+using KoiShowManagementSystemWPF.Member;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +23,36 @@ namespace KoiShowManagementSystemWPF
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private readonly IAuthenticationService _service;
         public LoginWindow()
         {
+            _service = AuthenticationService.Instance;
             InitializeComponent();
+        }
+
+        private async void BtnSubmit(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (txtEmail == null || txtEmail.Text.IsNullOrEmpty() == true
+                    || txtPassword == null || txtPassword.Text.IsNullOrEmpty() == true)
+                {
+                    throw new Exception("Please enter EMAIL & PASSWORD !");
+                }
+                else
+                {
+                    var user = await _service.Login(txtEmail.Text, txtPassword.Text);
+                    MemberProfileWindow window = new MemberProfileWindow(user);
+                    window.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+
         }
     }
 }

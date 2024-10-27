@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DTOs
 {
-    public class ExampleDTO
+    public class VarietyDTO
     {
+        public int Id { get; set; }
+
+        public string? Name { get; set; }
+
+        public bool Status { get; set; }
     }
 }
