@@ -13,11 +13,11 @@
         <Rectangle HorizontalAlignment="Center" Height="482" Margin="0,24,0,0" Stroke="Black" VerticalAlignment="Top" Width="528" RadiusX="20" RadiusY="20" />
 
         <Label Content="LOGIN" HorizontalAlignment="Center" Height="73" Margin="0,32,0,0" VerticalAlignment="Top" Width="167" FontWeight="ExtraBold" FontSize="40" />
-        <TextBox HorizontalAlignment="Left" Height="54" Margin="202,149,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
-        <TextBox HorizontalAlignment="Left" Height="52" Margin="202,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="54" Margin="202,149,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
+        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="52" Margin="202,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22"/>
         <Label Content="User name" HorizontalAlignment="Left" Height="60" Margin="51,146,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
         <Label Content="Password" HorizontalAlignment="Left" Height="60" Margin="51,305,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
         <Button Content="Sign Up" HorizontalAlignment="Left" Height="50" Margin="99,424,0,0" VerticalAlignment="Top" Width="101" FontSize="20"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Height="48" Margin="359,424,0,0" VerticalAlignment="Top" Width="101" FontSize="20"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Height="48" Margin="359,424,0,0" VerticalAlignment="Top" Width="101" FontSize="20" Click="BtnSubmit"/>
     </Grid>
 </Window>

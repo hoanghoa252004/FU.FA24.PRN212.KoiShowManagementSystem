@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Interface
+namespace DTOs
 {
-    public interface IExampleRepository
+    public class RefereeDetailDTO
     {
+        public int Id { get; set; }
+
+        public UserDTO User { get; set; }
     }
 }

@@ -30,8 +30,6 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
 
     public virtual DbSet<Show> Shows { get; set; }
 
-    public virtual DbSet<ShowDetail> ShowDetails { get; set; }
-
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<Variety> Varieties { get; set; }
@@ -50,7 +48,6 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(100);
             entity.Property(e => e.Percentage).HasColumnType("decimal(5, 2)");
             entity.Property(e => e.ShowId).HasColumnName("Show_id");
-            entity.Property(e => e.Status).HasDefaultValue(true);
 
             entity.HasOne(d => d.Show).WithMany(p => p.Criteria)
                 .HasForeignKey(d => d.ShowId)
@@ -187,26 +184,25 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
                 .IsUnicode(false)
                 .HasDefaultValue("Incoming");
             entity.Property(e => e.Title).HasMaxLength(255);
-        });
 
-        modelBuilder.Entity<ShowDetail>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("ShowDetail");
-
-            entity.Property(e => e.ShowId).HasColumnName("Show_id");
-            entity.Property(e => e.VarietyId).HasColumnName("Variety_Id");
-
-            entity.HasOne(d => d.Show).WithMany()
-                .HasForeignKey(d => d.ShowId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ShowDetai__Show___48CFD27E");
-
-            entity.HasOne(d => d.Variety).WithMany()
-                .HasForeignKey(d => d.VarietyId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ShowDetai__Varie__47DBAE45");
+            entity.HasMany(d => d.Varieties).WithMany(p => p.Shows)
+                .UsingEntity<Dictionary<string, object>>(
+                    "ShowDetail",
+                    r => r.HasOne<Variety>().WithMany()
+                        .HasForeignKey("VarietyId")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("FK__ShowDetai__Varie__47DBAE45"),
+                    l => l.HasOne<Show>().WithMany()
+                        .HasForeignKey("ShowId")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("FK__ShowDetai__Show___48CFD27E"),
+                    j =>
+                    {
+                        j.HasKey("ShowId", "VarietyId");
+                        j.ToTable("ShowDetail");
+                        j.IndexerProperty<int>("ShowId").HasColumnName("Show_id");
+                        j.IndexerProperty<int>("VarietyId").HasColumnName("Variety_Id");
+                    });
         });
 
         modelBuilder.Entity<User>(entity =>

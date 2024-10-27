@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,16 @@ namespace KoiShowManagementSystemWPF.Member
     /// </summary>
     public partial class MemberProfileWindow : Window
     {
-        public MemberProfileWindow()
+        private readonly UserDTO _user = null!;
+        public MemberProfileWindow(UserDTO user)
         {
+            _user = user;
             InitializeComponent();
+            LoadData();
+        }
+        private void LoadData()
+        {
+            txtName.Text = _user.Name; 
         }
     }
 }

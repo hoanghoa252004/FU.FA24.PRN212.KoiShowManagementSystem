@@ -15,8 +15,6 @@ public partial class Criterion
 
     public int ShowId { get; set; }
 
-    public bool Status { get; set; }
-
     public virtual ICollection<Score> Scores { get; set; } = new List<Score>();
 
     public virtual Show Show { get; set; } = null!;

@@ -12,4 +12,6 @@ public partial class Variety
     public bool Status { get; set; }
 
     public virtual ICollection<Koi> Kois { get; set; } = new List<Koi>();
+
+    public virtual ICollection<Show> Shows { get; set; } = new List<Show>();
 }

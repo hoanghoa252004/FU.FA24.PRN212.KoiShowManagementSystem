@@ -166,8 +166,8 @@
                 <Button Content="Criteria:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="115,5,0,0"/>
             </Grid>
             <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="30,876,0,0" Grid.Column="1"/>
-            <Button Content="Create" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="0,876,0,0" Grid.Column="1"/>
-            <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="710,878,0,0" Grid.Column="1"/>
+            <Button Content="Create" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="0,876,0,0" Grid.Column="1" Click="BtnCreate"/>
+            <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="710,878,0,0" Grid.Column="1" Click="BtnDelete"/>
         </Grid>
     </Grid>
 </Window>
