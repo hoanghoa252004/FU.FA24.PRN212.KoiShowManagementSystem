@@ -4,6 +4,7 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,6 +67,7 @@ namespace DataAccessLayer.Implementation
             using (Prn212ProjectKoiShowManagementContext _context = new Prn212ProjectKoiShowManagementContext())
             {
                 var result = await _context.Users
+                    .Include(u => u.Role)
                 .Select(user => new UserDTO()
                 {
                     Id = user.Id,
@@ -73,7 +75,8 @@ namespace DataAccessLayer.Implementation
                     Password = user.Password,
                     Email = user.Email,
                     Phone = user.Phone,
-                    RoleId = user.RoleId,
+                    Role = user.Role.Title,
+                    RoleId = user.Id,
                     Status = user.Status
                 }).ToListAsync();
                 return result;
@@ -85,6 +88,7 @@ namespace DataAccessLayer.Implementation
             using (Prn212ProjectKoiShowManagementContext _context = new Prn212ProjectKoiShowManagementContext())
             {
                 var user = await _context.Users
+                    .Include(u => u.Role)
                 .SingleOrDefaultAsync(u => u.Id == userId);
                 if (user != null)
                 {
@@ -95,8 +99,9 @@ namespace DataAccessLayer.Implementation
                         Password = user.Password,
                         Email = user.Email,
                         Phone = user.Phone,
-                        RoleId = user.RoleId,
-                        Status = user.Status
+                        Role = user.Role.Title,
+                        Status = user.Status,
+                        RoleId = user.Id,
                     };
                 }
                 else
@@ -110,5 +115,6 @@ namespace DataAccessLayer.Implementation
         {
             throw new NotImplementedException();
         }
+
     }
 }

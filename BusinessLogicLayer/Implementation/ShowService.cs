@@ -36,16 +36,20 @@ namespace BusinessLogicLayer.Implementation
             return result;
         }
 
-        public async Task<IEnumerable<ShowDTO>> GetAll()
+        public async Task<IEnumerable<ShowDTO>> Search(string key)
         {
-            var result = await _repository.Show.GetAll();
-            return result;
-        }
-
-        public async Task<ShowDTO> GetById(int showId)
-        {
-            var result = await _repository.Show.GetById(showId);
-            return result;
+            var shows = await _repository.Show.GetAll();
+            if (shows.Any() == true)
+            {
+                var result = shows.Where(s =>
+                                s.Title.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                || s.Description.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                || s.RegisterStartDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                || s.EntranceFee.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
+                return result;
+            }
+            else
+                return null!;
         }
 
         public async Task<bool> Update(ShowDTO dto)

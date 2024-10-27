@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -128,6 +129,9 @@ namespace DataAccessLayer.Implementation
                 var result = await _context.Shows
                 .Include(s => s.Varieties)
                 .Include(s => s.Criteria)
+                .Include(s => s.RefereeDetails)
+                    .ThenInclude(rd => rd.User)
+                        .ThenInclude(u => u.Role)
                 .Select(show => new ShowDTO()
                 {
                     Id = show.Id,
@@ -149,6 +153,16 @@ namespace DataAccessLayer.Implementation
                         Id = v.Id,
                         Name = v.Name,
                     }),
+                    Referees = show.RefereeDetails.Select(rd => new UserDTO()
+                    {
+                        Id = rd.User.Id,
+                        Name = rd.User.Name,
+                        Email = rd.User.Email,
+                        Phone = rd.User.Phone,
+                        Role = rd.User.Role.Title,
+                        RoleId = rd.UserId,
+                        Status = rd.User.Status
+                    })
                 }).ToListAsync();
                 return result;
             }

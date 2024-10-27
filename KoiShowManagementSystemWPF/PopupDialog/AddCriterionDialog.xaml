@@ -1,0 +1,23 @@
+﻿<Window x:Class="KoiShowManagementSystemWPF.PopupDialog.AddCriterionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KoiShowManagementSystemWPF.PopupDialog"
+        mc:Ignorable="d" 
+        WindowStartupLocation="CenterScreen"
+        Title="AddCriterionDialog" Height="550" Width="360">
+    <Grid>
+        <TextBox x:Name="txtName" TextWrapping="Wrap" VerticalAlignment="Top" Height="46" FontSize="20" Padding="15,6,0,0" HorizontalContentAlignment="Stretch" Margin="10,85,9,0" />
+        <Label Content="Name:" Margin="10,50,70,0" VerticalAlignment="Top" FontSize="18" Height="35"/>
+        <Label  Content="Description:" Margin="10,136,70,0" VerticalAlignment="Top" FontSize="18" Height="34"/>
+        <TextBox x:Name="txtDescription" TextWrapping="Wrap" VerticalAlignment="Top" Height="190" FontSize="20" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,170,10,0"/>
+        <Label Content="Add Criterion" Margin="118,10,100,0" VerticalAlignment="Top" FontSize="18" Height="35" FontWeight="Bold"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="15,469,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="18" Click="BtnCancel"/>
+        <Button Content="Submit" HorizontalAlignment="Center" Margin="0,469,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="18" Click="BtnSubmit"/>
+        <Button Content="Reset" HorizontalAlignment="Left" Margin="255,469,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="18" Click="BtnReset"/>
+        <TextBox x:Name="txtPercentage" TextWrapping="Wrap" VerticalAlignment="Top" Height="46" FontSize="20" Padding="15,6,0,0" HorizontalContentAlignment="Stretch" Margin="10,400,9,0" />
+        <Label Content="Percentage:" Margin="10,365,70,0" VerticalAlignment="Top" FontSize="18" Height="35"/>
+
+    </Grid>
+</Window>
