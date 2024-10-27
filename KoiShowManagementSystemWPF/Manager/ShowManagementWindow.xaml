@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Manager"
         mc:Ignorable="d"
             WindowStartupLocation="CenterScreen"
-    Title="Koi Show Window" Height="1035" Width="1535">
+    Title="Koi Show Window" Height="1055" Width="1860">
     <Grid Margin="0,0,10,-6">
         <Grid.Background>
             <SolidColorBrush Color="#FFDEDA12" Opacity="0.3"/>
@@ -21,8 +21,8 @@
                 <SolidColorBrush Color="#FFEC8181" Opacity="0.3"/>
             </Grid.Background>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="137*"/>
-                <ColumnDefinition Width="168*"/>
+                <ColumnDefinition Width="134*"/>
+                <ColumnDefinition Width="289*"/>
             </Grid.ColumnDefinitions>
             <Grid Margin="20,0,10,76">
                 <Grid.RowDefinitions>
@@ -32,52 +32,57 @@
                 <Grid.Background>
                     <SolidColorBrush Color="#FF20E47A" Opacity="0.3"/>
                 </Grid.Background>
-                <Label Content="Show:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="22"/>
-                <TextBox TextWrapping="Wrap" Text="Midorya Izuku" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="83,18,145,0"/>
-                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="530,18,0,0"/>
-                <DataGrid AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,10" Grid.Row="1" FontSize="18">
+                <Label Content="Show:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <TextBox x:Name="txtSearch" TextWrapping="Wrap" Text="Midorya Izuku" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="83,18,145,0"/>
+                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="430,18,0,0" Click="BtnSearch"/>
+                <DataGrid  x:Name="ShowGrid" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,104,10,10" FontSize="18" SelectionChanged="SelectShow" Grid.RowSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Width="300" Header="Title" Binding="{Binding Title}"/>
-                        <DataGridTextColumn Width="160" MinWidth="100" Header="Register Date" Binding="{Binding RegisterStartDate}"/>
+                        <DataGridTextColumn Width="250" Header="Title" Binding="{Binding Title}"/>
+                        <DataGridTextColumn Width="120" MinWidth="100" Header="Register Date" Binding="{Binding RegisterStartDate}"/>
                         <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-            <Grid Margin="30,0,30,476" Grid.Column="1">
+            <Grid Margin="30,0,10,551" Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="76*"/>
-                    <ColumnDefinition Width="155*"/>
+                    <ColumnDefinition Width="35*"/>
+                    <ColumnDefinition Width="242*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="44*"/>
-                    <RowDefinition Height="51*"/>
-                    <RowDefinition Height="195*"/>
-                    <RowDefinition Height="56*"/>
-                    <RowDefinition Height="60*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="53*"/>
+                    <RowDefinition Height="66*"/>
+                    <RowDefinition Height="215*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
                     <SolidColorBrush Color="#FFB63737" Opacity="0.5"/>
                 </Grid.Background>
-                <Label Content="Show Information:" HorizontalAlignment="Left" Margin="58,0,0,0" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Grid.Column="1" Height="39" Width="203"/>
+                <Label Content="Show Information:" HorizontalAlignment="Left" Margin="416,0,0,0" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Grid.Column="1" Height="39" Width="203"/>
                 <Label Content="Title:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39"/>
-                <Label Content="Description:" Margin="10,10,23,0" VerticalAlignment="Top" FontSize="22" Grid.Row="2" Height="39"/>
-                <Label Content="Register Date:" Margin="10,0,10,0" VerticalAlignment="Center" FontSize="22" Grid.Row="3" Height="39"/>
-                <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="Bakudan Katsu" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="1" />
-                <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="aaaaaaaaaaaaaaaaa" VerticalAlignment="Center" Height="179" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="2"/>
-                <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="Kohaku" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="3"/>
-                <Label Content="Status:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="4" Height="39"/>
-                <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="On Going" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="4"/>
+                <Label Content="Description:" Margin="10,10,23,0" VerticalAlignment="Top" FontSize="22" Grid.Row="3" Height="39"/>
+                <Label Content="Register Date:" Margin="10,0,10,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39"/>
+                <TextBox x:Name="txtTitle" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="Bakudan Katsu" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,735,0" Grid.Row="1" />
+                <TextBox x:Name="txtDescription" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="aaaaaaaaaaaaaaaaa" VerticalAlignment="Top" Height="192" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,8,24,0" Grid.Row="3"/>
+                <TextBox x:Name="txtRegisterDate" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="Kohaku" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,735,0" Grid.Row="2"/>
+                <Label Content="Status:" Margin="404,0,610,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39" Grid.Column="1"/>
+                <TextBox x:Name="txtStatus" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="On Going" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="518,0,385,0" Grid.Row="1"/>
+                <Button Margin="704,3,200,5" Content="REVIEW SCORE" FontSize="20" Click="BtnDelete" Grid.Row="1" Grid.Column="1"/>
             </Grid>
-            <Grid Grid.Column="1" Margin="30,471,30,75">
+            <Grid Grid.Column="1" Margin="30,404,10,76">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="533*"/>
+                    <ColumnDefinition Width="395*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.Background>
                     <SolidColorBrush Color="#FF51C6E3" Opacity="0.5"/>
                 </Grid.Background>
-                <Label Content="TextNe:" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="22" Width="80"/>
+                <Label Content="Varieties:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="22" Width="95" Height="45"/>
                 <ListBox x:Name="VarietyListBox" 
                     FontSize="16"
                     VerticalAlignment="Top" 
-                    BorderThickness="0" Height="326" Margin="0,54,0,0">
+                    BorderThickness="0" Height="428" Margin="10,32,0,0">
                     <ListBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
                     </ListBox.Background>
@@ -94,24 +99,12 @@
                                 </Border.Background>
                                 <StackPanel Orientation="Horizontal" >
                                     <StackPanel Margin="10,5,0,5">
-                                        <TextBlock FontSize="13" Text="Room Number:"/>
-                                        <TextBlock Width="90"  Text="{Binding RoomNumber}" FontWeight="Bold" Foreground="CornflowerBlue" />
+                                        <TextBlock FontSize="13" Text="Variety Id:"/>
+                                        <TextBlock Width="60"  Text="{Binding Id}" FontWeight="Bold" Foreground="CornflowerBlue" />
                                     </StackPanel>
                                     <StackPanel Margin="30,5,0,5">
-                                        <TextBlock FontSize="13" Text="Room Type:"/>
-                                        <TextBlock  Width="150" Text="{Binding RoomType}" FontWeight="Bold" Foreground="#FF0C6F24"  />
-                                    </StackPanel>
-                                    <StackPanel Margin="30,5,0,5">
-                                        <TextBlock FontSize="13" Text="Actual Price:"/>
-                                        <TextBlock Width="100"  Text="{Binding ActualPrice, StringFormat=C}" FontWeight="Bold" Foreground="DarkRed" />
-                                    </StackPanel>
-                                    <StackPanel Margin="30,5,0,5">
-                                        <TextBlock FontSize="13" Text="Start Date:"/>
-                                        <DatePicker Width="120" Text="{Binding StartDate}" IsEnabled="False" />
-                                    </StackPanel>
-                                    <StackPanel Margin="30,5,0,5">
-                                        <TextBlock FontSize="13" Text="End Date:"/>
-                                        <DatePicker Width="120" Text="{Binding EndDate}" IsEnabled="False" />
+                                        <TextBlock FontSize="13" Text="Variety Name:"/>
+                                        <TextBlock  Width="120" Text="{Binding Name}" FontWeight="Bold" Foreground="#FF0C6F24"  />
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -121,7 +114,7 @@
                 <ListBox x:Name="CriteriaListBox" 
                         FontSize="16"
                         VerticalAlignment="Top" 
-                        BorderThickness="0" Height="326" Margin="0,54,0,0">
+                        BorderThickness="0" Height="428" Margin="5,32,0,0" Grid.Column="1">
                     <ListBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
                     </ListBox.Background>
@@ -138,36 +131,68 @@
                                 </Border.Background>
                                 <StackPanel Orientation="Horizontal" >
                                     <StackPanel Margin="10,5,0,5">
-                                        <TextBlock FontSize="13" Text="Room Number:"/>
-                                        <TextBlock Width="90"  Text="{Binding RoomNumber}" FontWeight="Bold" Foreground="CornflowerBlue" />
+                                        <TextBlock FontSize="13" Text="Criteria:"/>
+                                        <TextBlock Width="90"  Text="{Binding Name}" FontWeight="Bold" Foreground="CornflowerBlue" />
                                     </StackPanel>
                                     <StackPanel Margin="30,5,0,5">
-                                        <TextBlock FontSize="13" Text="Room Type:"/>
-                                        <TextBlock  Width="150" Text="{Binding RoomType}" FontWeight="Bold" Foreground="#FF0C6F24"  />
+                                        <TextBlock FontSize="13" Text="Description:"/>
+                                        <TextBox TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0"       
+                                            VerticalScrollBarVisibility="Auto"
+                                            HorizontalScrollBarVisibility="Disabled"
+                                            Width="200" Height="80" Text="{Binding Description}" />
                                     </StackPanel>
                                     <StackPanel Margin="30,5,0,5">
-                                        <TextBlock FontSize="13" Text="Actual Price:"/>
-                                        <TextBlock Width="100"  Text="{Binding ActualPrice, StringFormat=C}" FontWeight="Bold" Foreground="DarkRed" />
-                                    </StackPanel>
-                                    <StackPanel Margin="30,5,0,5">
-                                        <TextBlock FontSize="13" Text="Start Date:"/>
-                                        <DatePicker Width="120" Text="{Binding StartDate}" IsEnabled="False" />
-                                    </StackPanel>
-                                    <StackPanel Margin="30,5,0,5">
-                                        <TextBlock FontSize="13" Text="End Date:"/>
-                                        <DatePicker Width="120" Text="{Binding EndDate}" IsEnabled="False" />
+                                        <TextBlock FontSize="13" Text="Percentage:"/>
+                                        <TextBlock Width="100"  Text="{Binding Percentage}" FontWeight="Bold" Foreground="DarkRed" />
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Button Content="Varieties:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="10,5,0,0"/>
-                <Button Content="Criteria:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="115,5,0,0"/>
+                <Label Content="Criteria:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="22" Width="95" Height="45" Grid.Column="1"/>
+                <ListBox x:Name="RefereeListBox" 
+                    FontSize="16"
+                    VerticalAlignment="Top" 
+                    BorderThickness="0" Height="428" Margin="5,32,0,0" Grid.Column="2">
+                    <ListBox.Background>
+                        <SolidColorBrush Color="White" Opacity="0"/>
+                    </ListBox.Background>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="5" Padding="10" BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                                <Border.Background>
+                                    <SolidColorBrush Color="White" Opacity="1"/>
+                                </Border.Background>
+                                <StackPanel Orientation="Horizontal" >
+                                    <StackPanel Margin="10,5,0,5">
+                                        <TextBlock FontSize="13" Text="Referee Id:"/>
+                                        <TextBlock Width="60"  Text="{Binding Id}" FontWeight="Bold" Foreground="CornflowerBlue" />
+                                    </StackPanel>
+                                    <StackPanel Margin="30,5,0,5">
+                                        <TextBlock FontSize="13" Text="Name:"/>
+                                        <TextBlock  Width="220" Text="{Binding Name}" FontWeight="Bold" Foreground="#FF0C6F24"  />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Label Content="Referees:" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Top" FontSize="22" Width="125" Height="45" Grid.Column="2"/>
             </Grid>
-            <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="30,876,0,0" Grid.Column="1"/>
-            <Button Content="Create" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="0,876,0,0" Grid.Column="1" Click="BtnCreate"/>
-            <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="44" Margin="710,878,0,0" Grid.Column="1" Click="BtnDelete"/>
+            <StackPanel Orientation="Horizontal" Margin="30,869,40,0" Grid.Column="1">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.1"/>
+                </StackPanel.Background>
+                <Button Margin="0,0,100,0" Content="Update" FontSize="20" Width="100" Height="44"/>
+                <Button Margin="0,0,100,0" Content="Create" FontSize="20" Width="100" Height="44" Click="BtnCreate"/>
+                <Button Margin="0,0,100,0" Content="Delete" FontSize="20" Width="100" Height="44" Click="BtnDelete"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
