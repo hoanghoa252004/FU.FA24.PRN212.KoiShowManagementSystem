@@ -96,8 +96,29 @@ namespace KoiShowManagementSystemWPF.Manager
 
         private async void BtnDelete(object sender, RoutedEventArgs e)
         {
-            bool result = await _showService.Delete(8);
-            MessageBox.Show(result.ToString());
+            if (_selectedShow != null)
+            {
+                try
+                {
+                    bool confirm = Confirm();
+                    if (confirm == true)
+                    {
+                        bool result = await _showService.Delete(_selectedShow.Id);
+                        if(result == true)
+                        {
+                            RefreshWindow();
+                        }
+                        else
+                        {
+                            throw new Exception("Delete Failed !");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed: " + ex.Message);
+                }
+            }
         }
 
         private async void BtnSearch(object sender, RoutedEventArgs e)
@@ -113,12 +134,25 @@ namespace KoiShowManagementSystemWPF.Manager
                 {
                     var result = await _showService.Search(key);
                     ShowGrid.ItemsSource = result;
+                    ResetTextBox();
                 }
             }
             catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message, "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private bool Confirm()
+        {
+            MessageBoxResult result = MessageBox.Show("You're deleting a room information. Are you sure ?",
+                                                      "Confirmation",
+                                                      MessageBoxButton.YesNo,
+                                                      MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+                return true;
+            else
+                return false;
         }
 
         private void SelectShow(object sender, SelectionChangedEventArgs e)
@@ -135,10 +169,20 @@ namespace KoiShowManagementSystemWPF.Manager
             txtTitle.Text = dto.Title;
             txtDescription.Text = dto.Description;
             txtStatus.Text = dto.Status;
+            txtEntranceFee.Text = dto.EntranceFee.ToString();
             txtRegisterDate.Text = $"from {dto.RegisterStartDate} to {dto.RegisterEndDate}";
             VarietyListBox.ItemsSource = dto.Varieties;
             CriteriaListBox.ItemsSource = dto.Criteria;
             RefereeListBox.ItemsSource = dto.Referees;
+            if (dto.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase) == true
+                || dto.Status.Equals("Finished", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                btnReviewScore.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnReviewScore.Visibility = Visibility.Collapsed;
+            }
         }
         private async void RefreshWindow()
         {
@@ -150,6 +194,7 @@ namespace KoiShowManagementSystemWPF.Manager
                     .FirstOrDefault(s => s.Id == _selectedShow.Id);
                 if (showToSelect != null)
                 {
+                    _selectedShow = showToSelect;
                     ShowGrid.SelectedItem = showToSelect;
                     ShowGrid.ScrollIntoView(showToSelect);
                     DisplayShowInformation(showToSelect);
@@ -161,12 +206,15 @@ namespace KoiShowManagementSystemWPF.Manager
 
         private void ResetTextBox()
         {
+            _selectedShow = null!;
             txtDescription.Clear();
             txtStatus.Clear();
             txtRegisterDate.Clear();
             txtTitle.Clear();
+            txtEntranceFee.Clear();
             VarietyListBox.ItemsSource = null;
             CriteriaListBox.ItemsSource = null;
+            RefereeListBox.ItemsSource = null;
         }
     }
 }

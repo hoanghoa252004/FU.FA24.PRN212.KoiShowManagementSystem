@@ -60,8 +60,14 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                 }
                 else
                 {
+                    if(decimal.Parse(txtPercentage.Text) <= 0)
+                    {
+                        message += $"Percentage must > 0 {_remainingPercentage} !\n";
+                    }
                     if (decimal.Parse(txtPercentage.Text) > _remainingPercentage)
+                    {
                         message += $"Percentage now only can be less or equal {_remainingPercentage} !\n";
+                    }    
                 }
 
                 if (message.Length > 0)
