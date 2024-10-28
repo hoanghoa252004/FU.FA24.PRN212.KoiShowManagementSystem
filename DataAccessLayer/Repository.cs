@@ -23,6 +23,11 @@ namespace DataAccessLayer
         // FIELDS:-----------------------------------------
         private IShowRepository _show = null!;
         private IUserRepository _user = null!;
+        private IKoiRepository _koi = null!;
+        private IVarietyRepository _variety = null!;
+        private ICriterionRepository _criterion = null!;
+        private IRegistrationRepository _registration = null!;
+        private IScoreRepository _score = null!;
 
         // PROPERTIES:-------------------------------------
         public IShowRepository Show
@@ -45,6 +50,66 @@ namespace DataAccessLayer
                     this._user = UserDAO.Instance;
                 }
                 return this._user;
+            }
+        }
+
+        public IKoiRepository Koi
+        {
+            get
+            {
+                if (this._koi == null)
+                {
+                    this._koi = KoiDAO.Instance;
+                }
+                return this._koi;
+            }
+        }
+
+        public IVarietyRepository Variety
+        {
+            get
+            {
+                if (this._variety == null)
+                {
+                    this._variety = VarietyDAO.Instance;
+                }
+                return this._variety;
+            }
+        }
+
+        public ICriterionRepository Criterion
+        {
+            get
+            {
+                if (this._criterion == null)
+                {
+                    this._criterion = CriterionDAO.Instance;
+                }
+                return this._criterion;
+            }
+        }
+
+        public IRegistrationRepository Registration
+        {
+            get
+            {
+                if (this._registration == null)
+                {
+                    this._registration = RegistrationDAO.Instance;
+                }
+                return this._registration;
+            }
+        }
+
+        public IScoreRepository Score
+        {
+            get
+            {
+                if (this._score == null)
+                {
+                    this._score = ScoreDAO.Instance;
+                }
+                return this._score;
             }
         }
     }
