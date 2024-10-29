@@ -46,5 +46,10 @@ namespace BusinessLogicLayer.Implementation
         }
 
         public async Task<bool> Update(RegistrationDTO dto) => await _repository.Registration.Update(dto);
+
+        public async Task<IEnumerable<RegistrationDTO>> GetAllRegistrationForReferee(int userId)
+        {
+            return await _repository.Registration.GetRegistrationsByReferee(userId);
+        }
     }
 }

@@ -1,0 +1,29 @@
+﻿<Window x:Class="KoiShowManagementSystemWPF.PopupDialog.CreateRefereeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KoiShowManagementSystemWPF.PopupDialog"
+        mc:Ignorable="d"
+        Title="CreateRefereeWindow" Height="561" Width="579">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="CREATE REFEREE" HorizontalAlignment="Left" Height="73" VerticalAlignment="Top" Width="431" FontWeight="ExtraBold" FontSize="50" Margin="80,22,0,0" />
+        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,100,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
+        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,160,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
+        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,220,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
+        <TextBox HorizontalAlignment="Left" Height="54" Margin="213,280,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22" />
+
+        <Label Content="Name" HorizontalAlignment="Left" Height="60" Margin="51,100,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
+        <Label Content="Email" HorizontalAlignment="Left" Height="60" Margin="51,160,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
+        <Label Content="Password" HorizontalAlignment="Left" Height="60" Margin="51,220,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
+        <Label Content="Phone" HorizontalAlignment="Left" Height="60" Margin="51,280,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
+
+        <Button Content="Cancel" HorizontalAlignment="Left" Height="53" Margin="80,450,0,0" VerticalAlignment="Top" Width="112" FontSize="20" />
+        <Button Content="Submit" HorizontalAlignment="Left" Height="53" Margin="235,450,0,0" VerticalAlignment="Top" Width="111" FontSize="20" />
+        <Button Content="Reset" HorizontalAlignment="Left" Height="53" Margin="389,450,0,0" VerticalAlignment="Top" Width="112" FontSize="20" />
+
+    </Grid>
+</Window>

@@ -16,5 +16,6 @@ namespace DataAccessLayer.Interface
         Task<bool> Delete(int registrationId);
         Task CalculateTotalScoreAllForRegistation(int showId);
         Task Ranking(int showId);
+             Task<IEnumerable<RegistrationDTO>> GetRegistrationsByReferee(int userId);
     }
 }

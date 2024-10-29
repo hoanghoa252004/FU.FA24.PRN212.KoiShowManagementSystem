@@ -12,5 +12,6 @@ namespace BusinessLogicLayer.Interface
         Task<bool> Add(RegistrationDTO dto);
         Task<IEnumerable<RegistrationDTO>> Search(string key);
         Task<bool> Update(RegistrationDTO dto);
+        Task<IEnumerable<RegistrationDTO>> GetAllRegistrationForReferee(int userId);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Interface;
 using DTOs;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,39 @@ namespace DataAccessLayer.Implementation
                     Status = v.Status,
                 }).ToListAsync();
                 return result;
+            }
+        }
+
+        public async Task AddAsync(Variety variety)
+        {
+            using (var context = new Prn212ProjectKoiShowManagementContext())
+            {
+                await context.Varieties.AddAsync(variety);
+                await context.SaveChangesAsync();
+            }
+        }
+
+
+        public async Task UpdateAsync(Variety variety)
+        {
+            using (var context = new Prn212ProjectKoiShowManagementContext())
+            {
+                context.Varieties.Update(variety);
+                await context.SaveChangesAsync();
+            }
+        }
+
+
+        public async Task DeleteAsync(int VarietyId)
+        {
+            using (var context = new Prn212ProjectKoiShowManagementContext())
+            {
+                var variety = await context.Varieties.FindAsync(VarietyId);
+                if (variety != null)
+                {
+                    context.Varieties.Remove(variety);
+                    await context.SaveChangesAsync();
+                }
             }
         }
     }
