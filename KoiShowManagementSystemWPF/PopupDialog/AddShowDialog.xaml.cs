@@ -26,27 +26,27 @@ namespace KoiShowManagementSystemWPF.PopupDialog
         private readonly IShowService _showService;
         private readonly IUserService _userService;
         private Action RefreshWindow;
-        private List<CriterionDTO> _criteria = new List<CriterionDTO>()
-                {
-                    new CriterionDTO()
-                    {
-                        Name = "Pattern",
-                        Description = "XYXYXYXfffffffffffffffffffffffffffffffffffffYssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
-                        Percentage = 30,
-                    },
-                    new CriterionDTO()
-                    {
-                        Name = "Color",
-                        Description = "XYXYXYXY",
-                        Percentage = 30.4m,
-                    },
-                    new CriterionDTO()
-                    {
-                        Name = "Pattern",
-                        Description = "XYXYXYXfffffffffffffffffffffffffffffffffffffYssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
-                        Percentage = 12.4m,
-                    },
-                };
+        private List<CriterionDTO> _criteria = new List<CriterionDTO>();
+                //{
+                //    new CriterionDTO()
+                //    {
+                //        Name = "Pattern",
+                //        Description = "XYXYXYXfffffffffffffffffffffffffffffffffffffYssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+                //        Percentage = 30,
+                //    },
+                //    new CriterionDTO()
+                //    {
+                //        Name = "Color",
+                //        Description = "XYXYXYXY",
+                //        Percentage = 30.4m,
+                //    },
+                //    new CriterionDTO()
+                //    {
+                //        Name = "Pattern",
+                //        Description = "XYXYXYXfffffffffffffffffffffffffffffffffffffYssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+                //        Percentage = 12.4m,
+                //    },
+                //};
         public AddShowDialog(Action RefreshWindow)
         {
             this.RefreshWindow += RefreshWindow;
@@ -118,7 +118,7 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                     message += "Entrance Fee is invalid !\n";
                 else
                 {
-                    if(decimal.Parse(txtTEntranceFee.Text) >= 0)
+                    if(decimal.Parse(txtTEntranceFee.Text) <= 0)
                     {
                         message += "Entrance Fee must >= 0 !\n";
                     }
@@ -173,7 +173,7 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                 {
                     var referee = item as UserDTO;
                     // Whether có chọn ko:
-                    var container = VarietyListBox.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
+                    var container = RefereeListBox.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
                     var checkBox = FindVisualChild<CheckBox>(container!);
 
                     if (checkBox != null && checkBox.IsChecked == true)

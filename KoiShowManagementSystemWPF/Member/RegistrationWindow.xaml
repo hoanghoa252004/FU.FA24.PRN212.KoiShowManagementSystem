@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Member"
         mc:Ignorable="d"
       WindowStartupLocation="CenterScreen"
-    Title="KoiManagementWindow" Height="880" Width="1515">
+    Title="KoiManagementWindow" Height="880" Width="1450">
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
             <SolidColorBrush Color="#FFDEDA12" Opacity="0.3"/>
@@ -33,55 +33,77 @@
                     <SolidColorBrush Color="#FF20E47A" Opacity="0.3"/>
                 </Grid.Background>
                 <Label Content="Registration:" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" FontSize="22"/>
-                <TextBox TextWrapping="Wrap" Text="Midorya Izuku" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="146,18,116,0"/>
-                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="579,18,0,0"/>
-                <DataGrid AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,10" Grid.Row="1" FontSize="18">
+                <TextBox x:Name="txtSearch" TextWrapping="Wrap" Text="Midorya Izuku" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="146,18,138,0"/>
+                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="548,18,0,0" Click="BtnSearch"/>
+                <DataGrid AutoGenerateColumns="False" x:Name="RegistrationGrid" Margin="10,10,10,10" Grid.Row="1" FontSize="18" SelectionChanged="SelectRegistration">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" MinWidth="50" Header="Id" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Width="*" MinWidth="160" Header="Name" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Width="*" MinWidth="160" Header="Variety" Binding="{Binding Variety}"/>
+                        <DataGridTextColumn Width="*" MinWidth="160" Header="Name" Binding="{Binding KoiName}"/>
+                        <DataGridTextColumn Width="*" MinWidth="160" Header="Variety" Binding="{Binding KoiVariety}"/>
                         <DataGridTextColumn Width="*" MinWidth="100" Header="Size" Binding="{Binding Size}"/>
                         <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-            <Grid Grid.Column="1" Margin="0,0,10,10">
+            <Grid Margin="678,0,10,196" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition Width="35*"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="55*"/>
-                    <RowDefinition Height="64*"/>
-                    <RowDefinition Height="70*"/>
+                    <RowDefinition Height="39*"/>
+                    <RowDefinition Height="47*"/>
                     <RowDefinition Height="65*"/>
-                    <RowDefinition Height="65*"/>
-                    <RowDefinition Height="265*"/>
-                    <RowDefinition Height="75*"/>
-                    <RowDefinition Height="116*"/>
+                    <RowDefinition Height="240*"/>
+                    <RowDefinition Height="160*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
                     <SolidColorBrush Color="#FFB63737" Opacity="0.5"/>
                 </Grid.Background>
-                <Label Content="Registration Information:" HorizontalAlignment="Left" Margin="81,0,0,0" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Grid.Column="1" Height="39" Width="278"/>
-                <Label Content="ID:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39"/>
-                <Label Content="Name:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39"/>
-                <Label Content="Variety:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="3" Height="39"/>
-                <Label Content="Size:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="4" Height="39"/>
-                <Label Content="Image:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="5" Height="39"/>
-                <Image Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Stretch="Uniform" Width="185"  Source="../Image/images.jpg"/>
-                <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="001" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,424,0" Grid.Row="1" />
-                <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="Bakudan Katsu" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,75,0" Grid.Row="2"/>
-                <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="Kohaku" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,251,0" Grid.Row="3"/>
-                <TextBox IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="45.5" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,454,0" Grid.Row="4"/>
-                <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="330,11,0,0" Grid.Column="1" Grid.Row="7"/>
-                <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="10,11,0,0" Grid.Column="1" Grid.Row="7"/>
-                <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="170,11,0,0" Grid.Column="1" Grid.Row="7"/>
-                <RadioButton Grid.Column="1" Content="Active" HorizontalAlignment="Left" Margin="21,0,0,0" Grid.Row="6" VerticalAlignment="Center" FontSize="22" Height="28" Width="78"/>
-                <RadioButton Grid.Column="1" Content="Inactive" HorizontalAlignment="Left" Margin="130,0,0,0" Grid.Row="6" VerticalAlignment="Center" FontSize="22" Height="28" Width="93"/>
-                <Label Content="Status:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="6" Height="39"/>
-                <Image Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="213,61,0,0" Grid.Row="4" VerticalAlignment="Top" Stretch="Uniform" Width="185"  Source="/Image/images.jpg" Grid.RowSpan="3"/>
-                <Image Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="417,61,0,0" Grid.Row="4" VerticalAlignment="Top" Stretch="Uniform" Width="185"  Source="/Image/images.jpg" Grid.RowSpan="3"/>
+                <Label Content="Registration Information:" HorizontalAlignment="Left" Margin="253,0,0,0" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Height="39" Width="278"/>
+                <Label Content="ID:" Margin="10,0,685,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39"/>
+                <Label Content="Name:" Margin="266,0,340,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39"/>
+                <Label Content="Variety:" Margin="10,0,624,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39"/>
+                <Label Content="Size:" Margin="318,0,296,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39"/>
+                <Label Content="Image:" Margin="10,10,650,0" VerticalAlignment="Top" FontSize="22" Grid.Row="3" Height="39"/>
+                <Image Visibility="Collapsed" x:Name="txtImage1" HorizontalAlignment="Left" Height="225" Margin="96,0,0,0" Grid.Row="3" VerticalAlignment="Center" Stretch="Uniform" Width="169"  Source="../Image/images.jpg"/>
+                <TextBox x:Name="txtId" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="53,0,539,0" Grid.Row="1" />
+                <TextBox x:Name="txtKoiName" IsReadOnly="True" TextWrapping="Wrap" Text="Bakudan Katsu" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="360,0,10,0" Grid.Row="1"/>
+                <TextBox x:Name="txtKoiVariety" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="103,0,456,0" Grid.Row="2"/>
+                <TextBox x:Name="txtSize" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="381,0,270,0" Grid.Row="2"/>
+                <Label Content="Status:" Margin="516,0,118,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39"/>
+                <Image Visibility="Collapsed" x:Name="txtImage2" HorizontalAlignment="Left" Height="225" Margin="285,0,0,0" Grid.Row="3" VerticalAlignment="Center" Stretch="Uniform" Width="169"  Source="/Image/images.jpg"/>
+                <Image Visibility="Collapsed" x:Name="txtImage3" HorizontalAlignment="Left" Height="225" Margin="476,0,0,0" Grid.Row="3" VerticalAlignment="Center" Stretch="Uniform" Width="169"  Source="/Image/images.jpg"/>
+                <TextBox x:Name="txtStatus" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="602,11,10,0" Grid.Row="2"/>
+                <TextBox x:Name="txtDescription" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Top" Height="110" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,40,325,0" Grid.Row="4"/>
+                <Label Content="Description:" Margin="10,0,596,0" VerticalAlignment="Top" FontSize="22" Grid.Row="4" Height="39"/>
+                <Label x:Name="labelNote" Content="Note:" Margin="461,0,145,0" VerticalAlignment="Top" FontSize="22" Grid.Row="4" Height="39"/>
+                <TextBox x:Name="txtNote" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Top" Height="110" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="464,39,10,0" Grid.Row="4"/>
+            </Grid>
+            <Button x:Name="btnUpdate" Visibility="Collapsed" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="10,672,0,0" Grid.Column="1" Click="BtnUpdate"/>
+            <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="662,672,0,0" Grid.Column="1" Click="BtnDelete"/>
+            <Grid Grid.ColumnSpan="2" Margin="678,571,10,67">
+                <Grid.Background>
+                    <SolidColorBrush Color="#FF437ED5" Opacity="0.5"/>
+                </Grid.Background>
+                <Label Content="Result:" Margin="10,0,670,0" VerticalAlignment="Top" FontSize="22" Height="39"/>
+                <StackPanel Visibility="Collapsed" x:Name="PanelResult" Orientation="Horizontal" Margin="97,0,10,0" >
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#FF4DC544" Opacity="0.8"/>
+                    </StackPanel.Background>
+                    <StackPanel Margin="10,5,0,5">
+                        <TextBlock FontSize="20" Text="Total Score:"/>
+                        <TextBlock FontSize="22" Width="100" x:Name="txtTotalScore" FontWeight="Bold" Foreground="#FFB63737" />
+                    </StackPanel>
+                    <StackPanel Margin="30,5,0,5">
+                        <TextBlock FontSize="20" Text="Ranking:"/>
+                        <TextBlock FontSize="22" x:Name="txtRanking"  Width="120" FontWeight="Bold" Foreground="Yellow"  />
+                    </StackPanel>
+                    <StackPanel Margin="30,5,0,5">
+                        <TextBlock FontSize="20" Text="IsBestVote:"/>
+                        <TextBlock IsEnabled="False" FontSize="22" x:Name="txtIsBestVote"   Width="120" FontWeight="Bold" Foreground="#FF0C6F24"  />
+                    </StackPanel>
+                    <Button Content="Score Details" FontSize="20" Width="124" Height="46"/>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

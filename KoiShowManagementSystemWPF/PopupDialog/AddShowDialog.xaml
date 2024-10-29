@@ -21,14 +21,14 @@
             </Grid.RowDefinitions>
             <Label Content="Title:" Margin="10,3,840,0" VerticalAlignment="Top" FontSize="18" Height="35"/>
             <Label  Content="Description:" Margin="550,3,261,0" VerticalAlignment="Top" FontSize="18" Height="34"/>
-            <TextBox x:Name="txtTitle" IsReadOnly="True" TextWrapping="Wrap" Text="Bakudan Katsu" VerticalAlignment="Top" Height="46" FontSize="20" Padding="15,6,0,0" HorizontalContentAlignment="Stretch" Margin="10,34,875,0" />
-            <TextBox x:Name="txtDescription" IsReadOnly="True" TextWrapping="Wrap" Text="aaaaaaaaaaaaaaaaa" VerticalAlignment="Top" Height="222" FontSize="20" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="550,34,25,0"/>
+            <TextBox x:Name="txtTitle" TextWrapping="Wrap" Text="Bakudan Katsu" VerticalAlignment="Top" Height="46" FontSize="20" Padding="15,6,0,0" HorizontalContentAlignment="Stretch" Margin="10,34,875,0" />
+            <TextBox x:Name="txtDescription"  TextWrapping="Wrap" Text="aaaaaaaaaaaaaaaaa" VerticalAlignment="Top" Height="222" FontSize="20" Padding="15,10,15,0" HorizontalContentAlignment="Stretch" Margin="550,34,25,0"/>
             <DatePicker x:Name="txtStartDate" Padding="5,5,5,5" FontSize="20" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Height="46" Width="177"/>
             <Label Content="Register End:" Margin="210,90,933,0" VerticalAlignment="Top" FontSize="18" Height="34"/>
             <DatePicker x:Name="txtEndDate" Padding="5,5,5,5" FontSize="20" HorizontalAlignment="Left" Margin="210,124,0,0" VerticalAlignment="Top" Height="46" Width="177"/>
             <Label Content="Register Start:" Margin="10,90,1133,0" VerticalAlignment="Top" FontSize="18" Height="34"/>
             <Label Content="Entrance Fee:" Margin="10,175,795,0" VerticalAlignment="Top" FontSize="18" Height="35"/>
-            <TextBox x:Name="txtTEntranceFee" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Top" Height="46" FontSize="20" Padding="15,6,0,0" HorizontalContentAlignment="Stretch" Margin="10,210,1003,0" />
+            <TextBox x:Name="txtTEntranceFee"  TextWrapping="Wrap" VerticalAlignment="Top" Height="46" FontSize="20" Padding="15,6,0,0" HorizontalContentAlignment="Stretch" Margin="10,210,1003,0" />
         </Grid>
         <Grid Margin="10,10,0,10" Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -104,7 +104,7 @@
                                 </StackPanel>
                                 <StackPanel Margin="30,5,0,5">
                                     <TextBlock FontSize="13" Text="Percentage:"/>
-                                    <TextBlock Width="100"  Text="{Binding Percentage, StringFormat={}{0:F1}%}" FontWeight="Bold" Foreground="DarkRed" />
+                                    <TextBlock Width="100"  Text="{Binding Percentage, StringFormat={}{0:F2}%}" FontWeight="Bold" Foreground="DarkRed" />
                                 </StackPanel>
                             </StackPanel>
                         </Border>

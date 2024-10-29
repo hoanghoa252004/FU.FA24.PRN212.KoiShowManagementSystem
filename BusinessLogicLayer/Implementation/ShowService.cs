@@ -56,5 +56,11 @@ namespace BusinessLogicLayer.Implementation
         {
             return false;
         }
+
+        public async Task<IEnumerable<RegistrationDTO>> ReviewScore(int showId)
+        {
+            await _repository.Registration.CalculateTotalScoreAllForRegistation(showId);
+            return null!;
+        }
     }
 }

@@ -184,35 +184,47 @@ namespace DataAccessLayer.Implementation
                 .SingleOrDefaultAsync(s => s.Id == showId);
                 if (show != null)
                 {
-                    // TH1: KHi trạng thái là Finished và có các record liên quan tới:
-                    // => CHuyển trạng thái thành False => thay đổi Column DB ( ĐỢI XÁC NHẬN ).
-
-                    // TH2: Khi trạng thái là Up Comming, hoặc chưa có record nào liên quan tới:
+                    // TH1: Khi trạng thái là Up Comming, hoặc chưa có record nào liên quan tới:
                     // 1. Xóa record trong (ShowDetail) bảng trung gian:
-                    foreach (var varriety in show.Varieties)
+                    if (show.Status.Equals("UpComing", StringComparison.OrdinalIgnoreCase) == true)
                     {
-                        varriety.Shows.Remove(show);
-                    }
-                    // 2. Xóa Criteria liên quan:
-                    foreach (var criterion in _context.Criteria)
-                    {
-                        if (criterion.ShowId == show.Id)
+                        foreach (var varriety in show.Varieties)
                         {
-                            _context.Criteria.Remove(criterion);
+                            varriety.Shows.Remove(show);
                         }
-                    }
-                    // 3. Xóa Referee Detail liên quan:
-                    foreach (var refereeDetail in _context.RefereeDetails)
-                    {
-                        if (refereeDetail.ShowId == show.Id)
+                        // 2. Xóa Criteria liên quan:
+                        foreach (var criterion in _context.Criteria)
                         {
-                            _context.RefereeDetails.Remove(refereeDetail);
+                            if (criterion.ShowId == show.Id)
+                            {
+                                _context.Criteria.Remove(criterion);
+                            }
                         }
+                        // 3. Xóa Referee Detail liên quan:
+                        foreach (var refereeDetail in _context.RefereeDetails)
+                        {
+                            if (refereeDetail.ShowId == show.Id)
+                            {
+                                _context.RefereeDetails.Remove(refereeDetail);
+                            }
+                        }
+                        // 4. Xóa Show:
+                        _context.Shows.Remove(show);
+                        await _context.SaveChangesAsync();
+                        result = true;
                     }
-                    // 4. Xóa Show:
-                    _context.Shows.Remove(show);
-                    await _context.SaveChangesAsync();
-                    result = true;
+                    // TH2: KHi trạng thái là OnGoing, Scoring, Finished và có các record liên quan tới:
+                    // => CHuyển trạng thái thành Deleted.
+                    else if (show.Status.Equals("Deleted", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        show.Status = "Deleted";
+                        await _context.SaveChangesAsync();
+                        result = true;
+                    }
                 }
             }
             return result;

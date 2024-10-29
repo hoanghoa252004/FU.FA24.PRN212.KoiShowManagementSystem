@@ -42,7 +42,7 @@ namespace KoiShowManagementSystemWPF
                 else
                 {
                     var user = await _service.Login(txtEmail.Text, txtPassword.Text);
-                    MemberProfileWindow window = new MemberProfileWindow(user);
+                    RegistrationWindow window = new RegistrationWindow(user);
                     window.Show();
                     this.Close();
                 }
