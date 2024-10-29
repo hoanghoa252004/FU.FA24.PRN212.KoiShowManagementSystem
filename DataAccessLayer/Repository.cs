@@ -25,6 +25,9 @@ namespace DataAccessLayer
         private IUserRepository _user = null!;
         private IVarietyRepository _variety = null!;
         private IRegistrationRepository _registration = null!;
+        private IKoiRepository _koi = null!;
+        private ICriterionRepository _criterion = null!;
+        private IScoreRepository _score = null!;
         // PROPERTIES:-------------------------------------
         public IShowRepository Show
         {
@@ -68,6 +71,42 @@ namespace DataAccessLayer
                     this._registration = RegistrationDAO.Instance;
                 }
                 return this._registration;
+            }
+        }
+
+        public IKoiRepository Koi
+        {
+            get
+            {
+                if (this._koi == null)
+                {
+                    this._koi = KoiDAO.Instance;
+                }
+                return this._koi;
+            }
+        }
+
+        public ICriterionRepository Criterion
+        {
+            get
+            {
+                if (this._criterion == null)
+                {
+                    this._criterion = CriterionDAO.Instance;
+                }
+                return this._criterion;
+            }
+        }
+
+        public IScoreRepository Score
+        {
+            get
+            {
+                if (this._score == null)
+                {
+                    this._score = ScoreDAO.Instance;
+                }
+                return this._score;
             }
         }
     }

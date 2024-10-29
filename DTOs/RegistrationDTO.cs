@@ -17,7 +17,7 @@ namespace DTOs
         public string? Description { get; set; } = null!;
 
         public string? Note { get; set; }
-
+        public string? VarietyName { get; set; }
         public decimal? TotalScore { get; set; }
 
         public int? Rank { get; set; }
@@ -41,5 +41,7 @@ namespace DTOs
         public byte[]? Image03 { get; set; } = null!;
 
         public string? Status { get; set; } = null!;
+
+        public virtual ICollection<ScoreDTO> Scores { get; set; } = new List<ScoreDTO>();
     }
 }
