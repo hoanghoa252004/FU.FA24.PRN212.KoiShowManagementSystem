@@ -49,9 +49,20 @@ namespace DataAccessLayer.Implementation
             return result;
         }
 
-        public Task<bool> Delete(int registrationId)
+        public async Task<bool> Delete(int registrationId)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            using (Prn212ProjectKoiShowManagementContext _context = new Prn212ProjectKoiShowManagementContext())
+            {
+                var registration = await _context.Registrations.SingleOrDefaultAsync(r => r.Id == registrationId);
+                if (registration != null)
+                {
+                    _context.Registrations.Remove(registration);
+                    await _context.SaveChangesAsync();
+                    result = true;
+                }
+            }
+            return false;
         }
 
         public async Task<IEnumerable<RegistrationDTO>> GetAll()

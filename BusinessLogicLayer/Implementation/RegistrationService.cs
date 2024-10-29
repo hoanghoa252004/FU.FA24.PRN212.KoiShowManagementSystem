@@ -36,7 +36,7 @@ namespace BusinessLogicLayer.Implementation
                                 r.KoiName!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
                                 || r.ShowName!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
                                 || r.Rank!.ToString()!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || r.Description.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                || r.Description!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
                                 || r.KoiVariety!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
                                 || r.CreateDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
                 return result;
@@ -50,6 +50,29 @@ namespace BusinessLogicLayer.Implementation
         public async Task<IEnumerable<RegistrationDTO>> GetAllRegistrationForReferee(int userId)
         {
             return await _repository.Registration.GetRegistrationsByReferee(userId);
+        }
+
+        public async Task<bool> Delete(int registrationId)
+        {
+            bool result = false;
+            var registration = await _repository.Registration.GetById(registrationId);
+            if(registration != null)
+            {
+                if (registration.Status!.Equals("Pending", StringComparison.OrdinalIgnoreCase) == true
+                        || registration.Status!.Equals("Reject", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result = await _repository.Registration.Delete(registrationId);
+                }
+                else
+                {
+                    throw new Exception("Registration can not be deleted !");
+                }
+            }
+            else
+            {
+                throw new Exception("Registration does not exist !");
+            }
+            return result;
         }
     }
 }

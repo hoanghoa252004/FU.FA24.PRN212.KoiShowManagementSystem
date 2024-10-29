@@ -68,6 +68,7 @@ namespace KoiShowManagementSystemWPF.Member
             txtImage2.Visibility = Visibility.Collapsed;
             txtImage3.Visibility = Visibility.Collapsed;
             btnUpdate.Visibility = Visibility.Collapsed;
+            btnDelete.Visibility = Visibility.Collapsed;
             PanelResult.Visibility = Visibility.Collapsed;
         }
 
@@ -93,10 +94,12 @@ namespace KoiShowManagementSystemWPF.Member
                 }
                 else if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
                 {
+                    btnDelete.Visibility = Visibility.Visible;
                     if (_selectedRegistration.Status!.Equals("Reject", StringComparison.OrdinalIgnoreCase) == true)
                     {
                         btnUpdate.Visibility = Visibility.Visible;
                     }
+
                 }
                 txtDescription.Text = _selectedRegistration!.Description;
                 txtStatus.Text = _selectedRegistration.Status;
@@ -170,9 +173,20 @@ namespace KoiShowManagementSystemWPF.Member
 
         }
 
-        private void BtnDelete(object sender, RoutedEventArgs e)
+        private async void BtnDelete(object sender, RoutedEventArgs e)
         {
-
+            bool result = false;
+            if (_selectedRegistration != null)
+            {
+                if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result = await _service.Delete(_selectedRegistration.Id);
+                }
+            }
+            if(result == true)
+            {
+                RefreshWindow();
+            }
         }
 
         private async void RefreshWindow()

@@ -79,8 +79,8 @@
                 <Label x:Name="labelNote" Content="Note:" Margin="461,0,145,0" VerticalAlignment="Top" FontSize="22" Grid.Row="4" Height="39"/>
                 <TextBox x:Name="txtNote" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Top" Height="110" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="464,39,10,0" Grid.Row="4"/>
             </Grid>
-            <Button x:Name="btnUpdate" Visibility="Collapsed" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="10,672,0,0" Grid.Column="1" Click="BtnUpdate"/>
-            <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="662,672,0,0" Grid.Column="1" Click="BtnDelete"/>
+            <Button Visibility="Collapsed" x:Name="btnUpdate"  Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="662,672,0,0" Grid.Column="1" Click="BtnUpdate"/>
+            <Button Visibility="Collapsed" x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="662,672,0,0" Grid.Column="1" Click="BtnDelete"/>
             <Grid Grid.ColumnSpan="2" Margin="678,571,10,67">
                 <Grid.Background>
                     <SolidColorBrush Color="#FF437ED5" Opacity="0.5"/>
