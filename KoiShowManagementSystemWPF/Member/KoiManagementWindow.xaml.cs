@@ -26,11 +26,13 @@ namespace KoiShowManagementSystemWPF.Member
     {
         private readonly IKoiService _koiService;
         private readonly IVarietyService _varietyService;
-        public KoiManagementWindow()
+        private readonly UserDTO _user;
+        public KoiManagementWindow(UserDTO user)
         {
             _koiService = KoiService.Instance;
             _varietyService = VarietyService.Instance;
             InitializeComponent();
+            _user = user;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -49,7 +51,7 @@ namespace KoiShowManagementSystemWPF.Member
         private async void FillDataGrid()
         {
             dgData.ItemsSource = null; //xóa grid
-            dgData.ItemsSource = await _koiService.GetAllKoisByUser(13); // Hardcode user ID nè
+            dgData.ItemsSource = await _koiService.GetAllKoisByUser(_user.Id);
         }
 
         private void FillElements(KoiDTO koi)
@@ -142,7 +144,7 @@ namespace KoiShowManagementSystemWPF.Member
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            CreateKoiWindow createKoiWindow = new CreateKoiWindow();
+            CreateKoiWindow createKoiWindow = new CreateKoiWindow(_user);
             createKoiWindow.ShowDialog();
         }
 

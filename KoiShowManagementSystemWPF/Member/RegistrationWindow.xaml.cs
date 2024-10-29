@@ -2,6 +2,7 @@
 using BusinessLogicLayer.Interface;
 using DTOs;
 using KoiShowManagementSystemWPF.PopupDialog;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -68,6 +69,7 @@ namespace KoiShowManagementSystemWPF.Member
             txtImage2.Visibility = Visibility.Collapsed;
             txtImage3.Visibility = Visibility.Collapsed;
             btnUpdate.Visibility = Visibility.Collapsed;
+            btnDelete.Visibility = Visibility.Collapsed;
             PanelResult.Visibility = Visibility.Collapsed;
         }
 
@@ -93,10 +95,12 @@ namespace KoiShowManagementSystemWPF.Member
                 }
                 else if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
                 {
-                    if (_selectedRegistration.Status!.Equals("Reject", StringComparison.OrdinalIgnoreCase) == true)
+                    btnDelete.Visibility = Visibility.Visible;
+                    if (_selectedRegistration.Status!.Equals("Rejected", StringComparison.OrdinalIgnoreCase) == true)
                     {
                         btnUpdate.Visibility = Visibility.Visible;
                     }
+
                 }
                 txtDescription.Text = _selectedRegistration!.Description;
                 txtStatus.Text = _selectedRegistration.Status;
@@ -120,6 +124,10 @@ namespace KoiShowManagementSystemWPF.Member
                     }
                     PanelResult.Visibility = Visibility.Visible;
                 }
+                else
+                {
+                    PanelResult.Visibility = Visibility.Collapsed;
+                }
                 // Load Image
                 BitmapImage image1 = ToImage(_selectedRegistration.Image01!);
                 BitmapImage image2 = ToImage(_selectedRegistration.Image02!);
@@ -130,7 +138,6 @@ namespace KoiShowManagementSystemWPF.Member
                 txtImage1.Visibility = Visibility.Visible;
                 txtImage2.Visibility = Visibility.Visible;
                 txtImage3.Visibility = Visibility.Visible;
-                //PanelResult.Visibility = Visibility.Collapsed;
             }
         }
         public BitmapImage ToImage(byte[] array)
@@ -170,9 +177,30 @@ namespace KoiShowManagementSystemWPF.Member
 
         }
 
-        private void BtnDelete(object sender, RoutedEventArgs e)
+        private async void BtnDelete(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                bool result = false;
+                if (_selectedRegistration != null)
+                {
+                    if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        if(Confirm() == true)
+                        {
+                            result = await _service.Delete(_selectedRegistration.Id);
+                        }
+                    }
+                }
+                if (result == true)
+                {
+                    RefreshWindow();
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message,"Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private async void RefreshWindow()
@@ -192,6 +220,45 @@ namespace KoiShowManagementSystemWPF.Member
                 else
                     ResetTextBox();
             }
+        }
+
+        private async void BtnGetAll(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (_user != null)
+                {
+                    var result = await _service.GetAllRegistration(_user.Id);
+                    if (result != null)
+                    {
+                        if (result.Any() == true)
+                        {
+                            RegistrationGrid.ItemsSource = result;
+                            ResetTextBox();
+                        }
+                        else
+                        {
+                            throw new Exception("There do not have any registration !");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private bool Confirm()
+        {
+            MessageBoxResult result = MessageBox.Show("You're deleting a room information. Are you sure ?",
+                                                      "Confirmation",
+                                                      MessageBoxButton.YesNo,
+                                                      MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+                return true;
+            else
+                return false;
         }
     }
 }

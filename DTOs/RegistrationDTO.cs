@@ -43,5 +43,7 @@ namespace DTOs
         public string? Status { get; set; } = null!;
 
         public virtual ICollection<ScoreDTO> Scores { get; set; } = new List<ScoreDTO>();
+
+        public int MemberId { get; set; }
     }
 }

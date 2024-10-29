@@ -27,20 +27,20 @@ namespace KoiShowManagementSystemWPF.PopupDialog
     {
         private readonly IKoiService _koiService;
         private readonly IVarietyService _varietyService;
-        private UserDTO _user= new();
+        private UserDTO _user = null!;
         private byte[]? _imageBinaryData;
-
-        public CreateKoiWindow()
+        public CreateKoiWindow(UserDTO user)
         {
             InitializeComponent();
             _koiService =  KoiService.Instance;
             _varietyService =  VarietyService.Instance;
             FillCombox();
+            _user = user;
         }
 
         private async void FillCombox()
         {
-            //Show name nhưng lấy Id
+            // Display name nhưng lấy Id
             var varieties = await _varietyService.GetAll();
             VarietyIdComboBox.ItemsSource = varieties;
             VarietyIdComboBox.DisplayMemberPath = "Name";
@@ -99,7 +99,7 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                 Status = true,
                 VarietyId = (int)VarietyIdComboBox.SelectedValue,
                 Image = _imageBinaryData,
-                UserId = 13                                         //HARD CODE IS DEFAULT USER HAS ID 13 ==> THẤT BẠI :))
+                UserId = _user.Id,
             };
 
             try

@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer.Implementation;
 using BusinessLogicLayer.Interface;
+using KoiShowManagementSystemWPF.Manager;
 using KoiShowManagementSystemWPF.Member;
 using Microsoft.IdentityModel.Tokens;
 using System;
