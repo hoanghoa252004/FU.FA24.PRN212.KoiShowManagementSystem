@@ -25,11 +25,26 @@ namespace KoiShowManagementSystemWPF.Manager
     public partial class ShowManagementWindow : Window
     {
         private readonly IShowService _showService;
+        private readonly IKoiService _koiService;
         private  ShowDTO _selectedShow = null!;
-        public ShowManagementWindow()
+        private readonly UserDTO _user = null!;
+        public ShowManagementWindow(UserDTO user)
         {
-            _showService = ShowService.Instance;
             InitializeComponent();
+            _showService = ShowService.Instance;
+            _koiService = KoiService.Instance;
+            _user = user;
+            Authorize();
+        }
+
+        private void Authorize()
+        {
+            if(_user.Role!.Equals("Admin",StringComparison.OrdinalIgnoreCase) == true)
+            {
+                btnCreate.Visibility = Visibility.Visible;
+                btnUpdate.Visibility = Visibility.Visible;
+                btnDelete.Visibility = Visibility.Visible;
+            }
         }
 
         private void BtnCreate(object sender, RoutedEventArgs e)
@@ -174,14 +189,28 @@ namespace KoiShowManagementSystemWPF.Manager
             VarietyListBox.ItemsSource = dto.Varieties;
             CriteriaListBox.ItemsSource = dto.Criteria;
             RefereeListBox.ItemsSource = dto.Referees;
-            if (dto.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase) == true
-                || dto.Status.Equals("Finished", StringComparison.OrdinalIgnoreCase) == true)
+            if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
             {
-                btnReviewScore.Visibility = Visibility.Visible;
+                if (dto.Status.Equals("OnGoing", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    btnRegister.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnRegister.Visibility = Visibility.Collapsed;
+                }
             }
-            else
+            else if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
             {
-                btnReviewScore.Visibility = Visibility.Collapsed;
+                if (dto.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase) == true
+                || dto.Status.Equals("Finished", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    btnReviewScore.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnReviewScore.Visibility = Visibility.Collapsed;
+                }
             }
         }
         private async void RefreshWindow()
@@ -215,11 +244,36 @@ namespace KoiShowManagementSystemWPF.Manager
             VarietyListBox.ItemsSource = null;
             CriteriaListBox.ItemsSource = null;
             RefereeListBox.ItemsSource = null;
+            btnRegister.Visibility = Visibility.Collapsed;
+            btnCreate.Visibility = Visibility.Collapsed;
+            btnUpdate.Visibility = Visibility.Collapsed;
+            btnDelete.Visibility = Visibility.Collapsed;
         }
 
         private async void BtnReviewScore(object sender, RoutedEventArgs e)
         {
             await _showService.ReviewScore(_selectedShow.Id);
+        }
+
+        private async void BtnRegister(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var koiOfUser = await _koiService.GetAllKoisByUser(_user.Id);
+                if (koiOfUser != null && koiOfUser.Any() == true)
+                {
+                    AddRegistrationDialog dialog = new AddRegistrationDialog(koiOfUser, _selectedShow);
+                    dialog.ShowDialog();
+                }
+                else
+                {
+                    throw new Exception("You do not have any Koi Fish. Please add a Koi fish first !");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

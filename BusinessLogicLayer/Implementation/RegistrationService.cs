@@ -24,7 +24,19 @@ namespace BusinessLogicLayer.Implementation
         public static RegistrationService Instance => _instance;
         public async Task<bool> Add(RegistrationDTO dto)
         {
-            return await _repository.Registration.Add(dto);
+            bool result = false;
+            // V01: Kiểm tra con koi đó đã thi show này chưa:
+            var registrations = await _repository.Registration.GetRegistrationsByShow(dto.ShowId);
+            var registeredAlready = registrations.Any(r => r.KoiId == dto.KoiId);
+            if(registeredAlready == true)
+            {
+                throw new Exception("Your Koi's already register for this show !");
+            }
+            else
+            {
+                result = await _repository.Registration.Add(dto);
+            }
+            return result;
         }
 
         public async Task<IEnumerable<RegistrationDTO>> Search(string key)
@@ -71,6 +83,32 @@ namespace BusinessLogicLayer.Implementation
             else
             {
                 throw new Exception("Registration does not exist !");
+            }
+            return result;
+        }
+
+        public async Task<IEnumerable<RegistrationDTO>> GetAllRegistration(int userId)
+        {
+            IEnumerable<RegistrationDTO> result = null!;
+            var user = await _repository.User.GetById(userId);
+            if(user != null)
+            {
+                if (user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result =  await _repository.Registration.GetRegistrationsByMember(userId);
+                }
+                else if (user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result =  await _repository.Registration.GetAll();
+                }
+                else
+                {
+                    throw new Exception("You do not have permission to use this behavior !");
+                }
+            }
+            else
+            {
+                throw new Exception("User does not exist !");
             }
             return result;
         }
