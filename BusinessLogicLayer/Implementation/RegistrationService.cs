@@ -59,7 +59,7 @@ namespace BusinessLogicLayer.Implementation
             if(registration != null)
             {
                 if (registration.Status!.Equals("Pending", StringComparison.OrdinalIgnoreCase) == true
-                        || registration.Status!.Equals("Reject", StringComparison.OrdinalIgnoreCase) == true)
+                        || registration.Status!.Equals("Rejected", StringComparison.OrdinalIgnoreCase) == true)
                 {
                     result = await _repository.Registration.Delete(registrationId);
                 }

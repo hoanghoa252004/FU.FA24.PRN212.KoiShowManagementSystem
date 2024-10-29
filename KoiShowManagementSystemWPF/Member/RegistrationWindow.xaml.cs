@@ -175,17 +175,24 @@ namespace KoiShowManagementSystemWPF.Member
 
         private async void BtnDelete(object sender, RoutedEventArgs e)
         {
-            bool result = false;
-            if (_selectedRegistration != null)
+            try
             {
-                if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                bool result = false;
+                if (_selectedRegistration != null)
                 {
-                    result = await _service.Delete(_selectedRegistration.Id);
+                    if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        result = await _service.Delete(_selectedRegistration.Id);
+                    }
+                }
+                if (result == true)
+                {
+                    RefreshWindow();
                 }
             }
-            if(result == true)
+            catch (Exception ex) 
             {
-                RefreshWindow();
+                MessageBox.Show(ex.Message,"Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -206,6 +213,11 @@ namespace KoiShowManagementSystemWPF.Member
                 else
                     ResetTextBox();
             }
+        }
+
+        private void BtnGetAll(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

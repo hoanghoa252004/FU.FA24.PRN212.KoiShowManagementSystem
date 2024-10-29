@@ -62,7 +62,7 @@ namespace DataAccessLayer.Implementation
                     result = true;
                 }
             }
-            return false;
+            return result;
         }
 
         public async Task<IEnumerable<RegistrationDTO>> GetAll()
@@ -97,9 +97,41 @@ namespace DataAccessLayer.Implementation
             }
         }
 
-        public Task<RegistrationDTO> GetById(int registrationId)
+        public async Task<RegistrationDTO> GetById(int registrationId)
         {
-            throw new NotImplementedException();
+            RegistrationDTO result = null!;
+            using (Prn212ProjectKoiShowManagementContext _context = new Prn212ProjectKoiShowManagementContext())
+            {
+                var registration =  await _context.Registrations
+                    .Include(r => r.Koi)
+                        .ThenInclude(k => k.Variety)
+                    .Include(r => r.Show)
+                    .SingleOrDefaultAsync(r => r.Id == registrationId);
+                if(registration != null)
+                {
+                    result = new RegistrationDTO()
+                    {
+                        Id = registration.Id,
+                        CreateDate = registration.CreateDate,
+                        Description = registration.Description,
+                        Image01 = registration.Image01,
+                        Image02 = registration.Image01,
+                        Image03 = registration.Image01,
+                        IsBestVote = registration.IsBestVote,
+                        Note = registration.Note,
+                        Rank = registration.Rank,
+                        Status = registration.Status,
+                        TotalScore = registration.TotalScore,
+                        KoiId = registration.Koi.Id,
+                        KoiName = registration.Koi.Name,
+                        KoiVariety = registration.Koi.Variety.Name,
+                        ShowId = registration.ShowId,
+                        ShowName = registration.Show.Title,
+                        Size = registration.Size,
+                    };
+                }
+            }
+            return result;
         }
 
         public async Task<bool> Update(RegistrationDTO dto)
@@ -107,7 +139,7 @@ namespace DataAccessLayer.Implementation
             using (Prn212ProjectKoiShowManagementContext _context = new Prn212ProjectKoiShowManagementContext())
             {
                 bool result = false;
-                var registration = _context.Registrations.FirstOrDefault(r => r.Id == dto.Id);
+                var registration = await _context.Registrations.SingleOrDefaultAsync(r => r.Id == dto.Id);
                 if(registration != null)
                 {
                     if (dto.Note != null)
