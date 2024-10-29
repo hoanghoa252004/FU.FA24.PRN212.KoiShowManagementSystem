@@ -32,7 +32,7 @@ namespace KoiShowManagementSystemWPF.Manager
             InitializeComponent();
         }
 
-        private async void BtnCreate(object sender, RoutedEventArgs e)
+        private void BtnCreate(object sender, RoutedEventArgs e)
         {
             //ShowDTO newShow = new ShowDTO()
             //{
@@ -215,6 +215,11 @@ namespace KoiShowManagementSystemWPF.Manager
             VarietyListBox.ItemsSource = null;
             CriteriaListBox.ItemsSource = null;
             RefereeListBox.ItemsSource = null;
+        }
+
+        private async void BtnReviewScore(object sender, RoutedEventArgs e)
+        {
+            await _showService.ReviewScore(_selectedShow.Id);
         }
     }
 }

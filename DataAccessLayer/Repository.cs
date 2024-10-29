@@ -24,6 +24,7 @@ namespace DataAccessLayer
         private IShowRepository _show = null!;
         private IUserRepository _user = null!;
         private IVarietyRepository _variety = null!;
+        private IRegistrationRepository _registration = null!;
         // PROPERTIES:-------------------------------------
         public IShowRepository Show
         {
@@ -56,6 +57,17 @@ namespace DataAccessLayer
                     this._variety = VarietyDAO.Instance;
                 }
                 return this._variety;
+            }
+        }
+        public IRegistrationRepository Registration
+        {
+            get
+            {
+                if (this._registration == null)
+                {
+                    this._registration = RegistrationDAO.Instance;
+                }
+                return this._registration;
             }
         }
     }

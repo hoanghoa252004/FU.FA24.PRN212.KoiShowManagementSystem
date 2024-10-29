@@ -67,7 +67,7 @@
                 <TextBox x:Name="txtRegisterDate" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,14,685,0" Grid.Row="2"/>
                 <Label Content="Status:" Margin="404,0,542,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39" Grid.Column="1"/>
                 <TextBox x:Name="txtStatus" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="518,0,385,0" Grid.Row="1"/>
-                <Button Visibility="Collapsed" x:Name="btnReviewScore" Margin="704,3,200,5" Content="REVIEW SCORE" FontSize="20" Click="BtnDelete" Grid.Row="1" Grid.Column="1"/>
+                <Button Visibility="Collapsed" x:Name="btnReviewScore" Margin="704,3,200,5" Content="REVIEW SCORE" FontSize="20" Click="BtnReviewScore" Grid.Row="1" Grid.Column="1"/>
                 <Label Content="Entrance Fee:" Margin="404,0,495,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39" Grid.Column="1"/>
                 <TextBox x:Name="txtEntranceFee" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="560,0,343,0" Grid.Row="2"/>
             </Grid>
