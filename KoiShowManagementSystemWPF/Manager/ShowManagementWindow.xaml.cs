@@ -260,7 +260,7 @@ namespace KoiShowManagementSystemWPF.Manager
         {
             try
             {
-                var koiOfUser = await _koiService.GetAllKoisByUser(_user.Id);
+                var koiOfUser = await _koiService.GetKoiToRegiterShow(_user.Id);
                 if (koiOfUser != null && koiOfUser.Any() == true)
                 {
                     AddRegistrationDialog dialog = new AddRegistrationDialog(koiOfUser, _selectedShow);

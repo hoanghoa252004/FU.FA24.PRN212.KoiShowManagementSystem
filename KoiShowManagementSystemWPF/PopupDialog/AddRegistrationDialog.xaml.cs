@@ -131,8 +131,7 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                     bool result = await _registrationService.Add(registrationDTO);
                     if(result == true)
                     {
-                        MessageBox.Show("Register Koi For Show Successfully ." +
-                            "\n Please tracking your registration !", "Successful:", MessageBoxButton.OK);
+                        this.Close();
                     }
                 }
             }

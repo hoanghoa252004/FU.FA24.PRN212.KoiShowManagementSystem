@@ -92,7 +92,9 @@ namespace DataAccessLayer.Implementation
                     KoiName = registration.Koi.Name,
                     Id = registration.Id,
                     KoiVariety = registration.Koi.Variety.Name,
-                }).ToListAsync();
+                })
+                .OrderBy(r => r.Id)
+                .ToListAsync();
                 return result;
             }
         }
@@ -168,11 +170,11 @@ namespace DataAccessLayer.Implementation
                     }
                     if (dto.Image02 != null)
                     {
-                        registration.Image01 = dto.Image02;
+                        registration.Image02 = dto.Image02;
                     }
                     if (dto.Image03 != null)
                     {
-                        registration.Image01 = dto.Image03;
+                        registration.Image03 = dto.Image03;
                     }
                     await _context.SaveChangesAsync();
                     result = true;
@@ -285,6 +287,7 @@ namespace DataAccessLayer.Implementation
 
                         }).ToList()
                     })
+                    .OrderBy(r => r.Id)
                     .ToListAsync();
 
                 return result;
@@ -324,6 +327,7 @@ namespace DataAccessLayer.Implementation
                         Size = registration.Size,
                         MemberId = registration.Koi.User.Id,
                     })
+                    .OrderBy(r => r.Id)
                     .ToListAsync();
             }
             return result;
@@ -362,6 +366,7 @@ namespace DataAccessLayer.Implementation
                         Size = registration.Size,
                         MemberId = registration.Koi.User.Id,
                     })
+                    .OrderBy(r => r.Id)
                     .ToListAsync();
             }
             return result;

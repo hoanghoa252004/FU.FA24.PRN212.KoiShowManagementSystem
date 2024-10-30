@@ -27,28 +27,69 @@ namespace KoiShowManagementSystemWPF.Member
     public partial class RegistrationWindow : Window
     {
         private readonly IRegistrationService _service;
+        private readonly IKoiService _koiService;
         private RegistrationDTO _selectedRegistration = null!;
         private readonly UserDTO _user;
+        private string _keySearch = null!;
         public RegistrationWindow(UserDTO user)
         {
             _service = RegistrationService.Instance;
+            _koiService = KoiService.Instance;
             _user = user;
             InitializeComponent();
+            LoadData();
         }
+
+        private async void LoadData()
+        {
+            if (_user != null)
+            {
+                if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    var result = await _service.GetAllRegistration(_user.Id);
+                    if (result != null)
+                    {
+                        if (result.Any() == true)
+                        {
+                            RegistrationGrid.ItemsSource = result;
+                        }
+                    }
+                }
+                else if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    var result = await _service.GetPendingRegistration();
+                    if (result != null)
+                    {
+                        if (result.Any() == true)
+                        {
+                            RegistrationGrid.ItemsSource = result;
+                        }
+                    }
+                }
+            }
+        }
+
         private async void BtnSearch(object sender, RoutedEventArgs e)
         {
             try
             {
-                string key = txtSearch.Text;
-                if (string.IsNullOrWhiteSpace(key) == true)
+                _keySearch = txtSearch.Text;
+                if (string.IsNullOrWhiteSpace(_keySearch) == true)
                 {
                     throw new Exception("Please enter search value !");
                 }
                 else
                 {
-                    var result = await _service.Search(key);
-                    RegistrationGrid.ItemsSource = result;
-                    ResetTextBox();
+                    var result = await _service.Search(_keySearch);
+                    if (result != null && result.Any() == true)
+                    {
+                        RegistrationGrid.ItemsSource = result;
+                        ResetTextBox();
+                    }
+                    else
+                    {
+                        throw new Exception("There is not any registration matched !");
+                    }
                 }
             }
             catch (Exception ex)
@@ -92,13 +133,31 @@ namespace KoiShowManagementSystemWPF.Member
                     {
                         btnUpdate.Visibility = Visibility.Visible;
                     }
+                    else
+                    {
+                        btnUpdate.Visibility = Visibility.Collapsed;
+                    }
+                    if(_selectedRegistration.Status!.Equals("Scored", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        btnScoreDetail.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        btnScoreDetail.Visibility = Visibility.Collapsed;
+                    }
                 }
                 else if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
                 {
-                    btnDelete.Visibility = Visibility.Visible;
-                    if (_selectedRegistration.Status!.Equals("Rejected", StringComparison.OrdinalIgnoreCase) == true)
+                    if (_selectedRegistration.Status!.Equals("Rejected", StringComparison.OrdinalIgnoreCase) == true
+                        || _selectedRegistration.Status!.Equals("Pending", StringComparison.OrdinalIgnoreCase) == true)
                     {
                         btnUpdate.Visibility = Visibility.Visible;
+                        btnDelete.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        btnUpdate.Visibility = Visibility.Collapsed;
+                        btnDelete.Visibility = Visibility.Collapsed;
                     }
 
                 }
@@ -149,25 +208,43 @@ namespace KoiShowManagementSystemWPF.Member
         }
 
 
-        private void BtnUpdate(object sender, RoutedEventArgs e)
+        private async void BtnUpdate(object sender, RoutedEventArgs e)
         {
-            if(_selectedRegistration != null)
+            try
             {
-                if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                if (_selectedRegistration != null)
                 {
-                    if (_selectedRegistration.Status!.Equals("Rejected", StringComparison.OrdinalIgnoreCase) == true)
+                    if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
                     {
-
+                        if (_selectedRegistration.Status!.Equals("Rejected", StringComparison.OrdinalIgnoreCase) == true)
+                        {
+                            var koiOfUser = await _koiService.GetKoiToRegiterShow(_user.Id);
+                            if (koiOfUser != null && koiOfUser.Any() == true)
+                            {
+                                MemberUpdateRegistrationDialog dialog = new MemberUpdateRegistrationDialog(koiOfUser, _selectedRegistration);
+                                dialog.ShowDialog();
+                                RefreshWindow();
+                            }
+                            else
+                            {
+                                throw new Exception("You do not have any Koi Fish. Please add a Koi fish first !");
+                            }
+                        }
+                    }
+                    else if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        if (_selectedRegistration.Status!.Equals("Pending", StringComparison.OrdinalIgnoreCase) == true)
+                        {
+                            AdminUpdateRegistrationDialog dialog = new AdminUpdateRegistrationDialog(_selectedRegistration, RefreshWindow);
+                            dialog.ShowDialog();
+                            RefreshWindow();
+                        }
                     }
                 }
-                else if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
-                {
-                    if (_selectedRegistration.Status!.Equals("Pending", StringComparison.OrdinalIgnoreCase) == true)
-                    {
-                        AdminUpdateRegistrationDialog dialog = new AdminUpdateRegistrationDialog(_selectedRegistration, RefreshWindow);
-                        dialog.ShowDialog();
-                    }
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -223,6 +300,7 @@ namespace KoiShowManagementSystemWPF.Member
 
         private async void BtnGetAll(object sender, RoutedEventArgs e)
         {
+            _keySearch = null!;
             try
             {
                 if (_user != null)
@@ -265,6 +343,27 @@ namespace KoiShowManagementSystemWPF.Member
             MemberProfileWindow window = new MemberProfileWindow(_user);
             window.Show();
             this.Close();
+        }
+
+        private async void BtnGetPendings(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var result = await _service.GetPendingRegistration();
+                if (result != null && result.Any() == true)
+                {
+                    RegistrationGrid.ItemsSource = result;
+                    ResetTextBox();
+                }
+                else
+                {
+                    throw new Exception("There is not any pending registration !");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

@@ -35,7 +35,7 @@
                 <Label Content="Registration:" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" FontSize="22"/>
                 <TextBox x:Name="txtSearch" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" FontSize="22" Padding="10,5,0,0" HorizontalContentAlignment="Stretch" Margin="146,16,138,0"/>
                 <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="82" Height="43" Margin="548,18,0,0" Click="BtnSearch"/>
-                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" x:Name="RegistrationGrid" Margin="10,10,10,10" Grid.Row="1" FontSize="18" SelectionChanged="SelectRegistration">
+                <DataGrid IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" x:Name="RegistrationGrid" Margin="10,10,10,10" Grid.Row="1" FontSize="18" SelectionChanged="SelectRegistration">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" MinWidth="50" Header="Id" Binding="{Binding Id}"/>
                         <DataGridTextColumn Width="*" MinWidth="160" Header="Name" Binding="{Binding KoiName}"/>
@@ -80,8 +80,8 @@
                 <Label x:Name="labelNote" Content="Note:" Margin="461,0,145,0" VerticalAlignment="Top" FontSize="22" Grid.Row="4" Height="39"/>
                 <TextBox x:Name="txtNote" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Top" Height="110" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="464,39,10,0" Grid.Row="4"/>
             </Grid>
-            <Button Visibility="Collapsed" x:Name="btnUpdate"  Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="662,672,0,0" Grid.Column="1" Click="BtnUpdate"/>
-            <Button Visibility="Collapsed" x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="662,672,0,0" Grid.Column="1" Click="BtnDelete"/>
+            <Button Visibility="Collapsed"  x:Name="btnUpdate"  Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="10,672,0,0" Grid.Column="1" Click="BtnUpdate"/>
+            <Button Visibility="Collapsed"  x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="662,672,0,0" Grid.Column="1" Click="BtnDelete"/>
             <Grid Grid.ColumnSpan="2" Margin="678,571,10,67">
                 <Grid.Background>
                     <SolidColorBrush Color="#FF437ED5" Opacity="0.5"/>
@@ -103,7 +103,7 @@
                         <TextBlock FontSize="20" Text="IsBestVote:"/>
                         <TextBlock IsEnabled="False" FontSize="22" x:Name="txtIsBestVote"   Width="120" FontWeight="Bold" Foreground="#FF0C6F24"  />
                     </StackPanel>
-                    <Button Content="Score Details" FontSize="20" Width="124" Height="46"/>
+                    <Button Visibility="Collapsed" x:Name="btnScoreDetail" Content="Score Details" FontSize="20" Width="124" Height="46"/>
                 </StackPanel>
             </Grid>
         </Grid>
