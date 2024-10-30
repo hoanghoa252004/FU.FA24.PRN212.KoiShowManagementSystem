@@ -60,6 +60,10 @@ namespace BusinessLogicLayer.Implementation
             return result.Where(x => x.Name.Contains(koiName, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
-
+        public async Task<IEnumerable<KoiDTO>> GetKoiToRegiterShow(int userId)
+        {
+            return (await _repository.Koi.GetAllKoisByUser(userId))
+                .Where(k => k.Status == true);
+        }
     }
 }

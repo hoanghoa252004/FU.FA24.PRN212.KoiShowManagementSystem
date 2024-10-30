@@ -15,5 +15,6 @@ namespace BusinessLogicLayer.Interface
         Task<IEnumerable<RegistrationDTO>> GetAllRegistrationForReferee(int userId);
         Task<bool> Delete(int registrationId);
         Task<IEnumerable<RegistrationDTO>> GetAllRegistration(int userId);
+        Task<IEnumerable<RegistrationDTO>> GetPendingRegistration();
     }
 }

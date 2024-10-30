@@ -63,6 +63,7 @@
                 <TextBox IsReadOnly="True" x:Name="txtPhone" Grid.Column="1" TextWrapping="Wrap" Text="0393147372" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="2" Margin="14,0,15,0"/>
                 <PasswordBox IsEnabled="False" x:Name="txtPassword" Grid.Column="1" Margin="15,0,15,0" Grid.Row="3" VerticalAlignment="Center" Height="58" FontSize="22" Padding="15,10,0,0" Password="*******************" HorizontalContentAlignment="Stretch"/>
             </Grid>
+            <Button Content="Logout" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="105" Height="33" Margin="880,10,0,0" Background="#FF940303" Foreground="White" FontWeight="Bold" Click="BtnLogout"/>
         </Grid>
     </Grid>
 </Window>

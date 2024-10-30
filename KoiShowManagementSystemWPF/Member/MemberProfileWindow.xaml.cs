@@ -22,7 +22,7 @@ namespace KoiShowManagementSystemWPF.Member
     /// </summary>
     public partial class MemberProfileWindow : Window
     {
-        private readonly UserDTO _user = null!;
+        private UserDTO _user = null!;
         public MemberProfileWindow(UserDTO user)
         {
             _user = user;
@@ -87,6 +87,15 @@ namespace KoiShowManagementSystemWPF.Member
         private void BTnScoring(object sender, RoutedEventArgs e)
         {
             ScoringWindow window = new ScoringWindow(_user);
+            window.Show();
+            this.Close();
+        }
+
+
+        private void BtnLogout(object sender, RoutedEventArgs e)
+        {
+            _user = null!;
+            LoginWindow window = new LoginWindow();
             window.Show();
             this.Close();
         }

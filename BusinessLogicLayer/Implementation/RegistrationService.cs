@@ -50,14 +50,44 @@ namespace BusinessLogicLayer.Implementation
                                 || r.Rank!.ToString()!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
                                 || r.Description!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
                                 || r.KoiVariety!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || r.CreateDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
+                                || r.CreateDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                || r.Status!.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
                 return result;
             }
             else
                 return null!;
         }
 
-        public async Task<bool> Update(RegistrationDTO dto) => await _repository.Registration.Update(dto);
+        public async Task<bool> Update(RegistrationDTO dto)
+        {
+            bool result = false;
+            if (dto != null)
+            {
+                var registration = await _repository.Registration.GetById(dto.Id);
+                if (registration != null)
+                {
+                    if (registration.KoiId == dto.KoiId) // Ko cập nhập Koi. 
+                    {
+                        result = await _repository.Registration.Update(dto);
+                    }
+                    else // cập nhập con khác => kiểm tra nó đi thi chưa
+                    {
+                        var registrations = await _repository.Registration.GetRegistrationsByShow(dto.ShowId);
+                        var registeredAlready = registrations.Any(r => r.KoiId == dto.KoiId);
+                        if (registeredAlready == true)
+                        {
+                            throw new Exception("This Koi's already register for this show !");
+                        }
+                        else
+                        {
+                            result = await _repository.Registration.Update(dto);
+                        }
+                    }
+                }
+            }
+            return result;
+            
+        }
 
         public async Task<IEnumerable<RegistrationDTO>> GetAllRegistrationForReferee(int userId)
         {
@@ -110,6 +140,13 @@ namespace BusinessLogicLayer.Implementation
             {
                 throw new Exception("User does not exist !");
             }
+            return result;
+        }
+
+        public async Task<IEnumerable<RegistrationDTO>> GetPendingRegistration()
+        {
+            IEnumerable<RegistrationDTO> result = (await _repository.Registration.GetAll())
+                .Where(r => r.Status!.Equals("Pending", StringComparison.OrdinalIgnoreCase));
             return result;
         }
     }
