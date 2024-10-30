@@ -34,10 +34,18 @@ namespace KoiShowManagementSystemWPF.Member
             InitializeComponent();
             _user = user;
         }
-
+        private async void FillCombox()
+        {
+            // Display name nhưng lấy Id
+            var varieties = await _varietyService.GetAll();
+            VarietyIdComboBox.ItemsSource = varieties;
+            //VarietyIdComboBox.DisplayMemberPath = "Name";
+            //VarietyIdComboBox.SelectedValuePath = "Id";
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
+            FillCombox();
         }
         private void dgData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -59,7 +67,7 @@ namespace KoiShowManagementSystemWPF.Member
 
             KoiIdTextBox.Text = koi.Id.ToString();
             KoiNameTextBox.Text = koi.Name;
-            KoiVarietyTextBox.Text = koi.VarietyName;
+            VarietyIdComboBox.SelectedValue = koi.VarietyId;
             KoiSizeTextBox.Text = koi.Size.ToString();
             KoiImagePath.Source = ByteArrayToImage(koi.Image);
             if (koi.Status)
@@ -100,6 +108,7 @@ namespace KoiShowManagementSystemWPF.Member
             if (result != null)
             {
                 dgData.ItemsSource = result ;
+                ResetFields();
             }
             else
             {
@@ -137,6 +146,7 @@ namespace KoiShowManagementSystemWPF.Member
             finally
             {
                 FillDataGrid();
+                ResetFields();
             }
         }
 
@@ -146,6 +156,9 @@ namespace KoiShowManagementSystemWPF.Member
         {
             CreateKoiWindow createKoiWindow = new CreateKoiWindow(_user);
             createKoiWindow.ShowDialog();
+            FillDataGrid();
+            FillCombox();
+            ResetFields();
         }
 
         private async void Update_Click(object sender, RoutedEventArgs e)
@@ -153,33 +166,53 @@ namespace KoiShowManagementSystemWPF.Member
             if (dgData.SelectedItem is KoiDTO selectedKoi)
             {
                 // Validate the input
-                if (string.IsNullOrWhiteSpace(KoiNameTextBox.Text) || !decimal.TryParse(KoiSizeTextBox.Text, out decimal size))
+                if (string.IsNullOrWhiteSpace(KoiNameTextBox.Text) ||
+                    !decimal.TryParse(KoiSizeTextBox.Text, out decimal size))
                 {
-                    MessageBox.Show("Please enter valid values for Name and Size.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Please enter valid values for Name and Size.", "Error",
+                                    MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                // Update the KoiDTO
                 selectedKoi.Name = KoiNameTextBox.Text;
-                if (selectedKoi.Size > size)
+                selectedKoi.Size = size;
+
+                if (VarietyIdComboBox.SelectedValue != null)
                 {
-                    MessageBox.Show("Please enter a valid value for Size.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    selectedKoi.VarietyId = (int)VarietyIdComboBox.SelectedValue;
                 }
                 else
                 {
-                    selectedKoi.Size = size;
+                    MessageBox.Show("Please select a variety.", "Error",
+                                    MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
+
+                // Set status based on radio button selection
+                selectedKoi.Status = ActiveRadioButton.IsChecked == true;
 
                 try
                 {
-                    await _koiService.UpdateKoi(selectedKoi); // Await the update
-                    MessageBox.Show("Koi updated successfully!");
-                    FillDataGrid(); // Refresh the data grid
+                    var result =
+                    await _koiService.UpdateKoi(selectedKoi);
+                    if(result == false)
+                    {
+                        MessageBox.Show("Please select a right variety in your registration.", "Error",
+                                   MessageBoxButton.OK, MessageBoxImage.Error);
+                        ResetFields();
+                        return;
+                    }else
+                    MessageBox.Show("Koi updated successfully.");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error updating Koi: {ex.Message}");
+                    MessageBox.Show($"Error updating Koi: {ex.Message}", "Error",
+                                    MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    FillDataGrid();
+                    ResetFields();
                 }
             }
             else
@@ -188,9 +221,11 @@ namespace KoiShowManagementSystemWPF.Member
             }
         }
 
+
         private void All_Click(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
+            ResetFields();
         }
 
         private void BtnHomePage(object sender, RoutedEventArgs e)
@@ -199,5 +234,16 @@ namespace KoiShowManagementSystemWPF.Member
             window.Show();
             this.Close();
         }
+        private void ResetFields()
+        {
+            KoiIdTextBox.Text = string.Empty;
+            KoiNameTextBox.Text = string.Empty;
+            VarietyIdComboBox.SelectedIndex = -1; 
+            KoiSizeTextBox.Text = string.Empty;
+            KoiImagePath.Source = null; 
+            ActiveRadioButton.IsChecked = false;
+            InactiveRadioButton.IsChecked = false;
+        }
+
     }
 }

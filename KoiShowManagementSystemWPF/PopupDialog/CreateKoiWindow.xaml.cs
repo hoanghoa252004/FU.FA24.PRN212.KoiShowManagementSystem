@@ -79,7 +79,7 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                 return;
             }
 
-            if (!int.TryParse(SizeTextBox.Text, out int size))
+            if (!decimal.TryParse(SizeTextBox.Text, out decimal size))
             {
                 MessageBox.Show("Please enter a valid size for the Koi.");
                 return;

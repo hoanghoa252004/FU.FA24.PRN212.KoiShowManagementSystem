@@ -111,10 +111,87 @@ namespace DataAccessLayer.Implementation
             }
         }
 
-        public Task<bool> Update(UserDTO dto)
+        public async Task<bool> CreateReferee(UserDTO dto)
         {
-            throw new NotImplementedException();
+            using (var context = new Prn212ProjectKoiShowManagementContext())
+            {
+                if (dto != null)
+                {
+
+                    var newUser = new User()
+                    {
+                        Name = dto.Name,
+                        Password = dto.Password,
+                        Email = dto.Email,
+                        Phone = dto.Phone,
+                        RoleId = 3,
+                        Status = true
+                    };
+
+                    context.Users.Add(newUser);
+                    await context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
         }
+        public async Task<bool> Update(UserDTO dto)
+        {
+            using (var context = new Prn212ProjectKoiShowManagementContext())
+            {
+                var user = await context.Users.FindAsync(dto.Id);
+
+                if (user != null && user.RoleId == 3) // Ensure the user is a referee
+                {
+                    user.Name = dto.Name;
+                    user.Password = dto.Password;
+                    user.Phone = dto.Phone;
+
+                    context.Users.Update(user);
+                    await context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+        }
+
+
+        public async Task<bool> DeleteReferee(int userId)
+        {
+            using (var context = new Prn212ProjectKoiShowManagementContext())
+            {
+                var referee = await context.RefereeDetails
+                    .Include(rd => rd.Show)
+                    .Include(rd => rd.User)
+                    .Where(r => r.UserId == userId)
+                    .SingleOrDefaultAsync();
+
+                if (referee != null)
+                {
+                    var shows = await context.Shows
+                        .Where(s => s.RefereeDetails.Any(rd => rd.UserId == userId))
+                        .ToListAsync();
+
+                    bool hasScoringShow = shows.Any(s => s.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase));
+
+                    if (!hasScoringShow)
+                    {
+                        referee.User.Status = false;
+                        context.Users.Update(referee.User);
+                    }
+                    else
+                    {
+
+                        context.Users.Remove(referee.User);
+                    }
+                    await context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+        }
+
+
 
     }
 }
