@@ -84,5 +84,6 @@
                 <Image x:Name="KoiImagePath" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="98,126,0,0" Grid.Row="5" VerticalAlignment="Top" Width="100"/>
             </Grid>
         </Grid>
+        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" Height="43" Margin="35,40,0,0" Click="BtnHomePage"/>
     </Grid>
 </Window>

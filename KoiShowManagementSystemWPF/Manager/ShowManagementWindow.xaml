@@ -197,5 +197,6 @@
                 <Button  x:Name="btnRegister" Visibility="Collapsed" Content="Register Now" FontSize="20" Width="159" Height="44" Click="BtnRegister" Background="#FF12B142" FontWeight="Bold" Foreground="White"/>
             </StackPanel>
         </Grid>
+        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="115" Height="43" Margin="35,0,0,0" Click="BtnHomePage"/>
     </Grid>
 </Window>

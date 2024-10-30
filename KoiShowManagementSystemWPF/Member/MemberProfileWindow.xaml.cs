@@ -1,4 +1,6 @@
 ﻿using DTOs;
+using KoiShowManagementSystemWPF.Manager;
+using KoiShowManagementSystemWPF.Referee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +31,64 @@ namespace KoiShowManagementSystemWPF.Member
         }
         private void LoadData()
         {
-            txtName.Text = _user.Name; 
+            // Information:
+            if( _user != null )
+            {
+                txtEmail.Text = _user.Email;
+                txtName.Text = _user.Name;
+                txtPhone.Text = _user.Phone;
+                // Load Button:
+                btnShows.Visibility = Visibility.Visible;
+                btnRegistrations.Visibility = Visibility.Visible;
+                btnKois.Visibility = Visibility.Visible;
+                if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    btnReferees.Visibility = Visibility.Visible;
+                    btnVarieties.Visibility = Visibility.Visible;
+                }
+                if (_user.Role!.Equals("Referee", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    btnScoring.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void BtnShows(object sender, RoutedEventArgs e)
+        {
+            ShowManagementWindow window = new ShowManagementWindow(_user);
+            window.Show();
+            this.Close();
+        }
+
+        private void BtnRegistrations(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow(_user);
+            registrationWindow.Show();
+            this.Close();
+        }
+
+        private void BtnKois(object sender, RoutedEventArgs e)
+        {
+            KoiManagementWindow window = new KoiManagementWindow(_user);
+            window.Show();
+            this.Close();
+        }
+
+        private void BtnReferees(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnVarieties(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTnScoring(object sender, RoutedEventArgs e)
+        {
+            ScoringWindow window = new ScoringWindow(_user);
+            window.Show();
+            this.Close();
         }
     }
 }

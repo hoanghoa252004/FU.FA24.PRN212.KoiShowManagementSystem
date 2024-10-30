@@ -107,5 +107,6 @@
                 </StackPanel>
             </Grid>
         </Grid>
+        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="115" Height="43" Margin="35,0,0,0" Click="BtnHomePage"/>
     </Grid>
 </Window>

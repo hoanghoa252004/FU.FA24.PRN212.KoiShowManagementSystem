@@ -109,8 +109,7 @@ namespace KoiShowManagementSystemWPF.Member
                 txtKoiName.Text = _selectedRegistration.KoiName;
                 txtSize.Text = _selectedRegistration.Size.ToString();
                 txtNote.Text = _selectedRegistration.Note;
-                if (_selectedRegistration.TotalScore != null
-                    && _selectedRegistration.Rank != null)
+                if ( _selectedRegistration.Status!.Equals("Scored", StringComparison.OrdinalIgnoreCase) == true )
                 {
                     txtTotalScore.Text = _selectedRegistration.TotalScore.ToString();
                     txtRanking.Text = _selectedRegistration.Rank.ToString();
@@ -259,6 +258,13 @@ namespace KoiShowManagementSystemWPF.Member
                 return true;
             else
                 return false;
+        }
+
+        private void BtnHomePage(object sender, RoutedEventArgs e)
+        {
+            MemberProfileWindow window = new MemberProfileWindow(_user);
+            window.Show();
+            this.Close();
         }
     }
 }
