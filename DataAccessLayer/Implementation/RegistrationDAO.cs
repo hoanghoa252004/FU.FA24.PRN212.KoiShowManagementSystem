@@ -260,7 +260,8 @@ namespace DataAccessLayer.Implementation
                     .Include(r => r.Show)
                         .ThenInclude(s => s.Criteria)
                     .Where(r => r.ShowId == ongoingShow.Id
-                        && r.Show.RefereeDetails.Any(rd => rd.UserId == userId))
+                        && r.Show.RefereeDetails.Any(rd => rd.UserId == userId)
+                        && r.Status.Equals("Accepted", StringComparison.OrdinalIgnoreCase))
                     .Select(r => new RegistrationDTO
                     {
                         Id = r.Id,

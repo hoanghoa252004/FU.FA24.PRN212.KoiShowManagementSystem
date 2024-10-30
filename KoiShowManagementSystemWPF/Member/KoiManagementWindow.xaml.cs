@@ -94,7 +94,7 @@ namespace KoiShowManagementSystemWPF.Member
                 return;
             }
 
-            var result = await _koiService.SearchKoiName(KoiNameSearchTextBox.Text, 13);
+            var result = await _koiService.SearchKoiName(KoiNameSearchTextBox.Text, _user.Id);
             dgData.ItemsSource = null; // Clear the grid
 
             if (result != null)
@@ -191,6 +191,13 @@ namespace KoiShowManagementSystemWPF.Member
         private void All_Click(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
+        }
+
+        private void BtnHomePage(object sender, RoutedEventArgs e)
+        {
+            MemberProfileWindow window = new MemberProfileWindow(_user);
+            window.Show();
+            this.Close();
         }
     }
 }

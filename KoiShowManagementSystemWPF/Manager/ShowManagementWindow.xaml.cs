@@ -2,6 +2,7 @@
 using BusinessLogicLayer.Interface;
 using DTOs;
 using Entities;
+using KoiShowManagementSystemWPF.Member;
 using KoiShowManagementSystemWPF.PopupDialog;
 using System;
 using System.Collections.Generic;
@@ -274,6 +275,13 @@ namespace KoiShowManagementSystemWPF.Manager
             {
                 MessageBox.Show(ex.Message, "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void BtnHomePage(object sender, RoutedEventArgs e)
+        {
+            MemberProfileWindow window = new MemberProfileWindow(_user);
+            window.Show();
+            this.Close();
         }
     }
 }

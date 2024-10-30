@@ -18,19 +18,20 @@ namespace KoiShowManagementSystemWPF.Referee
         private readonly ICrierionService _crierionService;
         private readonly IRegistrationService _registrationService;
         private readonly IScoreService _scoreService;
-
-        public ScoringWindow()
+        private readonly UserDTO _user = null!;
+        public ScoringWindow(UserDTO user)
         {
             _crierionService = CriterionService.Instance;
             _registrationService = RegistrationService.Instance;
             _scoreService = ScoreService.Instance;
+            _user = user;
             InitializeComponent();
         }
 
 
         private async Task LoadRegistrations()
         {
-            var registrations = await _registrationService.GetAllRegistrationForReferee(11); // Hardcode user ID nè
+            var registrations = await _registrationService.GetAllRegistrationForReferee(_user.Id); 
             dgData.ItemsSource = registrations;
         }
 
@@ -44,7 +45,7 @@ namespace KoiShowManagementSystemWPF.Referee
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var registrations = await RegistrationDAO.Instance.GetRegistrationsByReferee(11);
+            var registrations = await RegistrationDAO.Instance.GetRegistrationsByReferee(_user.Id);
             dgData.ItemsSource = registrations;
         }
 
@@ -90,7 +91,7 @@ namespace KoiShowManagementSystemWPF.Referee
                     {
                         try
                         {
-                            await _scoreService.InsertScores(11, selectedRegistration.Id, scores); // Replace 11 with actual UserId
+                            await _scoreService.InsertScores(_user.Id, selectedRegistration.Id, scores);
                             MessageBox.Show("Scores submitted successfully!");
                         }
                         catch (Exception ex)
