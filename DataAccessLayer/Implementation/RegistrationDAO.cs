@@ -260,8 +260,7 @@ namespace DataAccessLayer.Implementation
                     .Include(r => r.Show)
                         .ThenInclude(s => s.Criteria)
                     .Where(r => r.ShowId == ongoingShow.Id
-                        && r.Show.RefereeDetails.Any(rd => rd.UserId == userId)
-                        && r.Status.Equals("Accepted", StringComparison.OrdinalIgnoreCase))
+                        && r.Show.RefereeDetails.Any(rd => rd.UserId == userId) && r.Status.Equals("Accepted"))
                     .Select(r => new RegistrationDTO
                     {
                         Id = r.Id,
@@ -278,11 +277,12 @@ namespace DataAccessLayer.Implementation
                             CriteriaId = c.Id,
                             CriteriaName = c.Name,
                             RegistrationId = r.Id,
-                            //Score1 = r.Scores
-                            //    .FirstOrDefault(s => s.CriteriaId == c.Id &&
-                            //        s.RefereeDetail.UserId == userId) ,
-                            //RefereeDetailId = r.Show.RefereeDetails
-                            //    .FirstOrDefault(rd => rd.UserId == userId).Id 
+                            //Score1 = r.Scores.FirstOrDefault(s => s.CriteriaId == c.Id)?.Score1,
+                            TotalScore1 = Math.Round(r.Scores
+                                .Where(s => s.CriteriaId == c.Id)
+                                .Select(s => s.Score1 * c.Percentage / 100).FirstOrDefault(), 1),
+                            Score1 = r.Scores.Where(s => s.CriteriaId == c.Id && s.RegistrationId == r.Id).Select(s => s.Score1).FirstOrDefault(),
+
                         }).ToList()
                     })
                     .ToListAsync();

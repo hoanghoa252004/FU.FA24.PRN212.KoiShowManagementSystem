@@ -68,12 +68,11 @@
                 <Label Content="ID:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39"/>
                 <Label Content="Name:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39"/>
                 <Label Content="Variety:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="3" Height="39"/>
-                <Label Content="Size:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="4" Height="39"/>
+                <Label Content="Size:(cm)" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="4" Height="39"/>
                 <Label Content="Image:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="5" Height="39"/>
                 <Image Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Stretch="Uniform" Width="185"  Source="../Image/images.jpg"/>
                 <TextBox x:Name="KoiIdTextBox" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="001" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="1" IsEnabled="False" />
                 <TextBox x:Name="KoiNameTextBox"  Grid.Column="1" TextWrapping="Wrap" Text="Bakudan Katsu" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="2"/>
-                <TextBox x:Name="KoiVarietyTextBox" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="Kohaku" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="3" IsEnabled="False" />
                 <TextBox x:Name="KoiSizeTextBox"  Grid.Column="1" TextWrapping="Wrap" Text="45.5" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="4"/>
                 <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="330,0,0,0" Grid.Column="1" Grid.Row="6" Click="Delete_Click" />
                 <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="10,0,0,0" Grid.Column="1" Grid.Row="6" Click="Update_Click" />
@@ -82,6 +81,7 @@
                 <RadioButton x:Name="InactiveRadioButton" Grid.Column="1" Content="Inactive" HorizontalAlignment="Left" Margin="330,79,0,0" Grid.Row="5" VerticalAlignment="Top" FontSize="22"/>
                 <Label Content="Status:" Margin="206,33,126,0" VerticalAlignment="Top" FontSize="22" Grid.Row="5" Height="39" Grid.Column="1"/>
                 <Image x:Name="KoiImagePath" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="98,126,0,0" Grid.Row="5" VerticalAlignment="Top" Width="100"/>
+                <ComboBox x:Name="VarietyIdComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" HorizontalAlignment="Left" Height="46" Margin="10,0,0,0" VerticalAlignment="Center" Width="406" Grid.Column="1" Grid.Row="3"/>
             </Grid>
         </Grid>
         <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" Height="43" Margin="35,40,0,0" Click="BtnHomePage"/>

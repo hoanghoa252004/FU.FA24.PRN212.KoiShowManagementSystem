@@ -17,6 +17,7 @@ namespace DTOs
         public int RefereeDetailId { get; set; }
 
         public int CriteriaId { get; set; }
-        
+        public decimal TotalScore1 { get; set; }
+
     }
 }

@@ -46,22 +46,36 @@ namespace DataAccessLayer.Implementation
             using (var context = new Prn212ProjectKoiShowManagementContext())
             {
                 Koi koi = await context.Kois.FindAsync(koiDto.Id);
-                if (koi != null)
+                Registration registration = await context.Registrations.Where(r => r.KoiId == koiDto.Id).FirstOrDefaultAsync();
+
+                if (koi == null) return false;
+
+                // If Koi is registered and VarietyId is being changed, return false
+                if (registration != null && koi.VarietyId != koiDto.VarietyId)
                 {
-                    koi.Name = koiDto.Name;
-                    koi.Description = koiDto.Description;
-                    koi.Size = koiDto.Size;
-                    koi.Image = koiDto.Image;
-                    koi.UserId = koiDto.UserId;
-                    koi.VarietyId = koiDto.VarietyId;
-                    koi.Status = koiDto.Status;
-                    context.Kois.Update(koi);
-                    await context.SaveChangesAsync();
-                    return true;
+                    return false;
                 }
-                return false;
+
+                // Update Koi properties
+                koi.Name = koiDto.Name;
+                koi.Description = koiDto.Description;
+                koi.Size = koiDto.Size;
+                koi.Image = koiDto.Image;
+                koi.UserId = koiDto.UserId;
+                koi.Status = koiDto.Status;
+
+                // Allow updating VarietyId only if Koi is not registered
+                if (registration == null)
+                {
+                    koi.VarietyId = koiDto.VarietyId;
+                }
+
+                context.Kois.Update(koi);
+                await context.SaveChangesAsync();
+                return true;
             }
         }
+
 
 
         public async Task<bool> DeleteKoi(int koiId)

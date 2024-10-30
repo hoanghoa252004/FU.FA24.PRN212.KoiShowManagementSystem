@@ -79,34 +79,26 @@ namespace KoiShowManagementSystemWPF.Referee
 
         private async void Submit_Click(object sender, RoutedEventArgs e)
         {
-            if (dgData.SelectedItem is RegistrationDTO selectedRegistration)
+            if (dgData.SelectedItem is RegistrationDTO selectedRegistration &&
+                CriteriaDataGrid.ItemsSource is IEnumerable<ScoreDTO> scoresSource)
             {
-                // Chuyển đổi ItemsSource thành danh sách ScoreDTO
-                    if (CriteriaDataGrid.ItemsSource is IEnumerable<ScoreDTO> scoresSource)
-                    {
-                        var scores = scoresSource.ToList();
-                        // Tiếp tục xử lý với biến scores
+                var scores = scoresSource.ToList();
 
-                    if (scores != null && scores.Any())
-                    {
-                        try
-                        {
-                            await _scoreService.InsertScores(_user.Id, selectedRegistration.Id, scores);
-                            MessageBox.Show("Scores submitted successfully!");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Error submitting scores: {ex.Message}");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("No scores to submit.");
-                    }
-                }
-                else
+                if (scores.Any(s => s.Score1 == 0)) 
                 {
-                    MessageBox.Show("ItemsSource không chứa dữ liệu kiểu ScoreDTO hoặc là null.");
+                    MessageBox.Show("Please input scores for all criteria before submitting.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return; 
+                }
+
+                try
+                {
+                    await _scoreService.InsertScores(11, selectedRegistration.Id, scores); // Replace 11 with actual UserId
+                    MessageBox.Show("Scores submitted successfully!");
+                    await LoadRegistrations();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error submitting scores: {ex.Message}");
                 }
             }
             else

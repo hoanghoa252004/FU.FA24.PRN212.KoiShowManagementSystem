@@ -45,5 +45,7 @@ namespace DTOs
         public virtual ICollection<ScoreDTO> Scores { get; set; } = new List<ScoreDTO>();
 
         public int MemberId { get; set; }
+        public decimal TotalScore2 => Scores.Sum(s => s.TotalScore1);
+
     }
 }

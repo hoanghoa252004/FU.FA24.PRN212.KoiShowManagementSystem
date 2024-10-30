@@ -14,5 +14,7 @@ namespace DataAccessLayer.Interface
         Task<bool> Add(UserDTO dto);
         Task<bool> Update(UserDTO dto);
         Task<bool> Delete(int userId);
+        Task<bool> CreateReferee(UserDTO dto);
+        Task<bool> DeleteReferee(int userId);
     }
 }
