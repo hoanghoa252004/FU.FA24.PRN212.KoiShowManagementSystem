@@ -31,6 +31,10 @@ namespace KoiShowManagementSystemWPF.Member
         private RegistrationDTO _selectedRegistration = null!;
         private readonly UserDTO _user;
         private string _keySearch = null!;
+        private int? _lastBehavior = null!;
+        // 1 là search.
+        // 2 là get all.
+        // 3 là get pendings.
         public RegistrationWindow(UserDTO user)
         {
             _service = RegistrationService.Instance;
@@ -80,10 +84,11 @@ namespace KoiShowManagementSystemWPF.Member
                 }
                 else
                 {
-                    var result = await _service.Search(_keySearch);
+                    var result = await _service.Search(_user.Id, _keySearch);
                     if (result != null && result.Any() == true)
                     {
                         RegistrationGrid.ItemsSource = result;
+                        _lastBehavior = 1;
                         ResetTextBox();
                     }
                     else
@@ -148,8 +153,7 @@ namespace KoiShowManagementSystemWPF.Member
                 }
                 else if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
                 {
-                    if (_selectedRegistration.Status!.Equals("Rejected", StringComparison.OrdinalIgnoreCase) == true
-                        || _selectedRegistration.Status!.Equals("Pending", StringComparison.OrdinalIgnoreCase) == true)
+                    if (_selectedRegistration.Status!.Equals("Rejected", StringComparison.OrdinalIgnoreCase) == true)
                     {
                         btnUpdate.Visibility = Visibility.Visible;
                         btnDelete.Visibility = Visibility.Visible;
@@ -283,18 +287,111 @@ namespace KoiShowManagementSystemWPF.Member
         {
             if (_selectedRegistration != null)
             {
-                var result = await _service.Search(txtSearch.Text);
-                RegistrationGrid.ItemsSource = result;
-                var registrationToSelect = result
-                    .FirstOrDefault(registration => registration.Id == _selectedRegistration.Id);
-                if (_selectedRegistration != null)
+                if(_lastBehavior == 1)
                 {
-                    RegistrationGrid.SelectedItem = _selectedRegistration;
-                    RegistrationGrid.ScrollIntoView(_selectedRegistration);
-                    DisplayRegistrationInformation();
+                    var result = await _service.Search(_user.Id,txtSearch.Text);
+                    RegistrationGrid.ItemsSource = result;
+                    var registrationToSelect = result
+                        .FirstOrDefault(registration => registration.Id == _selectedRegistration.Id);
+                    if (_selectedRegistration != null)
+                    {
+                        RegistrationGrid.SelectedItem = _selectedRegistration;
+                        RegistrationGrid.ScrollIntoView(_selectedRegistration);
+                        DisplayRegistrationInformation();
+                    }
+                    else
+                        ResetTextBox();
+                }
+                else if(_lastBehavior == 3)
+                {
+                    if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        var result = await _service.GetPendingRegistration();
+                        if (result != null)
+                        {
+                            if (result.Any() == true)
+                            {
+                                RegistrationGrid.ItemsSource = result;
+                                var registrationToSelect = result
+                                    .FirstOrDefault(registration => registration.Id == _selectedRegistration.Id);
+                                if (_selectedRegistration != null)
+                                {
+                                    RegistrationGrid.SelectedItem = _selectedRegistration;
+                                    RegistrationGrid.ScrollIntoView(_selectedRegistration);
+                                    DisplayRegistrationInformation();
+                                }
+                                else
+                                    ResetTextBox();
+                            }
+                        }
+                    }
+                   
+                }
+                else if (_lastBehavior == 2)
+                {
+                    var result = await _service.GetAllRegistration(_user.Id);
+                    if (result != null)
+                    {
+                        if (result.Any() == true)
+                        {
+                            RegistrationGrid.ItemsSource = result;
+                            var registrationToSelect = result
+                                .FirstOrDefault(registration => registration.Id == _selectedRegistration.Id);
+                            if (_selectedRegistration != null)
+                            {
+                                RegistrationGrid.SelectedItem = _selectedRegistration;
+                                RegistrationGrid.ScrollIntoView(_selectedRegistration);
+                                DisplayRegistrationInformation();
+                            }
+                            else
+                                ResetTextBox();
+                        }
+                    }
                 }
                 else
-                    ResetTextBox();
+                {
+                    if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        var result = await _service.GetPendingRegistration();
+                        if (result != null)
+                        {
+                            if (result.Any() == true)
+                            {
+                                RegistrationGrid.ItemsSource = result;
+                                var registrationToSelect = result
+                                    .FirstOrDefault(registration => registration.Id == _selectedRegistration.Id);
+                                if (_selectedRegistration != null)
+                                {
+                                    RegistrationGrid.SelectedItem = _selectedRegistration;
+                                    RegistrationGrid.ScrollIntoView(_selectedRegistration);
+                                    DisplayRegistrationInformation();
+                                }
+                                else
+                                    ResetTextBox();
+                            }
+                            else
+                            {
+                                RegistrationGrid.ItemsSource = null!;
+                                ResetTextBox();
+                            }
+                        }
+                    }
+                    else if(_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        var result = await _service.Search(_user.Id, txtSearch.Text);
+                        RegistrationGrid.ItemsSource = result;
+                        var registrationToSelect = result
+                            .FirstOrDefault(registration => registration.Id == _selectedRegistration.Id);
+                        if (_selectedRegistration != null)
+                        {
+                            RegistrationGrid.SelectedItem = _selectedRegistration;
+                            RegistrationGrid.ScrollIntoView(_selectedRegistration);
+                            DisplayRegistrationInformation();
+                        }
+                        else
+                            ResetTextBox();
+                    }
+                }
             }
         }
 
@@ -311,6 +408,7 @@ namespace KoiShowManagementSystemWPF.Member
                         if (result.Any() == true)
                         {
                             RegistrationGrid.ItemsSource = result;
+                            _lastBehavior = 2;
                             ResetTextBox();
                         }
                         else
@@ -353,6 +451,7 @@ namespace KoiShowManagementSystemWPF.Member
                 if (result != null && result.Any() == true)
                 {
                     RegistrationGrid.ItemsSource = result;
+                    _lastBehavior = 3;
                     ResetTextBox();
                 }
                 else

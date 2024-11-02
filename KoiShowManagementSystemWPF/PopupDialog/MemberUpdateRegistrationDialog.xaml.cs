@@ -164,6 +164,7 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                 else
                 {
                     _selectedRegistration.KoiId = (int)KoiComboBox.SelectedValue;
+                    _selectedRegistration.Status = "Pending";
                     bool result = await _registrationService.Update(_selectedRegistration);
                     if (result == true)
                     {

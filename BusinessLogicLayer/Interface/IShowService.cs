@@ -9,7 +9,7 @@ namespace BusinessLogicLayer.Interface
 {
     public interface IShowService
     {
-        Task<IEnumerable<ShowDTO>> Search(string key);
+        Task<IEnumerable<ShowDTO>> Search(int userId, string key);
         Task<bool> Add(ShowDTO dto);
         Task<bool> Update(ShowDTO dto);
         Task<bool> Delete(int showId);

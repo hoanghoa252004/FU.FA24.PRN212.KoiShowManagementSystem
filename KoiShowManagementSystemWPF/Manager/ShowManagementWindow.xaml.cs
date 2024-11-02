@@ -132,7 +132,7 @@ namespace KoiShowManagementSystemWPF.Manager
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed: " + ex.Message);
+                    MessageBox.Show(ex.Message, "Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
@@ -148,7 +148,7 @@ namespace KoiShowManagementSystemWPF.Manager
                 }
                 else
                 {
-                    var result = await _showService.Search(key);
+                    var result = await _showService.Search(_user.Id, key);
                     ShowGrid.ItemsSource = result;
                     ResetTextBox();
                 }
@@ -218,7 +218,7 @@ namespace KoiShowManagementSystemWPF.Manager
         {
             if (_selectedShow != null)
             {
-                var result = await _showService.Search(txtSearch.Text);
+                var result = await _showService.Search(_user.Id, txtSearch.Text);
                 ShowGrid.ItemsSource = result;
                 var showToSelect = result
                     .FirstOrDefault(s => s.Id == _selectedShow.Id);

@@ -32,24 +32,74 @@ namespace BusinessLogicLayer.Implementation
 
         public async Task<bool> Delete(int showId)
         {
-            bool result = await _repository.Show.Delete(showId);
-            return result;
-        }
-
-        public async Task<IEnumerable<ShowDTO>> Search(string key)
-        {
-            var shows = await _repository.Show.GetAll();
-            if (shows.Any() == true)
+            var show = await _repository.Show.GetById(showId);
+            if(show != null)
             {
-                var result = shows.Where(s =>
-                                s.Title.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || s.Description.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || s.RegisterStartDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || s.EntranceFee.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
-                return result;
+                if (show.Status.ToLower().Equals("Upcoming"))
+                {
+                    bool result = await _repository.Show.Delete(showId);
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("This show can not be deleted !");
+                }
             }
             else
-                return null!;
+            {
+                throw new Exception("Show does not exist !");
+            }
+        }
+
+        public async Task<IEnumerable<ShowDTO>> Search(int userId, string key)
+        {
+            //
+            var user = await _repository.User.GetById(userId);
+            if (user != null)
+            {
+                if (user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                {
+
+                    var shows = (await _repository.Show.GetAll())
+                                    .Where(s => !s.Status.Equals("UpComing", StringComparison.OrdinalIgnoreCase) == true);
+                    if (shows.Any() == true)
+                    {
+                        var result = shows.Where(s =>
+                                        s.Title.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.Description.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.RegisterStartDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.EntranceFee.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
+                        return result;
+                    }
+                    else
+                        return null!;
+                }
+                else if (user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    var shows = (await _repository.Show.GetAll());
+                    if (shows.Any() == true)
+                    {
+                        var result = shows.Where(s =>
+                                        s.Title.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.Description.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.RegisterStartDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.EntranceFee.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
+                        return result;
+                    }
+                    else
+                        return null!;
+                }
+                else
+                {
+                    throw new Exception("You do not have permission to use this behavior !");
+                }
+            }
+            else
+            {
+                throw new Exception("User does not exist !");
+            }
+            //
+            
         }
 
         public async Task<bool> Update(ShowDTO dto)
