@@ -39,23 +39,57 @@ namespace BusinessLogicLayer.Implementation
             return result;
         }
 
-        public async Task<IEnumerable<RegistrationDTO>> Search(string key)
+        public async Task<IEnumerable<RegistrationDTO>> Search(int userId, string key)
         {
-            var registrations = await _repository.Registration.GetAll();
-            if (registrations.Any() == true)
+            var user = await _repository.User.GetById(userId);
+            if (user != null)
             {
-                var result = registrations.Where(r =>
-                                r.KoiName!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || r.ShowName!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || r.Rank!.ToString()!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || r.Description!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || r.KoiVariety!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || r.CreateDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                || r.Status!.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
-                return result;
+                if (user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                {
+
+                    var registrations = await _repository.Registration.GetRegistrationsByMember(userId);
+                    if (registrations.Any() == true)
+                    {
+                        var result = registrations.Where(r =>
+                                        r.KoiName!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.ShowName!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.Rank!.ToString()!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.Description!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.KoiVariety!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.CreateDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.Status!.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
+                        return result;
+                    }
+                    else
+                        return null!;
+                }
+                else if (user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    var registrations = await _repository.Registration.GetAll();
+                    if (registrations.Any() == true)
+                    {
+                        var result = registrations.Where(r =>
+                                        r.KoiName!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.ShowName!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.Rank!.ToString()!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.Description!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.KoiVariety!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.CreateDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || r.Status!.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
+                        return result;
+                    }
+                    else
+                        return null!;
+                }
+                else
+                {
+                    throw new Exception("You do not have permission to use this behavior !");
+                }
             }
             else
-                return null!;
+            {
+                throw new Exception("User does not exist !");
+            }
         }
 
         public async Task<bool> Update(RegistrationDTO dto)
