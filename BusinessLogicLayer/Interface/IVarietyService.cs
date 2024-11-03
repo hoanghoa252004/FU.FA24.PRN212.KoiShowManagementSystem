@@ -10,5 +10,9 @@ namespace BusinessLogicLayer.Interface
     public interface IVarietyService
     {
         Task<IEnumerable<VarietyDTO>> GetAll();
+        Task AddVariety(VarietyDTO variety);
+        Task UpdateVariety(VarietyDTO variety);
+        Task DeleteVariety(int varietyId);
+        Task<IEnumerable<VarietyDTO>> SearchVarietyByName(string name);
     }
 }

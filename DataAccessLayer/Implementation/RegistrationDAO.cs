@@ -279,11 +279,14 @@ namespace DataAccessLayer.Implementation
                             CriteriaId = c.Id,
                             CriteriaName = c.Name,
                             RegistrationId = r.Id,
-                            //Score1 = r.Scores.FirstOrDefault(s => s.CriteriaId == c.Id)?.Score1,
+                            Percentage = (int)c.Percentage,
                             TotalScore1 = Math.Round(r.Scores
-                                .Where(s => s.CriteriaId == c.Id)
+                                .Where(s => s.CriteriaId == c.Id && s.RefereeDetail.UserId == userId)
                                 .Select(s => s.Score1 * c.Percentage / 100).FirstOrDefault(), 1),
-                            Score1 = r.Scores.Where(s => s.CriteriaId == c.Id && s.RegistrationId == r.Id).Select(s => s.Score1).FirstOrDefault(),
+                            Score1 = r.Scores.Where(s => s.CriteriaId == c.Id 
+                                                    && s.RegistrationId == r.Id 
+                                                    && s.RefereeDetail.UserId == userId)
+                                            .Select(s => s.Score1).FirstOrDefault(),
 
                         }).ToList()
                     })

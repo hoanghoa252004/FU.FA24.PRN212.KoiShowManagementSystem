@@ -111,41 +111,54 @@ namespace DataAccessLayer.Implementation
             }
         }
 
-        public async Task<bool> CreateReferee(UserDTO dto)
+        public async Task<bool> CreateUser(UserDTO dto, int roleId)
         {
             using (var context = new Prn212ProjectKoiShowManagementContext())
             {
-                if (dto != null)
+               
+                if (await context.Users.AnyAsync(u => u.Email == dto.Email))
                 {
-
-                    var newUser = new User()
-                    {
-                        Name = dto.Name,
-                        Password = dto.Password,
-                        Email = dto.Email,
-                        Phone = dto.Phone,
-                        RoleId = 3,
-                        Status = true
-                    };
-
-                    context.Users.Add(newUser);
-                    await context.SaveChangesAsync();
-                    return true;
+                    throw new Exception("Email already exists.");
                 }
-                return false;
+
+                var newUser = new User
+                {
+                    Name = dto.Name,
+                    Password = dto.Password,
+                    Email = dto.Email,
+                    Phone = dto.Phone,
+                    RoleId = roleId,
+                    Status = true
+                };
+
+                context.Users.Add(newUser);
+                await context.SaveChangesAsync();
+                return true;
             }
         }
+
+
         public async Task<bool> Update(UserDTO dto)
         {
             using (var context = new Prn212ProjectKoiShowManagementContext())
             {
                 var user = await context.Users.FindAsync(dto.Id);
 
-                if (user != null && user.RoleId == 3) // Ensure the user is a referee
+                if (user != null)
                 {
-                    user.Name = dto.Name;
-                    user.Password = dto.Password;
-                    user.Phone = dto.Phone;
+                    if (user.RoleId == 2) 
+                    {
+                       
+                        user.Name = dto.Name;
+                        user.Password = dto.Password;
+                        user.Phone = dto.Phone;
+                        user.Status = dto.Status;
+                    }
+                    else 
+                    {
+                        user.Name = dto.Name;
+                        user.Phone = dto.Phone;
+                    }
 
                     context.Users.Update(user);
                     await context.SaveChangesAsync();
@@ -156,6 +169,7 @@ namespace DataAccessLayer.Implementation
         }
 
 
+
         public async Task<bool> DeleteReferee(int userId)
         {
             using (var context = new Prn212ProjectKoiShowManagementContext())
@@ -164,7 +178,7 @@ namespace DataAccessLayer.Implementation
                     .Include(rd => rd.Show)
                     .Include(rd => rd.User)
                     .Where(r => r.UserId == userId)
-                    .SingleOrDefaultAsync();
+                    .FirstOrDefaultAsync();
 
                 if (referee != null)
                 {
@@ -174,14 +188,13 @@ namespace DataAccessLayer.Implementation
 
                     bool hasScoringShow = shows.Any(s => s.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase));
 
-                    if (!hasScoringShow)
+                    if (hasScoringShow)
                     {
                         referee.User.Status = false;
                         context.Users.Update(referee.User);
                     }
                     else
                     {
-
                         context.Users.Remove(referee.User);
                     }
                     await context.SaveChangesAsync();
@@ -192,6 +205,6 @@ namespace DataAccessLayer.Implementation
         }
 
 
-
+        
     }
 }

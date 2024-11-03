@@ -12,6 +12,7 @@ namespace DTOs
 
         public decimal Score1 { get; set; }
         public string? CriteriaName { get; set; }
+        public int Percentage { get; set; }
         public int RegistrationId { get; set; }
 
         public int RefereeDetailId { get; set; }
