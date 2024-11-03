@@ -35,7 +35,7 @@
                 <Label Content="Show:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" FontSize="22"/>
                 <TextBox x:Name="txtSearch" TextWrapping="Wrap" Text="Midorya Izuku" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="83,18,145,0"/>
                 <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="430,18,0,0" Click="BtnSearch"/>
-                <DataGrid  x:Name="ShowGrid" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,104,10,10" FontSize="18" SelectionChanged="SelectShow" Grid.RowSpan="2">
+                <DataGrid CanUserAddRows="False" IsReadOnly="True"  x:Name="ShowGrid" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,104,10,10" FontSize="18" SelectionChanged="SelectShow" Grid.RowSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}"/>
                         <DataGridTextColumn Width="250" Header="Title" Binding="{Binding Title}"/>
@@ -66,10 +66,20 @@
                 <TextBox x:Name="txtDescription" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="192" FontSize="22" Padding="15,10,15,10" HorizontalContentAlignment="Stretch" Margin="10,8,24,0" Grid.Row="3"/>
                 <TextBox x:Name="txtRegisterDate" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,14,685,0" Grid.Row="2"/>
                 <Label Content="Status:" Margin="404,0,542,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39" Grid.Column="1"/>
-                <TextBox x:Name="txtStatus" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="518,0,385,0" Grid.Row="1"/>
-                <Button Visibility="Collapsed" x:Name="btnReviewScore" Margin="704,3,200,5" Content="REVIEW SCORE" FontSize="20" Click="BtnReviewScore" Grid.Row="1" Grid.Column="1"/>
+                <TextBox x:Name="txtStatus" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="518,0,419,0" Grid.Row="1"/>
+
                 <Label Content="Entrance Fee:" Margin="404,0,495,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39" Grid.Column="1"/>
                 <TextBox x:Name="txtEntranceFee" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="560,0,343,0" Grid.Row="2"/>
+                <StackPanel Orientation="Horizontal" Margin="675,0,10,0" Grid.Column="1" Grid.Row="1" >
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#FF66C82E" Opacity="0.5"/>
+                    </StackPanel.Background>
+                    <Button x:Name="btnPublish" Content="Publish" FontSize="20" Height="57" Width="90" Background="#FF6CC218"/>
+                    <Button x:Name="btnScoring" Content="Scoring" FontSize="20" Height="57" Width="110" Background="#FFD0B70A"/>
+                    <Button x:Name="btnReviewScore" Content="Review Score" FontSize="20" Background="#FF199DC9" Width="135"/>
+                    <Button x:Name="btnAnnouceScore" Content="Annouce Result" FontSize="20" Height="57" Width="150" Background="#FFC26018"/>
+                </StackPanel>
+                
             </Grid>
             <Grid Grid.Column="1" Margin="30,404,10,76">
                 <Grid.ColumnDefinitions>

@@ -2,6 +2,7 @@
 using DTOs;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -213,7 +214,7 @@ namespace DataAccessLayer.Implementation
         {
             using (Prn212ProjectKoiShowManagementContext _context = new Prn212ProjectKoiShowManagementContext())
             {
-                var registrations = await _context.Registrations
+                var registrations = _context.Registrations
                     .Where(r => r.ShowId == showId && r.Status.Equals("Accepted") && r.TotalScore != null)
                     .Include(r => r.Scores)
                         .ThenInclude(score => score.Criteria)
@@ -232,11 +233,21 @@ namespace DataAccessLayer.Implementation
                             .OrderByDescending(x => x.Percentage).ToList(), // Chuyển về dạng list để xác định index,
                                                                             // sort tiêu chí trọng số lớn lên ưu tiên
                     })
-                    .OrderByDescending(x => x.ScoreList.Sum(sl => sl.TotalScoreByCriteria))
-                    .ThenByDescending(x => x.ScoreList[1])
-                    .ThenByDescending(x => x.ScoreList[1])
-                    .ThenByDescending(x => x.ScoreList[1])
-                    .ToListAsync();
+                    .OrderByDescending(x => x.ScoreList.Sum(sl => sl.TotalScoreByCriteria));
+                // Sort theo trọng số tiêu chí:
+                int quantityCriteriaInShow = _context.Criteria.Where(cr => cr.ShowId == showId).Count();
+                for (int index = 0; index < quantityCriteriaInShow; index++)
+                {
+                    registrations = registrations.ThenByDescending(x => x.ScoreList.ElementAt(index).TotalScoreByCriteria);
+                }
+                // Xếp rank:
+                int rank = 1;
+                foreach (var regist in registrations.ToList())
+                {
+                    regist.Registration.Rank = rank;
+                    rank++;
+                }
+                await _context.SaveChangesAsync();
             }
         }
 

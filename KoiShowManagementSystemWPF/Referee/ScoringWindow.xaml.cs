@@ -92,7 +92,7 @@ namespace KoiShowManagementSystemWPF.Referee
 
                 try
                 {
-                    await _scoreService.InsertScores(11, selectedRegistration.Id, scores); // Replace 11 with actual UserId
+                    await _scoreService.InsertScores(_user.Id, selectedRegistration.Id, scores);
                     MessageBox.Show("Scores submitted successfully!");
                     await LoadRegistrations();
                 }

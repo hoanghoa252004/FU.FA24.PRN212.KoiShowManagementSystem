@@ -35,77 +35,22 @@ namespace KoiShowManagementSystemWPF.Manager
             _showService = ShowService.Instance;
             _koiService = KoiService.Instance;
             _user = user;
-            Authorize();
+            LoadData();
         }
 
-        private void Authorize()
+        private async void LoadData()
         {
-            if(_user.Role!.Equals("Admin",StringComparison.OrdinalIgnoreCase) == true)
-            {
-                btnCreate.Visibility = Visibility.Visible;
-                btnUpdate.Visibility = Visibility.Visible;
-                btnDelete.Visibility = Visibility.Visible;
-            }
+            var showList = await _showService.GetAll(_user.Id);
+            ShowGrid.ItemsSource = showList;
+            btnCreate.Visibility = Visibility.Visible;
+            btnPublish.Visibility = Visibility.Collapsed;
+            btnAnnouceScore.Visibility = Visibility.Collapsed;
+            btnScoring.Visibility = Visibility.Collapsed;
+            btnReviewScore.Visibility = Visibility.Collapsed;
         }
 
         private void BtnCreate(object sender, RoutedEventArgs e)
         {
-            //ShowDTO newShow = new ShowDTO()
-            //{
-            //    Title = "Koi Show 2004",
-            //    Description = "XXXXXXXXXXXX",
-            //    EntranceFee = 125,
-            //    RegisterEndDate = DateOnly.FromDateTime(DateTime.Now),
-            //    RegisterStartDate = DateOnly.FromDateTime(DateTime.Now),
-            //    Status = "UpComming",
-            //    Criteria = new List<CriterionDTO>()
-            //    {
-            //        new CriterionDTO()
-            //        {
-            //            Name = "Pattern",
-            //            Description = "XYXYXYXY",
-            //            Percentage = 30,
-            //        },
-            //        new CriterionDTO()
-            //        {
-            //            Name = "Color",
-            //            Description = "XYXYXYXY",
-            //            Percentage = 70,
-            //        }
-            //    },
-            //    Varieties = new List<VarietyDTO>()
-            //    {
-            //        new VarietyDTO()
-            //        {
-            //            Id = 1
-            //        },
-            //        new VarietyDTO()
-            //        {
-            //            Id = 3
-            //        },
-            //        new VarietyDTO()
-            //        {
-            //            Id = 5
-            //        },
-            //        new VarietyDTO()
-            //        {
-            //            Id = 6
-            //        }
-            //    },
-            //    Referees = new List<UserDTO>()
-            //    {
-            //        new UserDTO()
-            //        {
-            //            Id = 11
-            //        },
-            //        new UserDTO()
-            //        {
-            //            Id = 12
-            //        }
-            //    },
-            //};
-            //bool result = await _showService.Add(newShow);
-            //MessageBox.Show(result.ToString());
             AddShowDialog dialog = new AddShowDialog(RefreshWindow);
             dialog.ShowDialog();
         }
@@ -149,8 +94,15 @@ namespace KoiShowManagementSystemWPF.Manager
                 else
                 {
                     var result = await _showService.Search(_user.Id, key);
-                    ShowGrid.ItemsSource = result;
-                    ResetTextBox();
+                    if(result != null && result.Any() == true)
+                    {
+                        ShowGrid.ItemsSource = result;
+                        ResetTextBox();
+                    }
+                    else
+                    {
+                        throw new Exception("No show matches !");
+                    }
                 }
             }
             catch (Exception ex) 
@@ -201,12 +153,45 @@ namespace KoiShowManagementSystemWPF.Manager
                     btnRegister.Visibility = Visibility.Collapsed;
                 }
             }
-            else if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+            else if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
             {
+                // UPCOMING
+                if (dto.Status.Equals("UpComing", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    btnUpdate.Visibility = Visibility.Visible;
+                    btnDelete.Visibility = Visibility.Visible;
+                    btnPublish.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnUpdate.Visibility = Visibility.Collapsed;
+                    btnDelete.Visibility = Visibility.Collapsed;
+                    btnPublish.Visibility = Visibility.Collapsed;
+                }
+
+                // ONGOING:
+                if (dto.Status.Equals("OnGoing", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    btnScoring.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnScoring.Visibility = Visibility.Collapsed;
+                }
+
+                // SCORING:
                 if (dto.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase) == true
-                || dto.Status.Equals("Finished", StringComparison.OrdinalIgnoreCase) == true)
+                    || dto.Status.Equals("Finished", StringComparison.OrdinalIgnoreCase) == true)
                 {
                     btnReviewScore.Visibility = Visibility.Visible;
+                    if (dto.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        btnAnnouceScore.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        btnAnnouceScore.Visibility = Visibility.Collapsed;
+                    }
                 }
                 else
                 {

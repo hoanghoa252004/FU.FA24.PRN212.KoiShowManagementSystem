@@ -112,5 +112,29 @@ namespace BusinessLogicLayer.Implementation
             await _repository.Registration.CalculateTotalScoreAllForRegistation(showId);
             return null!;
         }
+
+        public async Task<IEnumerable<ShowDTO>> GetAll(int userId)
+        {
+            var user = await _repository.User.GetById(userId);
+            if (user != null)
+            {
+                var result = await _repository.Show.GetAll();
+                if (user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true
+                    || user.Role!.Equals("Referee", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result = result.Where(s => !s.Status.Equals("UpComing", StringComparison.OrdinalIgnoreCase) == true)
+                        .OrderByDescending(s => s.RegisterStartDate).ToList();
+                }
+                else if(user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result = result.OrderByDescending(s => s.RegisterStartDate).ToList();
+                }
+                return result;
+            }
+            else
+            {
+                throw new Exception("User does not exist !");
+            }
+        }
     }
 }
