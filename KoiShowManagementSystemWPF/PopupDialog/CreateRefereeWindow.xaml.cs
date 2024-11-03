@@ -30,10 +30,9 @@ namespace KoiShowManagementSystemWPF.PopupDialog
             InitializeComponent();
         }
 
-        private void Create_Button(object sender, RoutedEventArgs e)
+        private async void Create_Button(object sender, RoutedEventArgs e)
         {
             ErrorMessageTextBlock.Text = string.Empty;
-
 
             if (string.IsNullOrWhiteSpace(PhoneTextBox.Text) ||
                 string.IsNullOrWhiteSpace(NameTextBox.Text) ||
@@ -44,14 +43,12 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                 return;
             }
 
-
             if (!IsPhoneNumberValid(PhoneTextBox.Text))
             {
                 ErrorMessageTextBlock.Text = "Phone numbers must contain only digits and have to contain 10 digits";
                 return;
             }
 
-            // Validate Email: Must be in correct format
             if (!IsEmailValid(EmailTextBox.Text))
             {
                 ErrorMessageTextBlock.Text = "Please enter a valid email address.";
@@ -72,16 +69,23 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                 Email = EmailTextBox.Text,
             };
 
-            // Call the service to create the referee
             try
             {
-                _userService.CreateReferee(user);
-                MessageBox.Show("Referee created successfully!");
-                ResetFields(); // Optional: Call a method to reset input fields after creation
+                bool result = await _userService.CreateUser(user, 2);
+
+                if (result)
+                {
+                    MessageBox.Show("Created successfully!");
+                    this.Close();
+                }
+                else
+                {
+                    ErrorMessageTextBlock.Text = "Error: Unable to create user.";
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error creating referee: {ex.Message}");
+                ErrorMessageTextBlock.Text = $"Error to signup: {ex.Message}";
             }
         }
 

@@ -76,10 +76,11 @@
                 <Image x:Name="ImagePath2" Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="257,59,0,0" Grid.Row="4" VerticalAlignment="Top" Stretch="Uniform" Width="185"  Source="/Image/images.jpg" Grid.RowSpan="2"/>
                 <Image x:Name="ImagePath3" Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="483,0,0,0" Grid.Row="5" VerticalAlignment="Center" Stretch="Uniform" Width="185"  Source="/Image/images.jpg"/>
                 <Label Content="Criteria:" Margin="16,0,17,0" VerticalAlignment="Center" FontSize="22" Grid.Row="6" Height="39"/>
-                <DataGrid x:Name="CriteriaDataGrid" AutoGenerateColumns="False" Grid.Row="6" Grid.Column="1" Margin="10,10,10,10" FontSize="18">
+                <DataGrid x:Name="CriteriaDataGrid" AutoGenerateColumns="False" Grid.Row="6" Grid.Column="1" Margin="10,10,10,10" FontSize="18" CanUserAddRows="False" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" MinWidth="160" Header="Criterion" Binding="{Binding CriteriaName}"/>
-                        <DataGridTextColumn Width="*" MinWidth="100" Header="Score" Binding="{Binding Score1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Width="*" MinWidth="160" Header="Percentage" Binding="{Binding Percentage}"/>
+                        <DataGridTextColumn Width="*" MinWidth="100" Header="Score" Binding="{Binding Score1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=F2}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

@@ -40,6 +40,7 @@ namespace KoiShowManagementSystemWPF.Referee
             if (dgData.SelectedItem is RegistrationDTO selectedRegistration)
             {
                 CriteriaDataGrid.ItemsSource = selectedRegistration.Scores;
+                FillElements(selectedRegistration);
             }
         }
 
@@ -84,21 +85,33 @@ namespace KoiShowManagementSystemWPF.Referee
             {
                 var scores = scoresSource.ToList();
 
-                if (scores.Any(s => s.Score1 == 0)) 
+                foreach (var score in scores)
                 {
-                    MessageBox.Show("Please input scores for all criteria before submitting.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return; 
-                }
+                    if (score.Score1 < 0 || score.Score1 > 100)
+                    {
+                        MessageBox.Show("Please input scores between 0 and 100 for all criteria before submitting.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
 
+                    if (!decimal.TryParse(score.Score1.ToString(), out _))
+                    {
+                        MessageBox.Show("Please input valid numeric scores for all criteria before submitting.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                }
                 try
                 {
-                    await _scoreService.InsertScores(_user.Id, selectedRegistration.Id, scores);
+                    await _scoreService.InsertScores(_user.Id, selectedRegistration.Id, scores); // Replace 11 with actual UserId
                     MessageBox.Show("Scores submitted successfully!");
                     await LoadRegistrations();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Error submitting scores: {ex.Message}");
+                }
+                finally
+                {
+                    ResetFields();
                 }
             }
             else
@@ -107,6 +120,17 @@ namespace KoiShowManagementSystemWPF.Referee
             }
         }
 
+        private void ResetFields()
+        {
+            KoiIdTextBox.Text = string.Empty;
+            KoiNameTextBox.Text = string.Empty;
+            KoiVarietyTextBox.Text = string.Empty;
+            KoiSizeTextBox.Text = string.Empty;
+            ImagePath1.Source = null;
+            ImagePath2.Source = null;
+            ImagePath3.Source = null;
+            CriteriaDataGrid.ItemsSource = null;
+        }
 
     }
 }
