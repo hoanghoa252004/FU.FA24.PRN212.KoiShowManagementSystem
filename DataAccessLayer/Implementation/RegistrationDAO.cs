@@ -385,5 +385,25 @@ namespace DataAccessLayer.Implementation
             }
             return result;
         }
+
+        public async Task<bool> UpdateStatusAllRegistrationByShow(int showId, string status)
+        {
+            bool result = false;
+            using (Prn212ProjectKoiShowManagementContext _context = new Prn212ProjectKoiShowManagementContext())
+            {
+                var registrations = await _context.Registrations.Where(r => r.ShowId == showId 
+                                    && r.Status.Equals("Accepted", StringComparison.OrdinalIgnoreCase)).ToListAsync();
+                if (registrations.Any())
+                {
+                    foreach(var registration in registrations)
+                    {
+                        registration.Status = status;
+                    }
+                    await _context.SaveChangesAsync();
+                    result = true;
+                }
+            }
+            return result;
+        }
     }
 }

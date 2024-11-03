@@ -44,7 +44,7 @@ namespace KoiShowManagementSystemWPF.Manager
             ShowGrid.ItemsSource = showList;
             btnCreate.Visibility = Visibility.Visible;
             btnPublish.Visibility = Visibility.Collapsed;
-            btnAnnouceScore.Visibility = Visibility.Collapsed;
+            //btnAnnouceScore.Visibility = Visibility.Collapsed;
             btnScoring.Visibility = Visibility.Collapsed;
             btnReviewScore.Visibility = Visibility.Collapsed;
         }
@@ -186,11 +186,11 @@ namespace KoiShowManagementSystemWPF.Manager
                     btnReviewScore.Visibility = Visibility.Visible;
                     if (dto.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase) == true)
                     {
-                        btnAnnouceScore.Visibility = Visibility.Visible;
+                        //btnAnnouceScore.Visibility = Visibility.Visible;
                     }
                     else
                     {
-                        btnAnnouceScore.Visibility = Visibility.Collapsed;
+                        //btnAnnouceScore.Visibility = Visibility.Collapsed;
                     }
                 }
                 else
@@ -238,7 +238,19 @@ namespace KoiShowManagementSystemWPF.Manager
 
         private async void BtnReviewScore(object sender, RoutedEventArgs e)
         {
-            await _showService.ReviewScore(_selectedShow.Id);
+            try
+            {
+                var result = await _showService.ReviewScore(_selectedShow.Id);
+                if (result != null && result.Any() == true)
+                {
+                    FinalResultWindow dialog = new FinalResultWindow(_selectedShow,result);
+                    dialog.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private async void BtnRegister(object sender, RoutedEventArgs e)
@@ -268,5 +280,16 @@ namespace KoiShowManagementSystemWPF.Manager
             window.Show();
             this.Close();
         }
+
+        private void BtnPublish(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnScoring(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

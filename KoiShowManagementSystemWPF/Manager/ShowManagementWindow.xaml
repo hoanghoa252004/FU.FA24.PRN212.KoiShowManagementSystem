@@ -74,10 +74,9 @@
                     <StackPanel.Background>
                         <SolidColorBrush Color="#FF66C82E" Opacity="0.5"/>
                     </StackPanel.Background>
-                    <Button x:Name="btnPublish" Content="Publish" FontSize="20" Height="57" Width="90" Background="#FF6CC218"/>
-                    <Button x:Name="btnScoring" Content="Scoring" FontSize="20" Height="57" Width="110" Background="#FFD0B70A"/>
-                    <Button x:Name="btnReviewScore" Content="Review Score" FontSize="20" Background="#FF199DC9" Width="135"/>
-                    <Button x:Name="btnAnnouceScore" Content="Annouce Result" FontSize="20" Height="57" Width="150" Background="#FFC26018"/>
+                    <Button x:Name="btnPublish" Content="Publish" FontSize="20" Height="57" Width="90" Background="#FF6CC218" Click="BtnPublish"/>
+                    <Button x:Name="btnScoring" Content="Scoring" FontSize="20" Height="57" Width="110" Background="#FFD0B70A" Click="BtnScoring"/>
+                    <Button x:Name="btnReviewScore" Content="Review Score" FontSize="20" Background="#FF199DC9" Width="135" Click="BtnReviewScore"/>
                 </StackPanel>
                 
             </Grid>
