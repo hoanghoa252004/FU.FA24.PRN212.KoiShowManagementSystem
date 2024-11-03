@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interface
     public interface IScoreRepository
     {
         Task InsertScores(int userId, int registrationId, List<ScoreDTO> scores);
-        
 
+        Task<bool> IsScoreCompletely(int showId);
     }
 }

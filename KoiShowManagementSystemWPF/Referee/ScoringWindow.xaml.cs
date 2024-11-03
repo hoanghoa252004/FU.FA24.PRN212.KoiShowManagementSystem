@@ -93,16 +93,14 @@ namespace KoiShowManagementSystemWPF.Referee
                         return;
                     }
 
-
                     if (!decimal.TryParse(score.Score1.ToString(), out _))
                     {
                         MessageBox.Show("Please input valid numeric scores for all criteria before submitting.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
                 }
-
-                    try
-                    {
+                try
+                {
                     await _scoreService.InsertScores(_user.Id, selectedRegistration.Id, scores); // Replace 11 with actual UserId
                     MessageBox.Show("Scores submitted successfully!");
                     await LoadRegistrations();

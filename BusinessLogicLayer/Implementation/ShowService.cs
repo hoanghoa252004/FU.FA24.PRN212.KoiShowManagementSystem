@@ -109,8 +109,73 @@ namespace BusinessLogicLayer.Implementation
 
         public async Task<IEnumerable<RegistrationDTO>> ReviewScore(int showId)
         {
-            await _repository.Registration.CalculateTotalScoreAllForRegistation(showId);
-            return null!;
+            bool isScoreCompletely = await _repository.Score.IsScoreCompletely(showId);
+            if(isScoreCompletely == true)
+            {
+                // Kiểm tra thử xem show chấm điểm chưa:
+                IEnumerable<RegistrationDTO> registrationsInShow = await _repository.Registration.GetRegistrationsByShow(showId);
+                if(registrationsInShow != null && registrationsInShow.Any() == true)
+                {
+                    RegistrationDTO registration = registrationsInShow.FirstOrDefault()!;
+                    if (registration.Rank == null && registration.TotalScore == null)
+                    {
+                        await _repository.Registration.CalculateTotalScoreAllForRegistation(showId);
+                        await _repository.Registration.Ranking(showId);
+                        registrationsInShow = await _repository.Registration.GetRegistrationsByShow(showId);
+                    }
+                    return registrationsInShow.OrderBy(r => r.Rank);
+                }
+                else
+                {
+                    throw new Exception("The show has not contained any registration yet");
+                }
+            }
+            else
+            {
+                throw new Exception("The registrations's show has not completely scored yet");
+            }
+        }
+
+        public async Task<IEnumerable<ShowDTO>> GetAll(int userId)
+        {
+            var user = await _repository.User.GetById(userId);
+            if (user != null)
+            {
+                var result = await _repository.Show.GetAll();
+                if (user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true
+                    || user.Role!.Equals("Referee", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result = result.Where(s => !s.Status.Equals("UpComing", StringComparison.OrdinalIgnoreCase) == true)
+                        .OrderByDescending(s => s.RegisterStartDate).ToList();
+                }
+                else if(user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result = result.OrderByDescending(s => s.RegisterStartDate).ToList();
+                }
+                return result;
+            }
+            else
+            {
+                throw new Exception("User does not exist !");
+            }
+        }
+
+        public async Task<bool> AnnouceResult(int showId)
+        {
+            bool updateShow = await _repository.Show.Update(new ShowDTO()
+            {
+                Id = showId,
+                Status = "Finished",
+            });
+            bool updateRegistration  = await _repository.Registration.UpdateStatusAllRegistrationByShow(showId, "Scored");
+            if (updateShow == true && updateRegistration == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -1,0 +1,32 @@
+﻿<Window x:Class="KoiShowManagementSystemWPF.Manager.FinalResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Manager"
+        mc:Ignorable="d"
+        Title="FinalResultWindow" Height="480" Width="800">
+    <Grid>
+        <DataGrid CanUserAddRows="False" IsReadOnly="True"  x:Name="RegistrationGrid" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,62,10,74" FontSize="18" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Width="200" Header="Koi Name" Binding="{Binding KoiName}"/>
+                <DataGridTextColumn Width="120" MinWidth="150" Header="Variety" Binding="{Binding KoiVariety}"/>
+                <DataGridTextColumn Width="*" Header="Total Score" Binding="{Binding TotalScore}"/>
+                <DataGridTextColumn Width="*" Header="Rank" Binding="{Binding Rank}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Final Result" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" Foreground="#FFD42222" Background="#FFEADF0F" Width="170"/>
+        <Button x:Name="btnAnnouceScore" Content="Annouce Result" FontSize="20" Click="BtnAnnouceScore" Margin="625,382,10,0" FontWeight="Bold" Height="52" VerticalAlignment="Top">
+            <Button.Background>
+                <SolidColorBrush Color="#FF3DCA05" Opacity="0.5"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnCancel" Content="Cancel" FontSize="20" Click="BtnCancel" Margin="10,382,625,0" FontWeight="Bold" Height="52" VerticalAlignment="Top">
+            <Button.Background>
+                <SolidColorBrush Color="#FF3DCA05" Opacity="0.5"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>

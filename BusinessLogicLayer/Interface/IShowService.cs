@@ -14,5 +14,7 @@ namespace BusinessLogicLayer.Interface
         Task<bool> Update(ShowDTO dto);
         Task<bool> Delete(int showId);
         Task<IEnumerable<RegistrationDTO>> ReviewScore(int showId);
+        Task<IEnumerable<ShowDTO>> GetAll(int userId);
+        Task<bool> AnnouceResult(int showId);
     }
 }

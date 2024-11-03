@@ -19,5 +19,6 @@ namespace DataAccessLayer.Interface
         Task<IEnumerable<RegistrationDTO>> GetRegistrationsByReferee(int userId);
         Task<IEnumerable<RegistrationDTO>> GetRegistrationsByMember(int userId);
         Task<IEnumerable<RegistrationDTO>> GetRegistrationsByShow(int showId);
+        Task<bool> UpdateStatusAllRegistrationByShow(int showId, string status);
     }
 }

@@ -53,5 +53,32 @@ namespace DataAccessLayer.Implementation
             }
         }
 
+        public async Task<bool> IsScoreCompletely(int showId)
+        {
+            bool result = false;
+            using (var _context = new Prn212ProjectKoiShowManagementContext())
+            {
+                // Lấy đơn được chấm điểm ( status = Accepted )
+                var registrationInShow = await _context.Registrations
+                    .Include(r => r.Scores)
+                    .Where(r => r.ShowId == showId
+                            && r.Status.Equals("Accepted")).ToListAsync();
+                if (registrationInShow != null && registrationInShow.Any() == true)
+                {
+                    int totalRegistration = registrationInShow.Count();
+                    int totalCriteria = _context.Criteria.Where(cr => cr.ShowId == showId).Count();
+                    int totalReferee = _context.RefereeDetails.Where(rd => rd.ShowId == showId).Count();
+                    int totalScoreRecords = totalCriteria * totalRegistration * totalReferee;
+                    int scoringRecords = _context.Scores
+                        .Include(sc => sc.Criteria)
+                        .Where(sc => sc.Criteria.ShowId == showId).Count();
+                    if(totalScoreRecords == scoringRecords)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
