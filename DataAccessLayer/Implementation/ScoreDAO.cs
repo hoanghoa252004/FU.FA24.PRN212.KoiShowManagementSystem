@@ -62,7 +62,7 @@ namespace DataAccessLayer.Implementation
                 var registrationInShow = await _context.Registrations
                     .Include(r => r.Scores)
                     .Where(r => r.ShowId == showId
-                            && r.Status.Equals("Accepted")).ToListAsync();
+                            && (r.Status.Equals("Accepted") || r.Status.Equals("Scored"))).ToListAsync();
                 if (registrationInShow != null && registrationInShow.Any() == true)
                 {
                     int totalRegistration = registrationInShow.Count();

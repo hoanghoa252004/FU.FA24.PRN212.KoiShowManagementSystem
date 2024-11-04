@@ -52,6 +52,8 @@ namespace KoiShowManagementSystemWPF.Manager
                 if(result == true)
                 {
                     MessageBox.Show("Annouce Score Successfully .", "Successfully:", MessageBoxButton.OK);
+                    btnAnnouceScore.Visibility = Visibility.Collapsed;
+                    this.Close();
                 }
                 else
                 {

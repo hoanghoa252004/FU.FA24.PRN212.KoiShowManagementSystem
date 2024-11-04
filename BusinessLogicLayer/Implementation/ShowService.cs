@@ -67,8 +67,9 @@ namespace BusinessLogicLayer.Implementation
                         var result = shows.Where(s =>
                                         s.Title.Contains(key, StringComparison.OrdinalIgnoreCase) == true
                                         || s.Description.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                        || s.RegisterStartDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                        || s.EntranceFee.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
+                                        || s.RegisterStartDate.ToString()!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.EntranceFee.ToString()!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.Status.Contains(key, StringComparison.OrdinalIgnoreCase) == true);
                         return result;
                     }
                     else
@@ -82,8 +83,9 @@ namespace BusinessLogicLayer.Implementation
                         var result = shows.Where(s =>
                                         s.Title.Contains(key, StringComparison.OrdinalIgnoreCase) == true
                                         || s.Description.Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                        || s.RegisterStartDate.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true
-                                        || s.EntranceFee.ToString().Contains(key, StringComparison.OrdinalIgnoreCase) == true);
+                                        || s.RegisterStartDate.ToString()!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.EntranceFee.ToString()!.Contains(key, StringComparison.OrdinalIgnoreCase) == true
+                                        || s.Status.Contains(key, StringComparison.OrdinalIgnoreCase) == true);
                         return result;
                     }
                     else
@@ -104,7 +106,31 @@ namespace BusinessLogicLayer.Implementation
 
         public async Task<bool> Update(ShowDTO dto)
         {
-            return false;
+            bool result = false;
+            if(dto == null )
+            {
+                throw new Exception("Show does not exist !");
+            }
+            else
+            {
+                if (dto.Title == null
+                    && dto.Description == null
+                    && dto.EntranceFee == null
+                    && dto.RegisterStartDate == null
+                    && dto.RegisterEndDate == null
+                    && dto.Criteria == null
+                    && dto.Referees == null
+                    && dto.Varieties == null
+                    && dto.Status == null)
+                {
+                    throw new Exception("Nothing to update !");
+                }
+                else
+                {
+                    result = await _repository.Show.Update(dto);
+                }
+            }
+            return result;
         }
 
         public async Task<IEnumerable<RegistrationDTO>> ReviewScore(int showId)

@@ -27,6 +27,8 @@ namespace KoiShowManagementSystemWPF.Manager
     {
         private readonly IShowService _showService;
         private readonly IKoiService _koiService;
+        private readonly IVarietyService _varietyService;
+        private readonly IUserService _userService;
         private  ShowDTO _selectedShow = null!;
         private readonly UserDTO _user = null!;
         public ShowManagementWindow(UserDTO user)
@@ -34,6 +36,8 @@ namespace KoiShowManagementSystemWPF.Manager
             InitializeComponent();
             _showService = ShowService.Instance;
             _koiService = KoiService.Instance;
+            _varietyService = VarietyService.Instance;
+            _userService = UserService.Instance;
             _user = user;
             LoadData();
         }
@@ -203,8 +207,17 @@ namespace KoiShowManagementSystemWPF.Manager
         {
             if (_selectedShow != null)
             {
-                var result = await _showService.Search(_user.Id, txtSearch.Text);
-                ShowGrid.ItemsSource = result;
+                IEnumerable<ShowDTO> result = null!;
+                if (!string.IsNullOrWhiteSpace(txtSearch.Text) == true)
+                {
+                    result = await _showService.Search(_user.Id, txtSearch.Text);
+                    ShowGrid.ItemsSource = result;
+                }
+                else
+                {
+                    result = await _showService.GetAll(_user.Id);
+                    ShowGrid.ItemsSource = result;
+                }
                 var showToSelect = result
                     .FirstOrDefault(s => s.Id == _selectedShow.Id);
                 if (showToSelect != null)
@@ -245,6 +258,7 @@ namespace KoiShowManagementSystemWPF.Manager
                 {
                     FinalResultWindow dialog = new FinalResultWindow(_selectedShow,result);
                     dialog.ShowDialog();
+                    RefreshWindow();
                 }
             }
             catch (Exception ex)
@@ -281,15 +295,70 @@ namespace KoiShowManagementSystemWPF.Manager
             this.Close();
         }
 
-        private void BtnPublish(object sender, RoutedEventArgs e)
+        private async void BtnPublish(object sender, RoutedEventArgs e)
         {
-
+            if(_selectedShow != null)
+            {
+                try
+                {
+                    bool result = await _showService.Update(new ShowDTO()
+                    {
+                        Id = _selectedShow.Id,
+                        Status = "OnGoing",
+                    });
+                    if (result == true)
+                    {
+                        RefreshWindow();
+                    }
+                    else
+                    {
+                        throw new Exception("Publish Show Failed !");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
 
-        private void BtnScoring(object sender, RoutedEventArgs e)
+        private async void BtnScoring(object sender, RoutedEventArgs e)
         {
-
+            if (_selectedShow != null)
+            {
+                try
+                {
+                    bool result = await _showService.Update(new ShowDTO()
+                    {
+                        Id = _selectedShow.Id,
+                        Status = "Scoring",
+                    });
+                    if (result == true)
+                    {
+                        RefreshWindow();
+                    }
+                    else
+                    {
+                        throw new Exception("Update Show to Scoring Failed !");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
 
+        private async void BtnUpdate(object sender, RoutedEventArgs e)
+        {
+            if(_selectedShow != null)
+            {
+                var varieties = await _varietyService.GetAll();
+                var referees = await _userService.GetAllReferee();
+                UpdateShowDialog dialog = new UpdateShowDialog(varieties.ToList(), referees.ToList(), _selectedShow);
+                dialog.ShowDialog();    
+                RefreshWindow();
+            }
+        }
     }
 }

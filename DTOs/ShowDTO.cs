@@ -14,18 +14,18 @@ namespace DTOs
 
         public string Description { get; set; } = null!;
 
-        public DateOnly RegisterStartDate { get; set; }
+        public DateOnly? RegisterStartDate { get; set; } = null!;
 
-        public DateOnly RegisterEndDate { get; set; }
+        public DateOnly? RegisterEndDate { get; set; } = null!;
 
-        public decimal EntranceFee { get; set; }
+        public decimal? EntranceFee { get; set; } = null!;
 
         public string Status { get; set; } = null!;
 
-        public virtual IEnumerable<CriterionDTO> Criteria { get; set; } = new List<CriterionDTO>();
+        public virtual IEnumerable<CriterionDTO>? Criteria { get; set; } = null!;
 
-        public virtual IEnumerable<VarietyDTO> Varieties { get; set; } = new List<VarietyDTO>();
+        public virtual IEnumerable<VarietyDTO>? Varieties { get; set; } = null!;
 
-        public virtual IEnumerable<UserDTO> Referees { get; set; } = new List<UserDTO>();
+        public virtual IEnumerable<UserDTO>? Referees { get; set; } = null!;
     }
 }
