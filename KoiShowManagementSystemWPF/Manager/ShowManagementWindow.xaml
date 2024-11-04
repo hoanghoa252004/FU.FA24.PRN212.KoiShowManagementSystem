@@ -33,7 +33,7 @@
                     <SolidColorBrush Color="#FF20E47A" Opacity="0.3"/>
                 </Grid.Background>
                 <Label Content="Show:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" FontSize="22"/>
-                <TextBox x:Name="txtSearch" TextWrapping="Wrap" Text="Midorya Izuku" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="83,18,145,0"/>
+                <TextBox x:Name="txtSearch" TextWrapping="Wrap" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="83,18,145,0"/>
                 <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="430,18,0,0" Click="BtnSearch"/>
                 <DataGrid CanUserAddRows="False" IsReadOnly="True"  x:Name="ShowGrid" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,104,10,10" FontSize="18" SelectionChanged="SelectShow" Grid.RowSpan="2">
                     <DataGrid.Columns>
@@ -200,7 +200,7 @@
                 <StackPanel.Background>
                     <SolidColorBrush Color="Black" Opacity="0.1"/>
                 </StackPanel.Background>
-                <Button x:Name="btnUpdate" Visibility="Collapsed" Margin="0,0,100,0" Content="Update" FontSize="20" Width="100" Height="44"/>
+                <Button x:Name="btnUpdate" Visibility="Collapsed" Margin="0,0,100,0" Content="Update" FontSize="20" Width="100" Height="44" Click="BtnUpdate"/>
                 <Button x:Name="btnCreate" Visibility="Collapsed" Margin="0,0,100,0" Content="Create" FontSize="20" Width="100" Height="44" Click="BtnCreate"/>
                 <Button x:Name="btnDelete" Visibility="Collapsed" Margin="0,0,100,0" Content="Delete" FontSize="20" Width="100" Height="44" Click="BtnDelete"/>
                 <Button  x:Name="btnRegister" Visibility="Collapsed" Content="Register Now" FontSize="20" Width="159" Height="44" Click="BtnRegister" Background="#FF12B142" FontWeight="Bold" Foreground="White"/>

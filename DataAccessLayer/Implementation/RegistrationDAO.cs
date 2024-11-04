@@ -392,7 +392,7 @@ namespace DataAccessLayer.Implementation
             using (Prn212ProjectKoiShowManagementContext _context = new Prn212ProjectKoiShowManagementContext())
             {
                 var registrations = await _context.Registrations.Where(r => r.ShowId == showId 
-                                    && r.Status.Equals("Accepted", StringComparison.OrdinalIgnoreCase)).ToListAsync();
+                                    && r.Status.Equals("Accepted")).ToListAsync();
                 if (registrations.Any())
                 {
                     foreach(var registration in registrations)
