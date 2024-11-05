@@ -6,31 +6,35 @@
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Manager"
         mc:Ignorable="d"
             WindowStartupLocation="CenterScreen"
-    Title="Koi Show Window" Height="1055" Width="1860">
-    <Grid Margin="0,0,10,-6">
+    Title="Koi Show Window" Height="1085" Width="1950">
+    <Grid Margin="0,0,-25,-6">
         <Grid.Background>
-            <SolidColorBrush Color="#FFDEDA12" Opacity="0.3"/>
+            <ImageBrush ImageSource="/Manager/ShowImage.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="79*"/>
             <RowDefinition Height="956*"/>
         </Grid.RowDefinitions>
-        <Label Content="SHOW MANAGEMENT WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Height="69" Width="754"/>
-        <Grid Grid.Row="1" Margin="0,5,0,10">
+        <Label Content="SHOW MANAGEMENT WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Height="69" Width="754">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </Label.Background>
+        </Label>
+        <Grid Grid.Row="1" Margin="35,5,40,46">
             <Grid.Background>
-                <SolidColorBrush Color="#FFEC8181" Opacity="0.3"/>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="134*"/>
                 <ColumnDefinition Width="289*"/>
             </Grid.ColumnDefinitions>
-            <Grid Margin="20,0,10,76">
+            <Grid Margin="20,39,10,76">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="17*"/>
                     <RowDefinition Height="97*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
-                    <SolidColorBrush Color="#FF20E47A" Opacity="0.3"/>
+                    <SolidColorBrush Color="#FFABFFD2" Opacity="0.3"/>
                 </Grid.Background>
                 <Label Content="Show:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" FontSize="22"/>
                 <TextBox x:Name="txtSearch" TextWrapping="Wrap" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="83,18,145,0"/>
@@ -44,7 +48,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-            <Grid Margin="30,0,10,551" Grid.Column="1">
+            <Grid Margin="30,39,40,515" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="169*"/>
                     <ColumnDefinition Width="1055*"/>
@@ -56,7 +60,7 @@
                     <RowDefinition Height="215*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
-                    <SolidColorBrush Color="#FFB63737" Opacity="0.5"/>
+                    <SolidColorBrush Color="#FFFFB4B4" Opacity="0.5"/>
                 </Grid.Background>
                 <Label Content="Show Information:" HorizontalAlignment="Left" Margin="416,0,0,0" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Grid.Column="1" Height="39" Width="203"/>
                 <Label Content="Title:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39"/>
@@ -71,23 +75,20 @@
                 <Label Content="Entrance Fee:" Margin="404,0,495,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39" Grid.Column="1"/>
                 <TextBox x:Name="txtEntranceFee" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="560,0,343,0" Grid.Row="2"/>
                 <StackPanel Orientation="Horizontal" Margin="675,0,10,0" Grid.Column="1" Grid.Row="1" >
-                    <StackPanel.Background>
-                        <SolidColorBrush Color="#FF66C82E" Opacity="0.5"/>
-                    </StackPanel.Background>
-                    <Button x:Name="btnPublish" Content="Publish" FontSize="20" Height="57" Width="90" Background="#FF6CC218" Click="BtnPublish"/>
-                    <Button x:Name="btnScoring" Content="Scoring" FontSize="20" Height="57" Width="110" Background="#FFD0B70A" Click="BtnScoring"/>
-                    <Button x:Name="btnReviewScore" Content="Review Score" FontSize="20" Background="#FF199DC9" Width="135" Click="BtnReviewScore"/>
+                    <Button x:Name="btnPublish" Content="Publish" FontSize="20" Height="57" Width="90" Background="#FF6CC218" Click="BtnPublish" FontWeight="Bold"/>
+                    <Button x:Name="btnScoring" Content="Scoring" FontSize="20" Height="57" Width="110" Background="#FFD0B70A" Click="BtnScoring" FontWeight="Bold"/>
+                    <Button x:Name="btnReviewScore" Content="Review Score" FontSize="20" Background="#FF199DC9" Width="135" Click="BtnReviewScore" FontWeight="Bold"/>
                 </StackPanel>
-                
+
             </Grid>
-            <Grid Grid.Column="1" Margin="30,404,10,76">
+            <Grid Grid.Column="1" Margin="30,452,40,73">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300*"/>
                     <ColumnDefinition Width="533*"/>
                     <ColumnDefinition Width="395*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.Background>
-                    <SolidColorBrush Color="#FF51C6E3" Opacity="0.5"/>
+                    <SolidColorBrush Color="#FF97E8FC" Opacity="0.5"/>
                 </Grid.Background>
                 <Label Content="Varieties:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="22" Width="95" Height="45"/>
                 <ListBox x:Name="VarietyListBox" 

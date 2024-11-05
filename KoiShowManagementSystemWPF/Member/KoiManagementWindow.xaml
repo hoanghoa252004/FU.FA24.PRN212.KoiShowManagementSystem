@@ -10,33 +10,34 @@
         >
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
-            <SolidColorBrush Color="#FFDEDA12" Opacity="0.3"/>
+            <ImageBrush ImageSource="/Member/a_koi_pond_vn_background_by_drechenaux_dg1zucf-fullview.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="47*"/>
             <RowDefinition Height="285*"/>
         </Grid.RowDefinitions>
-        <Label Content="KOI MANAGEMENT WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Height="74" Width="690"/>
+        <Label Content="KOI MANAGEMENT WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Height="74" Width="690">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </Label.Background>
+        </Label>
         <Grid Grid.Row="1">
-            <Grid.Background>
-                <SolidColorBrush Color="#FFEC8181" Opacity="0.3"/>
-            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="127*"/>
                 <ColumnDefinition Width="117*"/>
             </Grid.ColumnDefinitions>
-            <Grid Margin="10,0,10,10">
+            <Grid Margin="30,0,10,41">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="17*"/>
                     <RowDefinition Height="97*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
-                    <SolidColorBrush Color="#FF20E47A" Opacity="0.3"/>
+                    <SolidColorBrush Color="#FFA4EBC5" Opacity="0.3"/>
                 </Grid.Background>
                 <Label Content="Koi:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="22"/>
                 <TextBox x:Name="KoiNameSearchTextBox" TextWrapping="Wrap" Text="Enter Koi Name" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="60,18,145,0" GotFocus="txtSearch_GotFocus" />
-                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="534,18,0,0" Click="SearchButton_Click"/>
-                <DataGrid x:Name="dgData" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,40,10,10" Grid.Row="1" FontSize="18" SelectionChanged="dgData_SelectionChanged" >
+                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="514,0,0,0" Click="SearchButton_Click"/>
+                <DataGrid CanUserAddRows="False" IsReadOnly="True" x:Name="dgData" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,40,10,10" Grid.Row="1" FontSize="18" SelectionChanged="dgData_SelectionChanged" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" MinWidth="50" Header="Id" Binding="{Binding Id}"/>
                         <DataGridTextColumn Width="*" MinWidth="160" Header="Name" Binding="{Binding Name}"/>
@@ -45,9 +46,9 @@
                         <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content="Get All" HorizontalAlignment="Left" Height="37" Margin="70,87,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="93" Click="All_Click"/>
+                <Button Content="Get All" HorizontalAlignment="Left" Height="41" Margin="60,80,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="105" Click="All_Click" FontSize="18" Background="#FFDEDE48" FontWeight="Bold"/>
             </Grid>
-            <Grid Grid.Column="1" Margin="0,0,10,10">
+            <Grid Grid.Column="1" Margin="0,0,30,41">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="12*"/>
                     <ColumnDefinition Width="35*"/>
@@ -62,7 +63,7 @@
                     <RowDefinition Height="86*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
-                    <SolidColorBrush Color="#FFB63737" Opacity="0.5"/>
+                    <SolidColorBrush Color="#FFE4F1F3" Opacity="0.5"/>
                 </Grid.Background>
                 <Label Content="Koi Information:" HorizontalAlignment="Left" Margin="130,0,0,0" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Grid.Column="1" Height="39" Width="180"/>
                 <Label Content="ID:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39"/>
@@ -70,20 +71,19 @@
                 <Label Content="Variety:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="3" Height="39"/>
                 <Label Content="Size:(cm)" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="4" Height="39"/>
                 <Label Content="Image:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="5" Height="39"/>
-                <Image Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Stretch="Uniform" Width="185"  Source="../Image/images.jpg"/>
                 <TextBox x:Name="KoiIdTextBox" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" Text="001" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="1" IsEnabled="False" />
                 <TextBox x:Name="KoiNameTextBox"  Grid.Column="1" TextWrapping="Wrap" Text="Bakudan Katsu" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="2"/>
                 <TextBox x:Name="KoiSizeTextBox"  Grid.Column="1" TextWrapping="Wrap" Text="45.5" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="4"/>
-                <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="330,0,0,0" Grid.Column="1" Grid.Row="6" Click="Delete_Click" />
-                <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="10,0,0,0" Grid.Column="1" Grid.Row="6" Click="Update_Click" />
-                <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="170,0,0,0" Grid.Column="1" Grid.Row="6" Click="Add_Click" />
+                <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="308,0,0,0" Grid.Column="1" Grid.Row="6" Click="Delete_Click" />
+                <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="148,13,0,0" Grid.Row="6" Click="Update_Click" Grid.ColumnSpan="2" />
+                <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="146,0,0,0" Grid.Column="1" Grid.Row="6" Click="Add_Click" />
                 <RadioButton x:Name="ActiveRadioButton" Grid.Column="1" Content="Active" HorizontalAlignment="Left" Margin="206,79,0,0" Grid.Row="5" VerticalAlignment="Top" FontSize="22"/>
                 <RadioButton x:Name="InactiveRadioButton" Grid.Column="1" Content="Inactive" HorizontalAlignment="Left" Margin="330,79,0,0" Grid.Row="5" VerticalAlignment="Top" FontSize="22"/>
                 <Label Content="Status:" Margin="206,33,126,0" VerticalAlignment="Top" FontSize="22" Grid.Row="5" Height="39" Grid.Column="1"/>
-                <Image x:Name="KoiImagePath" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="98,126,0,0" Grid.Row="5" VerticalAlignment="Top" Width="100"/>
-                <ComboBox x:Name="VarietyIdComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" HorizontalAlignment="Left" Height="46" Margin="10,0,0,0" VerticalAlignment="Center" Width="406" Grid.Column="1" Grid.Row="3"/>
+                <Image x:Name="KoiImagePath" Grid.Column="1" HorizontalAlignment="Left" Height="216" Margin="10,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="188"/>
+                <ComboBox Padding="5,5,5,5" FontSize="22"  x:Name="VarietyIdComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" HorizontalAlignment="Left" Height="46" Margin="10,0,0,0" VerticalAlignment="Center" Width="398" Grid.Column="1" Grid.Row="3"/>
             </Grid>
         </Grid>
-        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" Height="43" Margin="35,40,0,0" Click="BtnHomePage"/>
+        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" Height="43" Margin="35,40,0,0" Click="BtnHomePage" Background="#FF659AE5" FontWeight="Bold" Foreground="Snow"/>
     </Grid>
 </Window>

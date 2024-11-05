@@ -176,14 +176,6 @@ namespace KoiShowManagementSystemWPF.Member
                 {
                     txtTotalScore.Text = _selectedRegistration.TotalScore.ToString();
                     txtRanking.Text = _selectedRegistration.Rank.ToString();
-                    if (_selectedRegistration.IsBestVote == true)
-                    {
-                        txtIsBestVote.Text = "Yes";
-                    }
-                    else
-                    {
-                        txtIsBestVote.Text = "No";
-                    }
                     PanelResult.Visibility = Visibility.Visible;
                 }
                 else

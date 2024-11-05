@@ -9,17 +9,18 @@
         Title="Scoring Window" Height="1030" Width="1620" Loaded="Window_Loaded">
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
-            <SolidColorBrush Color="#FFDEDA12" Opacity="0.3"/>
+            <ImageBrush ImageSource="/Referee/ScoringImage.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="47*"/>
             <RowDefinition Height="285*"/>
         </Grid.RowDefinitions>
-        <Label Content="SCORING WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Height="74" Width="464"/>
+        <Label Content="SCORING WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Height="74" Width="464">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </Label.Background>
+        </Label>
         <Grid Grid.Row="1">
-            <Grid.Background>
-                <SolidColorBrush Color="#FFEC8181" Opacity="0.3"/>
-            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="67*"/>
                 <ColumnDefinition Width="104*"/>
@@ -30,10 +31,10 @@
                     <RowDefinition Height="740*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
-                    <SolidColorBrush Color="#FF20E47A" Opacity="0.3"/>
+                    <SolidColorBrush Color="#FFF2F4CE" Opacity="0.3"/>
                 </Grid.Background>
                 <Label Content="Koi:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="22" Height="40" Width="45"/>
-                <TextBox TextWrapping="Wrap" Text="Midorya Izuku" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="60,0,142,0"/>
+                <TextBox TextWrapping="Wrap" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="60,0,142,0"/>
                 <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="98" Height="57" Margin="394,0,0,0"/>
                 <DataGrid x:Name="dgData" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,10" Grid.Row="1" FontSize="18" SelectionChanged="dgData_SelectionChanged" IsReadOnly="True" >
                     <DataGrid.Columns>
@@ -59,9 +60,9 @@
                     <RowDefinition Height="100*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
-                    <SolidColorBrush Color="#FFB63737" Opacity="0.5"/>
+                    <SolidColorBrush Color="#FFF0B6B6" Opacity="0.5"/>
                 </Grid.Background>
-                <Label Content="Registration Information:" HorizontalAlignment="Left" Margin="60,7,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Grid.Column="1" Height="39" Width="290"/>
+                <Label Content="Registration Information:" HorizontalAlignment="Left" Margin="195,7,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Grid.Column="1" Height="39" Width="290"/>
                 <Label Content="ID:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39"/>
                 <Label Content="Koi Name:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39"/>
                 <Label Content="Variety:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="3" Height="39"/>
@@ -72,7 +73,7 @@
                 <TextBox x:Name="KoiNameTextBox" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="2"/>
                 <TextBox x:Name="KoiVarietyTextBox" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="3"/>
                 <TextBox x:Name="KoiSizeTextBox" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="4"/>
-                <Button Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="343,16,0,0" Grid.Column="1" Grid.Row="7" Click="Submit_Click"/>
+                <Button Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="566,10,0,0" Grid.Column="1" Grid.Row="7" Click="Submit_Click"/>
                 <Image x:Name="ImagePath2" Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="257,59,0,0" Grid.Row="4" VerticalAlignment="Top" Stretch="Uniform" Width="185"  Source="/Image/images.jpg" Grid.RowSpan="2"/>
                 <Image x:Name="ImagePath3" Grid.Column="1" HorizontalAlignment="Left" Height="250" Margin="483,0,0,0" Grid.Row="5" VerticalAlignment="Center" Stretch="Uniform" Width="185"  Source="/Image/images.jpg"/>
                 <Label Content="Criteria:" Margin="16,0,17,0" VerticalAlignment="Center" FontSize="22" Grid.Row="6" Height="39"/>
@@ -85,5 +86,6 @@
                 </DataGrid>
             </Grid>
         </Grid>
+        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="130" Height="43" Margin="35,40,0,0" Background="#FF659AE5" FontWeight="Bold" Foreground="Snow"/>
     </Grid>
 </Window>

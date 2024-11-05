@@ -99,10 +99,6 @@
                         <TextBlock FontSize="20" Text="Ranking:"/>
                         <TextBlock FontSize="22" x:Name="txtRanking"  Width="120" FontWeight="Bold" Foreground="Yellow"  />
                     </StackPanel>
-                    <StackPanel Margin="30,5,0,5">
-                        <TextBlock FontSize="20" Text="IsBestVote:"/>
-                        <TextBlock IsEnabled="False" FontSize="22" x:Name="txtIsBestVote"   Width="120" FontWeight="Bold" Foreground="#FF0C6F24"  />
-                    </StackPanel>
                     <Button Visibility="Collapsed" x:Name="btnScoreDetail" Content="Score Details" FontSize="20" Width="124" Height="46"/>
                 </StackPanel>
             </Grid>
