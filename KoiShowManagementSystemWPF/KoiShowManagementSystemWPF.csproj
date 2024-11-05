@@ -9,13 +9,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="LoginImage.jpg" />
+    <None Remove="logo-template-design-two-koi-fish-from-japan-concept-free-vector.jpg" />
+    <None Remove="Manager\pngtree-vibrant-watercolor-painting-on-canvas-abstract-art-background-in-light-green-image_13709924.png" />
+    <None Remove="Manager\ShowImage.jpg" />
+    <None Remove="Member\a_koi_pond_vn_background_by_drechenaux_dg1zucf-fullview.jpg" />
     <None Remove="Member\images.jpg" />
+    <None Remove="Member\pngtree-landscape-in-the-sky-with-trees-and-clouds-picture-image_3538620.jpg" />
     <None Remove="Referee\images.jpg" />
+    <None Remove="Referee\ScoringImage.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
     <ProjectReference Include="..\DTOs\DTOs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="LoginImage.jpg" />
+    <Resource Include="logo-template-design-two-koi-fish-from-japan-concept-free-vector.jpg" />
+    <Resource Include="Manager\pngtree-vibrant-watercolor-painting-on-canvas-abstract-art-background-in-light-green-image_13709924.png" />
+    <Resource Include="Manager\ShowImage.jpg" />
+    <Resource Include="Member\a_koi_pond_vn_background_by_drechenaux_dg1zucf-fullview.jpg" />
+    <Resource Include="Member\pngtree-landscape-in-the-sky-with-trees-and-clouds-picture-image_3538620.jpg" />
+    <Resource Include="Referee\ScoringImage.jpg" />
   </ItemGroup>
 
 </Project>

@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="FinalResultWindow" Height="480" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Manager/pngtree-vibrant-watercolor-painting-on-canvas-abstract-art-background-in-light-green-image_13709924.png"/>
+        </Grid.Background>
         <DataGrid CanUserAddRows="False" IsReadOnly="True"  x:Name="RegistrationGrid" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,62,10,74" FontSize="18" >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}"/>

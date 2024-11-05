@@ -22,8 +22,6 @@ namespace DTOs
 
         public int? Rank { get; set; }
 
-        public bool IsBestVote { get; set; }
-
         public int? KoiId { get; set; }
 
         public int ShowId { get; set; }
