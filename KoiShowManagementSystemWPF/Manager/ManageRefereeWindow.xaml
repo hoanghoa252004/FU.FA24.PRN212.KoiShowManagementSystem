@@ -7,9 +7,12 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="ManageRefereeWindow" Height="877" Width="1360" Loaded="Window_Loaded">
-    
 
-    <Grid Background="#FFEC8181">
+
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Manager/RefereeScreen.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="569*"/>
             <RowDefinition Height="170*"/>
@@ -17,7 +20,10 @@
             <RowDefinition Height="55*"/>
         </Grid.RowDefinitions>
 
-        <Grid HorizontalAlignment="Left" Height="740" VerticalAlignment="Top" Width="614" Margin="30,82,0,0" Background="#FF51C6E3" Grid.RowSpan="4">
+        <Grid HorizontalAlignment="Left" Height="673" VerticalAlignment="Top" Width="614" Margin="30,149,0,0" Grid.RowSpan="4">
+            <Grid.Background>
+                <SolidColorBrush Color="#FFE4F1F3" Opacity="0.5"/>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="44*"/>
                 <ColumnDefinition Width="64*"/>
@@ -33,27 +39,32 @@
             <RadioButton x:Name="TrueRadioButton" Content="True" HorizontalAlignment="Left" Margin="118,434,0,0" VerticalAlignment="Top" FontSize="22" Grid.Column="1"  Width="86" Grid.ColumnSpan="2"/>
             <RadioButton x:Name="FalseRadioButton" Content="False" HorizontalAlignment="Center" Margin="0,434,0,0" VerticalAlignment="Top" FontSize="22" Grid.Column="2" Width="86" />
 
-            <Button Content="Add" HorizontalAlignment="Left" Height="64" Margin="50,613,0,0" VerticalAlignment="Top" Width="120" FontSize="20" Click="Add_Button" Grid.ColumnSpan="2"/>
-            <Button Content="Delete" HorizontalAlignment="Left" Height="66" Margin="203,620,0,0" VerticalAlignment="Top" Width="119" FontSize="20" Grid.Column="2" RenderTransformOrigin="0.608,2.246" Click="Delete_Button" />
+            <Button Content="Add" HorizontalAlignment="Left" Height="64" Margin="44,556,0,0" VerticalAlignment="Top" Width="120" FontSize="20" Click="Add_Button" Grid.ColumnSpan="2"/>
+            <Button Content="Delete" HorizontalAlignment="Left" Height="66" Margin="160,556,0,0" VerticalAlignment="Top" Width="118" FontSize="20" Grid.Column="2" RenderTransformOrigin="0.608,2.246" Click="Delete_Button" />
             <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="54" Margin="123,215,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" Grid.Column="1" Grid.ColumnSpan="2" />
             <TextBox x:Name="EmailTextBox" HorizontalAlignment="Left" Height="54" Margin="123,275,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" Grid.Column="1" Grid.ColumnSpan="2" />
             <TextBox x:Name="PhoneTextBox" HorizontalAlignment="Left" Height="54" Margin="126,346,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" Grid.Column="1" Grid.ColumnSpan="2" />
             <Label Content="Name" HorizontalAlignment="Center" Height="60" Margin="0,215,0,0" VerticalAlignment="Top" Width="125" FontWeight="DemiBold" FontSize="22" Grid.ColumnSpan="2" />
             <Label Content="Email" HorizontalAlignment="Center" Height="60" Margin="0,275,0,0" VerticalAlignment="Top" Width="125" FontWeight="DemiBold" FontSize="22" Grid.ColumnSpan="2" />
-            <Label Content="Phone" HorizontalAlignment="Left" Height="60" Margin="50,0,0,0" VerticalAlignment="Center" Width="125" FontWeight="DemiBold" FontSize="22" Grid.ColumnSpan="2" />
-            <Button Content="Update" HorizontalAlignment="Left" Height="64" Margin="18,620,0,0" VerticalAlignment="Top" Width="116" FontSize="20" Grid.Column="2" RenderTransformOrigin="0.608,2.246" Click="Update_Button" />
+            <Label Content="Phone" HorizontalAlignment="Left" Height="60" Margin="51,346,0,0" VerticalAlignment="Top" Width="125" FontWeight="DemiBold" FontSize="22" Grid.ColumnSpan="2" />
+            <Button Content="Update" HorizontalAlignment="Left" Height="64" Margin="0,556,0,0" VerticalAlignment="Top" Width="116" FontSize="20" Grid.Column="2" RenderTransformOrigin="0.608,2.246" Click="Update_Button" />
             <Button Content="All" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="36" Height="57" Margin="20,81,0,0" Click="GetAllReferee_Button" Grid.Column="1"/>
         </Grid>
-        <DataGrid x:Name="dgData" HorizontalAlignment="Left" Height="747" Margin="680,82,0,0" VerticalAlignment="Top" Width="641" AutoGenerateColumns="False" Grid.RowSpan="4" IsReadOnly="True" SelectionChanged="dgData_SelectionChanged" >
+        <DataGrid x:Name="dgData" HorizontalAlignment="Left" Height="673" Margin="680,149,0,0" VerticalAlignment="Top" Width="641" AutoGenerateColumns="False" Grid.RowSpan="4" FontSize="18" IsReadOnly="True" SelectionChanged="dgData_SelectionChanged" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id }"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name }"/>
-                <DataGridTextColumn Header="Phone" Binding="{Binding Phone }"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email }"/>
-                <DataGridTextColumn Header="Role" Binding="{Binding Role }"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status }"/>
+                <DataGridTextColumn Header="Id" Width="*" MinWidth="60" Binding="{Binding Id }"/>
+                <DataGridTextColumn Header="Name" Width="*" MinWidth="200" Binding="{Binding Name }"/>
+                <DataGridTextColumn Header="Phone" Width="*" MinWidth="100"  Binding="{Binding Phone }"/>
+                <DataGridTextColumn Header="Email" Width="*" MinWidth="100" Binding="{Binding Email }"/>
+                <DataGridTextColumn Header="Role" Width="*" MinWidth="60" Binding="{Binding Role }"/>
+                <DataGridTextColumn Header="Status" Width="*" MinWidth="60" Binding="{Binding Status }"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="Manage Referee" HorizontalAlignment="Center" Height="77" Margin="0,34,0,0" VerticalAlignment="Top" Width="379"  FontSize="48" FontWeight="Bold">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </Label.Background>
+        </Label>
         <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" Height="43" Margin="30,34,0,0" Click="BtnHomePage" Background="#FF659AE5" FontWeight="Bold" Foreground="Snow"/>
 
     </Grid>
