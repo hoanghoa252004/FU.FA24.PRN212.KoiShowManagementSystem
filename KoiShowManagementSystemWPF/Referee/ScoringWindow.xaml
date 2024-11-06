@@ -86,6 +86,6 @@
                 </DataGrid>
             </Grid>
         </Grid>
-        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="130" Height="43" Margin="35,40,0,0" Background="#FF659AE5" FontWeight="Bold" Foreground="Snow"/>
+        <Button Click="BtnHomePage" Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="130" Height="43" Margin="35,40,0,0" Background="#FF659AE5" FontWeight="Bold" Foreground="Snow"/>
     </Grid>
 </Window>

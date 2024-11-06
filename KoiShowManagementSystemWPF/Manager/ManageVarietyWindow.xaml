@@ -38,7 +38,6 @@
 
             <Button Content="Add" HorizontalAlignment="Left" Height="64" Margin="161,582,0,0" VerticalAlignment="Top" Width="116" FontSize="20" Click="Add_Button" Grid.Column="1" />
             <Button Content="Delete" HorizontalAlignment="Left" Height="63" Margin="350,583,0,0" VerticalAlignment="Top" Width="116" FontSize="20" Grid.Column="1" RenderTransformOrigin="0.608,2.246" Click="Delete_Button" />
-            <Button Content="Return to Home Page" HorizontalAlignment="Left" Height="39" Margin="10,10,0,0" VerticalAlignment="Top" Width="202" FontSize="20" Grid.ColumnSpan="2" Click="Return_HomePage" />
             <Button Content="Update" HorizontalAlignment="Left" Height="64" Margin="53,582,0,0" VerticalAlignment="Top" Width="116" FontSize="20" RenderTransformOrigin="0.608,2.246" Click="Update_Button" Grid.ColumnSpan="2" />
             <Button Content="All" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="36" Height="57" Margin="408,68,0,0" Click="GetAll_Button" Grid.Column="1"/>
         </Grid>
@@ -50,6 +49,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Manage Variety" HorizontalAlignment="Center" Height="53" Margin="0,28,0,0" VerticalAlignment="Top" Width="228" FontSize="30" />
+        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" Height="43" Margin="35,40,0,0" Click="BtnHomePage" Background="#FF659AE5" FontWeight="Bold" Foreground="Snow"/>
 
     </Grid>
 </Window>

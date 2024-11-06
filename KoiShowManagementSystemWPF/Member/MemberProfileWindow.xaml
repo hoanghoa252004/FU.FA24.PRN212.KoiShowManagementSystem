@@ -23,12 +23,12 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel>
-                <Button Click='BtnShows' Visibility="Collapsed" x:Name="btnShows" Margin="0,30,0,30" Content="Shows" FontSize="20" Width="200" Height="50"/>
-                <Button Visibility="Collapsed" x:Name="btnRegistrations" Margin="0,30,0,30" Content="Registrations" FontSize="20" Width="200" Height="50" Click="BtnRegistrations"/>
-                <Button Visibility="Collapsed" x:Name="btnKois" Margin="0,30,0,30" Content="Kois" FontSize="20" Height="50" Width="199" Click="BtnKois"/>
-                <Button Visibility="Collapsed" x:Name="btnReferees" Margin="0,30,0,30" Content="Referees" FontSize="20" Height="50" Width="199" Click="BtnReferees"/>
-                <Button Visibility="Collapsed" x:Name="btnVarieties" Margin="0,30,0,30" Content="Varieties" FontSize="20" Height="50" Width="199" Click="BtnVarieties"/>
-                <Button Visibility="Collapsed" x:Name="btnScoring" Margin="0,30,0,30" Content="Scoring" FontSize="20" Height="50" Width="199" Click="BTnScoring"/>
+                <Button Visibility="Collapsed" Click='BtnShows'  x:Name="btnShows" Margin="0,30,0,10" Content="Shows" FontSize="20" Width="200" Height="50"/>
+                <Button Visibility="Collapsed"  x:Name="btnRegistrations" Margin="0,30,0,10" Content="Registrations" FontSize="20" Width="200" Height="50" Click="BtnRegistrations"/>
+                <Button Visibility="Collapsed"  x:Name="btnKois" Margin="0,30,0,10" Content="Kois" FontSize="20" Height="50" Width="199" Click="BtnKois"/>
+                <Button Visibility="Collapsed"  x:Name="btnReferees" Margin="0,30,0,10" Content="Referees" FontSize="20" Height="50" Width="199" Click="BtnReferees"/>
+                <Button Visibility="Collapsed"  x:Name="btnVarieties" Margin="0,30,0,10" Content="Varieties" FontSize="20" Height="50" Width="199" Click="BtnVarieties"/>
+                <Button Visibility="Collapsed"  x:Name="btnScoring" Margin="0,30,0,10" Content="Scoring" FontSize="20" Height="50" Width="199" Click="BTnScoring"/>
             </StackPanel>
         </Grid>
         <Grid Margin="215,10,0,10" Grid.ColumnSpan="2">

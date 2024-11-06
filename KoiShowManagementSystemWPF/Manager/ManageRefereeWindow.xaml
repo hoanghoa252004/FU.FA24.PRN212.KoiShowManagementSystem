@@ -35,7 +35,6 @@
 
             <Button Content="Add" HorizontalAlignment="Left" Height="64" Margin="50,613,0,0" VerticalAlignment="Top" Width="120" FontSize="20" Click="Add_Button" Grid.ColumnSpan="2"/>
             <Button Content="Delete" HorizontalAlignment="Left" Height="66" Margin="203,620,0,0" VerticalAlignment="Top" Width="119" FontSize="20" Grid.Column="2" RenderTransformOrigin="0.608,2.246" Click="Delete_Button" />
-            <Button Content="Return to Home Page" HorizontalAlignment="Left" Height="39" Margin="10,10,0,0" VerticalAlignment="Top" Width="202" FontSize="20" Grid.ColumnSpan="2"/>
             <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="54" Margin="123,215,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" Grid.Column="1" Grid.ColumnSpan="2" />
             <TextBox x:Name="EmailTextBox" HorizontalAlignment="Left" Height="54" Margin="123,275,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" Grid.Column="1" Grid.ColumnSpan="2" />
             <TextBox x:Name="PhoneTextBox" HorizontalAlignment="Left" Height="54" Margin="126,346,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" Grid.Column="1" Grid.ColumnSpan="2" />
@@ -55,6 +54,7 @@
                 <DataGridTextColumn Header="Status" Binding="{Binding Status }"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" Height="43" Margin="30,34,0,0" Click="BtnHomePage" Background="#FF659AE5" FontWeight="Bold" Foreground="Snow"/>
 
     </Grid>
 </Window>

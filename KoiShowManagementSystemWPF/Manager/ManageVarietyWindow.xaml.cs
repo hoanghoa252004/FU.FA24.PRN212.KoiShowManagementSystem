@@ -1,6 +1,7 @@
 ﻿using BusinessLogicLayer.Implementation;
 using BusinessLogicLayer.Interface;
 using DTOs;
+using KoiShowManagementSystemWPF.Member;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +24,12 @@ namespace KoiShowManagementSystemWPF.Manager
     public partial class ManageVarietyWindow : Window
     {
         private readonly IVarietyService varietyService;
-        public ManageVarietyWindow()
+        private readonly UserDTO _user;
+        public ManageVarietyWindow(UserDTO user)
         {
             varietyService = VarietyService.Instance;
             InitializeComponent();
+            _user = user;
         }
 
 
@@ -34,7 +37,12 @@ namespace KoiShowManagementSystemWPF.Manager
         {
             dgData.ItemsSource = await varietyService.GetAll();
         }
-
+        private void BtnHomePage(object sender, RoutedEventArgs e)
+        {
+            MemberProfileWindow window = new MemberProfileWindow(_user);
+            window.Show();
+            this.Close();
+        }
         private async void Add_Button(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtSearch.Text))

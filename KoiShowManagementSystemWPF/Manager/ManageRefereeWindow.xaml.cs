@@ -1,6 +1,7 @@
 ﻿using BusinessLogicLayer.Implementation;
 using BusinessLogicLayer.Interface;
 using DTOs;
+using KoiShowManagementSystemWPF.Member;
 using KoiShowManagementSystemWPF.PopupDialog;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,12 @@ namespace KoiShowManagementSystemWPF.Manager
     public partial class ManageRefereeWindow : Window
     {
         private readonly IUserService _userService;
-        public ManageRefereeWindow()
+        private readonly UserDTO _user;
+        public ManageRefereeWindow(UserDTO user)
         {
             _userService = UserService.Instance;
             InitializeComponent();
+            _user = user;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -40,7 +43,12 @@ namespace KoiShowManagementSystemWPF.Manager
             dgData.ItemsSource = null; //xóa grid
             dgData.ItemsSource = await _userService.GetAllRefereeToView(); // Hardcode user ID nè
         }
-
+        private void BtnHomePage(object sender, RoutedEventArgs e)
+        {
+            MemberProfileWindow window = new MemberProfileWindow(_user);
+            window.Show();
+            this.Close();
+        }
         private async void Delete_Button(object sender, RoutedEventArgs e)
         {
             try
