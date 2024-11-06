@@ -2,6 +2,7 @@
 using BusinessLogicLayer.Interface;
 using DataAccessLayer.Implementation;
 using DTOs;
+using KoiShowManagementSystemWPF.Member;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,9 +58,9 @@ namespace KoiShowManagementSystemWPF.Referee
             KoiNameTextBox.Text = registration.KoiName;
             KoiVarietyTextBox.Text = registration.VarietyName;
             KoiSizeTextBox.Text = registration.Size.ToString();
-            //ImagePath1.Source = ByteArrayToImage(registration.Image01);
-            //ImagePath2.Source = ByteArrayToImage(registration.Image02);
-            //ImagePath3.Source = ByteArrayToImage(registration.Image03);
+            ImagePath1.Source = ByteArrayToImage(registration.Image01);
+            ImagePath2.Source = ByteArrayToImage(registration.Image02);
+            ImagePath3.Source = ByteArrayToImage(registration.Image03);
             CriteriaDataGrid.ItemsSource = registration.Scores;
 
             Console.WriteLine("Scores: " + registration.Scores.Count);
@@ -132,5 +133,12 @@ namespace KoiShowManagementSystemWPF.Referee
             CriteriaDataGrid.ItemsSource = null;
         }
 
+
+        private void BtnHomePage(object sender, RoutedEventArgs e)
+        {
+            MemberProfileWindow window = new MemberProfileWindow(_user);
+            window.Show();
+            this.Close();
+        }
     }
 }

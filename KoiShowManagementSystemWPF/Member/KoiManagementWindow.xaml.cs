@@ -197,7 +197,7 @@ namespace KoiShowManagementSystemWPF.Member
                     await _koiService.UpdateKoi(selectedKoi);
                     if(result == false)
                     {
-                        MessageBox.Show("Please select a right variety in your registration.", "Error",
+                        MessageBox.Show("Update vartiety failed ! \nThis Koi fish has already participanted in a show.", "Error",
                                    MessageBoxButton.OK, MessageBoxImage.Error);
                         ResetFields();
                         return;

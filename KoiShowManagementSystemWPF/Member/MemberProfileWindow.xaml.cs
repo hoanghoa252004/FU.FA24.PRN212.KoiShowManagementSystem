@@ -76,12 +76,16 @@ namespace KoiShowManagementSystemWPF.Member
 
         private void BtnReferees(object sender, RoutedEventArgs e)
         {
-
+            ManageRefereeWindow window = new ManageRefereeWindow(_user);
+            window.Show();
+            this.Close();
         }
 
         private void BtnVarieties(object sender, RoutedEventArgs e)
         {
-
+            ManageVarietyWindow window = new ManageVarietyWindow(_user);
+            window.Show();
+            this.Close();
         }
 
         private void BTnScoring(object sender, RoutedEventArgs e)
