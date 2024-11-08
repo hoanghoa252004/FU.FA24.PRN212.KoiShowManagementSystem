@@ -140,6 +140,13 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                     {
                         message += "Start Date can not be less than End Date !\n";
                     }
+                    else
+                    {
+                        if(DateOnly.Parse(txtStartDate.Text) < DateOnly.FromDateTime(DateTime.Now))
+                        {
+                            message += "Start Date can not be the pass !\n";
+                        }
+                    }
                 }
                 // Tính Percentage còn lại:
                 decimal remainingPercentage = CalculateRemainingPercentage();

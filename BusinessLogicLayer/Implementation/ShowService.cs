@@ -26,6 +26,24 @@ namespace BusinessLogicLayer.Implementation
         public static ShowService Instance => _instance;
         public async Task<bool> Add(ShowDTO dto)
         {
+            var list = await _repository.Show.GetAll();
+            foreach (var show in list)
+            {
+                if(
+                    (dto.RegisterStartDate >= show.RegisterStartDate && dto.RegisterStartDate <= show.RegisterEndDate 
+                    && dto.RegisterEndDate <= show.RegisterEndDate && dto.RegisterEndDate >= show.RegisterStartDate)
+                    || 
+                    (dto.RegisterStartDate <= show.RegisterStartDate 
+                    && dto.RegisterEndDate >= show.RegisterStartDate && dto.RegisterEndDate <= show.RegisterEndDate)
+                    ||
+                    (dto.RegisterEndDate >= show.RegisterStartDate
+                    && dto.RegisterStartDate >= show.RegisterStartDate && dto.RegisterStartDate <= show.RegisterEndDate)
+                    ||
+                    (dto.RegisterStartDate <= show.RegisterStartDate && dto.RegisterEndDate >= show.RegisterEndDate))
+                {
+                    throw new Exception("Registration date has overlaped with " + show.Title +  " !");
+                }
+            }
             bool result = await _repository.Show.Add(dto);
             return result;
         }
@@ -137,11 +155,47 @@ namespace BusinessLogicLayer.Implementation
                         }
                         else
                         {
+                            var list = (await _repository.Show.GetAll()).Where(s => s.Id != dto.Id);
+                            foreach (var show in list)
+                            {
+                                if (
+                                    (dto.RegisterStartDate >= show.RegisterStartDate && dto.RegisterStartDate <= show.RegisterEndDate
+                                    && dto.RegisterEndDate <= show.RegisterEndDate && dto.RegisterEndDate >= show.RegisterStartDate)
+                                    ||
+                                    (dto.RegisterStartDate <= show.RegisterStartDate
+                                    && dto.RegisterEndDate >= show.RegisterStartDate && dto.RegisterEndDate <= show.RegisterEndDate)
+                                    ||
+                                    (dto.RegisterEndDate >= show.RegisterStartDate
+                                    && dto.RegisterStartDate >= show.RegisterStartDate && dto.RegisterStartDate <= show.RegisterEndDate)
+                                    ||
+                                    (dto.RegisterStartDate <= show.RegisterStartDate && dto.RegisterEndDate >= show.RegisterEndDate))
+                                {
+                                    throw new Exception("Registration date has overlaped with " + show.Title + " !");
+                                }
+                            }
                             result = await _repository.Show.Update(dto);
                         }
                     }
                     else
                     {
+                        var list = (await _repository.Show.GetAll()).Where(s => s.Id != dto.Id);
+                        foreach (var show in list)
+                        {
+                            if (
+                                (dto.RegisterStartDate >= show.RegisterStartDate && dto.RegisterStartDate <= show.RegisterEndDate
+                                && dto.RegisterEndDate <= show.RegisterEndDate && dto.RegisterEndDate >= show.RegisterStartDate)
+                                ||
+                                (dto.RegisterStartDate <= show.RegisterStartDate
+                                && dto.RegisterEndDate >= show.RegisterStartDate && dto.RegisterEndDate <= show.RegisterEndDate)
+                                ||
+                                (dto.RegisterEndDate >= show.RegisterStartDate
+                                && dto.RegisterStartDate >= show.RegisterStartDate && dto.RegisterStartDate <= show.RegisterEndDate)
+                                ||
+                                (dto.RegisterStartDate <= show.RegisterStartDate && dto.RegisterEndDate >= show.RegisterEndDate))
+                            {
+                                throw new Exception("Registration date has overlaped with " + show.Title + " !");
+                            }
+                        }
                         result = await _repository.Show.Update(dto);
                     }
                 }

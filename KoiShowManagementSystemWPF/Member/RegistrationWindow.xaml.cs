@@ -418,7 +418,7 @@ namespace KoiShowManagementSystemWPF.Member
 
         private bool Confirm()
         {
-            MessageBoxResult result = MessageBox.Show("You're deleting a room information. Are you sure ?",
+            MessageBoxResult result = MessageBox.Show("You're deleting a registration. Are you sure ?",
                                                       "Confirmation",
                                                       MessageBoxButton.YesNo,
                                                       MessageBoxImage.Question);
