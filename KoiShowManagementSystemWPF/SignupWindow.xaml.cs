@@ -76,6 +76,8 @@ namespace KoiShowManagementSystemWPF
                 if (result)
                 {
                     MessageBox.Show("Created successfully!");
+                    LoginWindow window = new LoginWindow();
+                    window.Show();
                     this.Close();
                 }
                 else
@@ -119,6 +121,8 @@ namespace KoiShowManagementSystemWPF
 
         private void Cancel_Button(object sender, RoutedEventArgs e)
         {
+            LoginWindow window = new LoginWindow(); 
+            window.Show();
             this.Close();
         }
 

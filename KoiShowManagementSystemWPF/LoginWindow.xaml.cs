@@ -55,5 +55,12 @@ namespace KoiShowManagementSystemWPF
 
 
         }
+
+        private void SignUp_Button(object sender, RoutedEventArgs e)
+        {
+            SignupWindow window = new SignupWindow();
+            window.Show();
+            this.Close();
+        }
     }
 }

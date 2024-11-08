@@ -60,11 +60,11 @@
                 <Label Content="Email:" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Margin="34,0,751,0" Grid.ColumnSpan="2" Height="39"/>
                 <Label Content="Phone:" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Margin="34,0,751,0" Grid.ColumnSpan="2" Height="40"/>
                 <Label Content="Password:" VerticalAlignment="Center" FontSize="22" Grid.Row="3" Margin="34,0,751,0" Grid.ColumnSpan="2" Height="39"/>
-                <TextBox IsReadOnly="True" x:Name="txtName" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="14,0,15,0"/>
-                <Button Content="Edit Information" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Grid.Column="1" Background="#FF29C4D7" FontWeight="Bold"/>
-                <Button Content="Change Password" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Margin="454,0,0,0" Grid.Column="1" Background="#FF29C4D7" FontWeight="Bold"/>
+                <TextBox  x:Name="txtName" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="14,0,15,0"/>
+                <Button Content="Edit Information" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Grid.Column="1" Background="#FF29C4D7" FontWeight="Bold" Click="EditInformation_Button"/>
+                <Button Content="Change Password" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Margin="454,0,0,0" Grid.Column="1" Background="#FF29C4D7" FontWeight="Bold" Click="ChangePassword_Button" />
                 <TextBox IsReadOnly="True" x:Name="txtEmail" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="1" Margin="14,0,15,0"/>
-                <TextBox IsReadOnly="True" x:Name="txtPhone" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="2" Margin="14,0,15,0" />
+                <TextBox  x:Name="txtPhone" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="2" Margin="14,0,15,0" />
                 <PasswordBox  IsEnabled="False" x:Name="txtPassword" Grid.Column="1" Margin="15,0,15,0" Grid.Row="3" VerticalAlignment="Center" Height="58" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Password="*****************"/>
             </Grid>
         </Grid>
