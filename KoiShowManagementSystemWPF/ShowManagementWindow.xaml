@@ -1,15 +1,15 @@
-﻿<Window x:Class="KoiShowManagementSystemWPF.Manager.ShowManagementWindow"
+﻿<Window x:Class="KoiShowManagementSystemWPF.ShowManagementWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Manager"
+        xmlns:local="clr-namespace:KoiShowManagementSystemWPF"
         mc:Ignorable="d"
             WindowStartupLocation="CenterScreen"
     Title="Koi Show Window" Height="1085" Width="1950">
     <Grid Margin="0,0,-25,-6">
         <Grid.Background>
-            <ImageBrush ImageSource="/Manager/ShowImage.jpg"/>
+            <ImageBrush ImageSource="/Image/ShowImage.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="79*"/>
@@ -72,14 +72,12 @@
                 <TextBox x:Name="txtRegisterDate" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,14,685,0" Grid.Row="2"/>
                 <Label Content="Status:" Margin="404,0,542,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39" Grid.Column="1"/>
                 <TextBox x:Name="txtStatus" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="518,0,388,0" Grid.Row="1"/>
-
-                <Label Content="Entrance Fee:" Margin="404,0,495,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39" Grid.Column="1"/>
-                <TextBox x:Name="txtEntranceFee" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="560,0,343,0" Grid.Row="2"/>
                 <StackPanel Orientation="Horizontal" Margin="675,41,10,63" Grid.Column="1" Grid.RowSpan="3" >
                     <Button x:Name="btnPublish" Content="Publish" FontSize="20" Height="57" Width="90" Background="#FF6CC218" Click="BtnPublish" FontWeight="Bold" Foreground="White"/>
                     <Button x:Name="btnScoring" Content="Scoring" FontSize="20" Height="57" Width="110" Background="#FFDCC525" Click="BtnScoring" FontWeight="Bold" Foreground="White"/>
                     <Button x:Name="btnReviewScore" Content="Review Score" FontSize="20" Background="#FF199DC9" Width="135" Click="BtnReviewScore" FontWeight="Bold" Foreground="White" Height="57"/>
                 </StackPanel>
+                <Button x:Name="btnViewAllKoiParticipants" Content="View All Koi Participants" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="249" Height="57" Margin="416,9,0,0" Click="BtnViewAllKoiParticipants" Background="#FFFFA407" FontWeight="Bold" Foreground="White" Grid.Column="1" Grid.Row="2"/>
 
             </Grid>
             <Grid Grid.Column="1" Margin="30,452,40,73">

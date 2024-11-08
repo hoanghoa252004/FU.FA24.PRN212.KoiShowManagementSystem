@@ -2,6 +2,7 @@
 using BusinessLogicLayer.Interface;
 using DTOs;
 using Entities;
+using KoiShowManagementSystemWPF.Manager;
 using KoiShowManagementSystemWPF.Member;
 using KoiShowManagementSystemWPF.PopupDialog;
 using System;
@@ -18,7 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KoiShowManagementSystemWPF.Manager
+namespace KoiShowManagementSystemWPF
 {
     /// <summary>
     /// Interaction logic for ShowManagementWindow.xaml
@@ -47,6 +48,7 @@ namespace KoiShowManagementSystemWPF.Manager
 
         private async void LoadData()
         {
+            btnViewAllKoiParticipants.Visibility = Visibility.Collapsed;
             var showList = await _showService.GetAll(_user.Id);
             ShowGrid.ItemsSource = showList;
             btnPublish.Visibility = Visibility.Collapsed;
@@ -126,7 +128,7 @@ namespace KoiShowManagementSystemWPF.Manager
 
         private bool Confirm()
         {
-            MessageBoxResult result = MessageBox.Show("You're deleting a room information. Are you sure ?",
+            MessageBoxResult result = MessageBox.Show("You're deleting " +_selectedShow.Title+ ". Are you sure ?",
                                                       "Confirmation",
                                                       MessageBoxButton.YesNo,
                                                       MessageBoxImage.Question);
@@ -150,7 +152,6 @@ namespace KoiShowManagementSystemWPF.Manager
             txtTitle.Text = dto.Title;
             txtDescription.Text = dto.Description;
             txtStatus.Text = dto.Status;
-            txtEntranceFee.Text = dto.EntranceFee.ToString();
             txtRegisterDate.Text = $"from {dto.RegisterStartDate} to {dto.RegisterEndDate}";
             VarietyListBox.ItemsSource = dto.Varieties;
             CriteriaListBox.ItemsSource = dto.Criteria;
@@ -168,13 +169,24 @@ namespace KoiShowManagementSystemWPF.Manager
             }
             else if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
             {
+
+                if (dto.Status.Equals("UpComing", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    btnPublish.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnPublish.Visibility = Visibility.Collapsed;
+                }
                 // ONGOING:
                 if (dto.Status.Equals("OnGoing", StringComparison.OrdinalIgnoreCase) == true)
                 {
                     btnScoring.Visibility = Visibility.Visible;
+                    btnViewAllKoiParticipants.Visibility = Visibility.Visible;
                 }
                 else
                 {
+                    btnViewAllKoiParticipants.Visibility = Visibility.Collapsed;
                     btnScoring.Visibility = Visibility.Collapsed;
                 }
 
@@ -182,6 +194,7 @@ namespace KoiShowManagementSystemWPF.Manager
                 if (dto.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase) == true
                     || dto.Status.Equals("Finished", StringComparison.OrdinalIgnoreCase) == true)
                 {
+                    btnViewAllKoiParticipants.Visibility = Visibility.Visible;
                     btnReviewScore.Visibility = Visibility.Visible;
                     if (dto.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase) == true)
                     {
@@ -234,7 +247,6 @@ namespace KoiShowManagementSystemWPF.Manager
             txtStatus.Clear();
             txtRegisterDate.Clear();
             txtTitle.Clear();
-            txtEntranceFee.Clear();
             VarietyListBox.ItemsSource = null;
             CriteriaListBox.ItemsSource = null;
             RefereeListBox.ItemsSource = null;
@@ -285,7 +297,7 @@ namespace KoiShowManagementSystemWPF.Manager
 
         private void BtnHomePage(object sender, RoutedEventArgs e)
         {
-            MemberProfileWindow window = new MemberProfileWindow(_user);
+            ProfileWindow window = new ProfileWindow(_user);
             window.Show();
             this.Close();
         }
@@ -368,6 +380,20 @@ namespace KoiShowManagementSystemWPF.Manager
             var showList = await _showService.GetAll(_user.Id);
             ShowGrid.ItemsSource = showList;
             _lastBehavior = 2;
+        }
+
+        private async void BtnViewAllKoiParticipants(object sender, RoutedEventArgs e)
+        {
+            var result = await _showService.GetAllKoiParticipants(_selectedShow.Id);
+            if (result != null && result.Any() == true)
+            {
+                KoiParticipantsWindow w = new KoiParticipantsWindow(result);
+                w.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No Koi Participant has register !", "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

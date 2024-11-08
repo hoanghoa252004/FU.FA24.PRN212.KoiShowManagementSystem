@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KoiShowManagementSystemWPF
+namespace KoiShowManagementSystemWPF.Authentication
 {
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
@@ -43,7 +43,7 @@ namespace KoiShowManagementSystemWPF
                 else
                 {
                     var user = await _service.Login(txtEmail.Text, txtPassword.Text);
-                    MemberProfileWindow window = new MemberProfileWindow(user);
+                    ProfileWindow window = new ProfileWindow(user);
                     window.Show();
                     this.Close();
                 }

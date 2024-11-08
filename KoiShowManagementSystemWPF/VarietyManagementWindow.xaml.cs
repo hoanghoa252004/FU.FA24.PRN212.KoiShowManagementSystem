@@ -16,16 +16,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KoiShowManagementSystemWPF.Manager
+namespace KoiShowManagementSystemWPF
 {
     /// <summary>
-    /// Interaction logic for ManageVarietyWindow.xaml
+    /// Interaction logic for VarietyManagementWindow.xaml
     /// </summary>
-    public partial class ManageVarietyWindow : Window
+    public partial class VarietyManagementWindow : Window
     {
         private readonly IVarietyService varietyService;
         private readonly UserDTO _user;
-        public ManageVarietyWindow(UserDTO user)
+        public VarietyManagementWindow(UserDTO user)
         {
             varietyService = VarietyService.Instance;
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace KoiShowManagementSystemWPF.Manager
         }
         private void BtnHomePage(object sender, RoutedEventArgs e)
         {
-            MemberProfileWindow window = new MemberProfileWindow(_user);
+            ProfileWindow window = new ProfileWindow(_user);
             window.Show();
             this.Close();
         }

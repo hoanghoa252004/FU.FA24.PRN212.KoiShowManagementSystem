@@ -65,5 +65,12 @@ namespace BusinessLogicLayer.Implementation
             return (await _repository.Koi.GetAllKoisByUser(userId))
                 .Where(k => k.Status == true);
         }
+
+        public async Task<IEnumerable<RegistrationDTO>> GetKoiAchivements(int koiId)
+        {
+            var result = (await _repository.Registration.GetRegistrationsByKoi(koiId))
+                .Where(r => r.Status!.Equals("Scored",StringComparison.OrdinalIgnoreCase) == true);
+            return result;
+        }
     }
 }

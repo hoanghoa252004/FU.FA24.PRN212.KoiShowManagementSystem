@@ -1,0 +1,35 @@
+﻿<Window x:Class="KoiShowManagementSystemWPF.PopupDialog.KoiParticipantsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KoiShowManagementSystemWPF.PopupDialog"
+        mc:Ignorable="d"
+         WindowStartupLocation="CenterScreen"
+     Title="KoiParticipants" Height="480" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/pngtree-vibrant-watercolor-painting-on-canvas-abstract-art-background-in-light-green-image_13709924.png"/>
+        </Grid.Background>
+        <Label Content="Koi Participants" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" Foreground="#FFD42222" Width="231">
+            <Label.Background>
+                <SolidColorBrush Color="#FFFFF100" Opacity="0.6"/>
+            </Label.Background>
+        </Label>
+        <Button x:Name="btnCancel" Content="Cancel" FontSize="20" Click="BtnCancel" Margin="10,387,625,0" FontWeight="Bold" Height="52" VerticalAlignment="Top">
+            <Button.Background>
+                <SolidColorBrush Color="#FF3DCA05" Opacity="0.5"/>
+            </Button.Background>
+        </Button>
+        <DataGrid IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" x:Name="RegistrationGrid" Margin="45,72,41,82" FontSize="18" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" MinWidth="50" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Width="*" MinWidth="160" Header="Name" Binding="{Binding KoiName}"/>
+                <DataGridTextColumn Width="*" MinWidth="160" Header="Variety" Binding="{Binding KoiVariety}"/>
+                <DataGridTextColumn Width="*" MinWidth="100" Header="Size" Binding="{Binding Size}"/>
+                <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

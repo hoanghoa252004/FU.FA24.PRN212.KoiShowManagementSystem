@@ -62,7 +62,7 @@ namespace KoiShowManagementSystemWPF.Member
             dgData.ItemsSource = await _koiService.GetAllKoisByUser(_user.Id);
         }
 
-        private void FillElements(KoiDTO koi)
+        private async void FillElements(KoiDTO koi)
         {
 
             KoiIdTextBox.Text = koi.Id.ToString();
@@ -77,6 +77,12 @@ namespace KoiShowManagementSystemWPF.Member
             else
             {
                 InactiveRadioButton.IsChecked = true;
+            }
+            // Lấy achivements:
+            var achivements = await _koiService.GetKoiAchivements(koi.Id);
+            if(achivements != null && achivements.Any() == true)
+            {
+                AchivementsListBox.ItemsSource = achivements;
             }
         }
 
@@ -230,7 +236,7 @@ namespace KoiShowManagementSystemWPF.Member
 
         private void BtnHomePage(object sender, RoutedEventArgs e)
         {
-            MemberProfileWindow window = new MemberProfileWindow(_user);
+            ProfileWindow window = new ProfileWindow(_user);
             window.Show();
             this.Close();
         }
@@ -245,5 +251,9 @@ namespace KoiShowManagementSystemWPF.Member
             InactiveRadioButton.IsChecked = false;
         }
 
+        private void BtnAchivements(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

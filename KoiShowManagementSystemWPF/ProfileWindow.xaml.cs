@@ -1,9 +1,10 @@
 ﻿using BusinessLogicLayer.Implementation;
 using BusinessLogicLayer.Interface;
 using DTOs;
+using KoiShowManagementSystemWPF.Authentication;
 using KoiShowManagementSystemWPF.Manager;
+using KoiShowManagementSystemWPF.Member;
 using KoiShowManagementSystemWPF.PopupDialog;
-using KoiShowManagementSystemWPF.Referee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KoiShowManagementSystemWPF.Member
+namespace KoiShowManagementSystemWPF
 {
     /// <summary>
-    /// Interaction logic for MemberProfileWindow.xaml
+    /// Interaction logic for ProfileWindow.xaml
     /// </summary>
-    public partial class MemberProfileWindow : Window
+    public partial class ProfileWindow : Window
     {
         private UserDTO _user = null!;
         private readonly IUserService _userService;
-        public MemberProfileWindow(UserDTO user)
+        public ProfileWindow(UserDTO user)
         {
             _userService = UserService.Instance;
             _user = user;
@@ -70,7 +71,7 @@ namespace KoiShowManagementSystemWPF.Member
 
         private void BtnRegistrations(object sender, RoutedEventArgs e)
         {
-            RegistrationWindow registrationWindow = new RegistrationWindow(_user);
+            RegistrationManagementWindow registrationWindow = new RegistrationManagementWindow(_user);
             registrationWindow.Show();
             this.Close();
         }
@@ -84,21 +85,21 @@ namespace KoiShowManagementSystemWPF.Member
 
         private void BtnReferees(object sender, RoutedEventArgs e)
         {
-            ManageRefereeWindow window = new ManageRefereeWindow(_user);
+            RefereeManagementWindow window = new RefereeManagementWindow(_user);
             window.Show();
             this.Close();
         }
 
         private void BtnVarieties(object sender, RoutedEventArgs e)
         {
-            ManageVarietyWindow window = new ManageVarietyWindow(_user);
+            VarietyManagementWindow window = new VarietyManagementWindow(_user);
             window.Show();
             this.Close();
         }
 
         private void BTnScoring(object sender, RoutedEventArgs e)
         {
-            ScoringWindow window = new ScoringWindow(_user);
+            ScoringManagementWindow window = new ScoringManagementWindow(_user);
             window.Show();
             this.Close();
         }

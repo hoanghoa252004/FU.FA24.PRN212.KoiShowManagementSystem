@@ -1,15 +1,15 @@
-﻿<Window x:Class="KoiShowManagementSystemWPF.Member.MemberProfileWindow"
+﻿<Window x:Class="KoiShowManagementSystemWPF.ProfileWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Member"
+        xmlns:local="clr-namespace:KoiShowManagementSystemWPF"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
     Title="ProfileWindow" Height="600" Width="1220">
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
-            <ImageBrush ImageSource="/Member/pngtree-landscape-in-the-sky-with-trees-and-clouds-picture-image_3538620.jpg"/>
+            <ImageBrush ImageSource="/Image/pngtree-landscape-in-the-sky-with-trees-and-clouds-picture-image_3538620.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="45*"/>

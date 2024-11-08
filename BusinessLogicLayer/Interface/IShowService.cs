@@ -16,5 +16,6 @@ namespace BusinessLogicLayer.Interface
         Task<IEnumerable<RegistrationDTO>> ReviewScore(int showId);
         Task<IEnumerable<ShowDTO>> GetAll(int userId);
         Task<bool> AnnouceResult(int showId);
+        Task<IEnumerable<RegistrationDTO>> GetAllKoiParticipants(int showId);
     }
 }

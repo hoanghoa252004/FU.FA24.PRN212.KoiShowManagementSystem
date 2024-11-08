@@ -16,5 +16,6 @@ namespace BusinessLogicLayer.Interface
         Task<IEnumerable<KoiDTO>> GetAllKoisByUser(int userId);
         Task<IEnumerable<KoiDTO>> SearchKoiName(string koiName, int userId);
         Task<IEnumerable<KoiDTO>> GetKoiToRegiterShow(int userId);
+        Task<IEnumerable<RegistrationDTO>> GetKoiAchivements(int koiId);
     }
 }

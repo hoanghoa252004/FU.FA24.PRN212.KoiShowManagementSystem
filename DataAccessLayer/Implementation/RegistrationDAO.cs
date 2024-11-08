@@ -401,5 +401,43 @@ namespace DataAccessLayer.Implementation
             }
             return result;
         }
+
+        public async Task<IEnumerable<RegistrationDTO>> GetRegistrationsByKoi(int koiId)
+        {
+            IEnumerable<RegistrationDTO> result = null!;
+            using (Prn212ProjectKoiShowManagementContext _context = new Prn212ProjectKoiShowManagementContext())
+            {
+                result = await _context.Registrations
+                    .Where(r => r.KoiId == koiId)
+                    .Include(r => r.Koi)
+                        .ThenInclude(k => k.User)
+                    .Include(r => r.Koi)
+                        .ThenInclude(k => k.Variety)
+                    .Include(r => r.Show)
+                    .Select(registration => new RegistrationDTO()
+                    {
+                        Id = registration.Id,
+                        CreateDate = registration.CreateDate,
+                        Description = registration.Description,
+                        Image01 = registration.Image01,
+                        Image02 = registration.Image02,
+                        Image03 = registration.Image03,
+                        Note = registration.Note,
+                        Rank = registration.Rank,
+                        Status = registration.Status,
+                        TotalScore = registration.TotalScore,
+                        KoiId = registration.Koi.Id,
+                        KoiName = registration.Koi.Name,
+                        KoiVariety = registration.Koi.Variety.Name,
+                        ShowId = registration.ShowId,
+                        ShowName = registration.Show.Title,
+                        Size = registration.Size,
+                        MemberId = registration.Koi.User.Id,
+                    })
+                    .OrderBy(r => r.Id)
+                    .ToListAsync();
+            }
+            return result;
+        }
     }
 }

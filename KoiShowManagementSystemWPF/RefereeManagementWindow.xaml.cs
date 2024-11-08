@@ -18,16 +18,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KoiShowManagementSystemWPF.Manager
+namespace KoiShowManagementSystemWPF
 {
     /// <summary>
-    /// Interaction logic for ManageRefereeWindow.xaml
+    /// Interaction logic for RefereeManagementWindow.xaml
     /// </summary>
-    public partial class ManageRefereeWindow : Window
+    public partial class RefereeManagementWindow : Window
     {
         private readonly IUserService _userService;
         private readonly UserDTO _user;
-        public ManageRefereeWindow(UserDTO user)
+        public RefereeManagementWindow(UserDTO user)
         {
             _userService = UserService.Instance;
             InitializeComponent();
@@ -45,7 +45,7 @@ namespace KoiShowManagementSystemWPF.Manager
         }
         private void BtnHomePage(object sender, RoutedEventArgs e)
         {
-            MemberProfileWindow window = new MemberProfileWindow(_user);
+            ProfileWindow window = new ProfileWindow(_user);
             window.Show();
             this.Close();
         }

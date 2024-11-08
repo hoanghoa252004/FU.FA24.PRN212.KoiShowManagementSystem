@@ -1,9 +1,9 @@
-﻿<Window x:Class="KoiShowManagementSystemWPF.Manager.ManageVarietyWindow"
+﻿<Window x:Class="KoiShowManagementSystemWPF.VarietyManagementWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Manager"
+        xmlns:local="clr-namespace:KoiShowManagementSystemWPF"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="ManageVarietyWindow" Height="670" Width="1285" Loaded="Window_Loaded">
@@ -20,7 +20,7 @@
 
         <Grid Margin="-40,-106,-37,-30" Grid.RowSpan="2">
             <Grid.Background>
-                <ImageBrush ImageSource="/Manager/VarrietyScreen.jpg"/>
+                <ImageBrush ImageSource="/Image/VarrietyScreen.jpg"/>
             </Grid.Background>
 
             <Button Content="Add" HorizontalAlignment="Left" Height="64" Margin="932,538,0,0" VerticalAlignment="Top" Width="116" FontSize="20" Click="Add_Button" />
@@ -65,7 +65,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Label Content="Manage Variety" HorizontalAlignment="Left" Height="77" Margin="457,-92,0,0" VerticalAlignment="Top" Width="363"  FontSize="48" FontWeight="Bold">
+        <Label Content="VARIETY MANAGEMENT WINDOW" HorizontalAlignment="Left" Height="77" Margin="196,-83,0,0" VerticalAlignment="Top" Width="812"  FontSize="48" FontWeight="Bold">
             <Label.Background>
                 <SolidColorBrush Color="White" Opacity="0.6"/>
             </Label.Background>

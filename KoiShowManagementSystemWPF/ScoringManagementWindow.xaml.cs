@@ -12,15 +12,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace KoiShowManagementSystemWPF.Referee
+namespace KoiShowManagementSystemWPF
 {
-    public partial class ScoringWindow : Window
+    public partial class ScoringManagementWindow : Window
     {
         private readonly ICrierionService _crierionService;
         private readonly IRegistrationService _registrationService;
         private readonly IScoreService _scoreService;
         private readonly UserDTO _user = null!;
-        public ScoringWindow(UserDTO user)
+        public ScoringManagementWindow(UserDTO user)
         {
             _crierionService = CriterionService.Instance;
             _registrationService = RegistrationService.Instance;
@@ -103,7 +103,6 @@ namespace KoiShowManagementSystemWPF.Referee
                 try
                 {
                     await _scoreService.InsertScores(_user.Id, selectedRegistration.Id, scores); // Replace 11 with actual UserId
-                    MessageBox.Show("Scores submitted successfully!");
                     await LoadRegistrations();
                 }
                 catch (Exception ex)
@@ -136,7 +135,7 @@ namespace KoiShowManagementSystemWPF.Referee
 
         private void BtnHomePage(object sender, RoutedEventArgs e)
         {
-            MemberProfileWindow window = new MemberProfileWindow(_user);
+            ProfileWindow window = new ProfileWindow(_user);
             window.Show();
             this.Close();
         }
