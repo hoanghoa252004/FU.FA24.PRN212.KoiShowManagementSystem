@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Member"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="KoiManagementWindow" Height="770" Width="1275" Loaded="Window_Loaded"
+        Title="KoiManagementWindow" Height="903" Width="1332" Loaded="Window_Loaded"
         >
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
@@ -36,7 +36,7 @@
                 </Grid.Background>
                 <Label Content="Koi:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="22"/>
                 <TextBox x:Name="KoiNameSearchTextBox" TextWrapping="Wrap" Text="Enter Koi Name" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="60,18,145,0" GotFocus="txtSearch_GotFocus" />
-                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="514,0,0,0" Click="SearchButton_Click"/>
+                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="513,17,0,0" Click="SearchButton_Click"/>
                 <DataGrid CanUserAddRows="False" IsReadOnly="True" x:Name="dgData" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,40,10,10" Grid.Row="1" FontSize="18" SelectionChanged="dgData_SelectionChanged" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" MinWidth="50" Header="Id" Binding="{Binding Id}"/>
@@ -54,13 +54,12 @@
                     <ColumnDefinition Width="35*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="46*"/>
-                    <RowDefinition Height="65*"/>
-                    <RowDefinition Height="65*"/>
-                    <RowDefinition Height="60*"/>
-                    <RowDefinition Height="60*"/>
-                    <RowDefinition Height="270*"/>
-                    <RowDefinition Height="86*"/>
+                    <RowDefinition Height="51*"/>
+                    <RowDefinition Height="62*"/>
+                    <RowDefinition Height="64*"/>
+                    <RowDefinition Height="62*"/>
+                    <RowDefinition Height="66*"/>
+                    <RowDefinition Height="421*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
                     <SolidColorBrush Color="#FFE4F1F3" Opacity="0.5"/>
@@ -70,18 +69,62 @@
                 <Label Content="Name:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39"/>
                 <Label Content="Variety:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="3" Height="39"/>
                 <Label Content="Size:(cm)" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="4" Height="39"/>
-                <Label Content="Image:" Margin="10,0,23,0" VerticalAlignment="Center" FontSize="22" Grid.Row="5" Height="39"/>
-                <TextBox x:Name="KoiIdTextBox" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="1" IsEnabled="False" />
-                <TextBox x:Name="KoiNameTextBox"  Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="2"/>
-                <TextBox x:Name="KoiSizeTextBox"  Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,25,0" Grid.Row="4"/>
-                <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="308,0,0,0" Grid.Column="1" Grid.Row="6" Click="Delete_Click" />
-                <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="148,13,0,0" Grid.Row="6" Click="Update_Click" Grid.ColumnSpan="2" />
-                <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="100" Height="57" Margin="146,0,0,0" Grid.Column="1" Grid.Row="6" Click="Add_Click" />
-                <RadioButton x:Name="ActiveRadioButton" Grid.Column="1" Content="Active" HorizontalAlignment="Left" Margin="206,79,0,0" Grid.Row="5" VerticalAlignment="Top" FontSize="22"/>
-                <RadioButton x:Name="InactiveRadioButton" Grid.Column="1" Content="Inactive" HorizontalAlignment="Left" Margin="330,79,0,0" Grid.Row="5" VerticalAlignment="Top" FontSize="22"/>
-                <Label Content="Status:" Margin="206,33,126,0" VerticalAlignment="Top" FontSize="22" Grid.Row="5" Height="39" Grid.Column="1"/>
-                <Image x:Name="KoiImagePath" Grid.Column="1" HorizontalAlignment="Left" Height="216" Margin="10,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="188"/>
-                <ComboBox Padding="5,5,5,5" FontSize="22"  x:Name="VarietyIdComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" HorizontalAlignment="Left" Height="46" Margin="10,0,0,0" VerticalAlignment="Center" Width="398" Grid.Column="1" Grid.Row="3"/>
+                <TextBox x:Name="KoiIdTextBox" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,237,0" Grid.Row="1" IsEnabled="False" />
+                <TextBox x:Name="KoiNameTextBox"  Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,237,0" Grid.Row="2"/>
+                <TextBox x:Name="KoiSizeTextBox"  Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,0,237,0" Grid.Row="4"/>
+                <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="46" Margin="292,354,0,0" Grid.Column="1" Grid.Row="5" Click="Delete_Click" Background="#FFB11A1A" FontWeight="Bold" Foreground="White" />
+                <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="46" Margin="71,354,0,0" Grid.Row="5" Click="Update_Click" Grid.ColumnSpan="2" Background="#FF1D9BB5" FontWeight="Bold" Foreground="White" />
+                <Button Content="Add" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" Width="100" Height="46" Margin="0,354,255,0" Grid.Column="1" Grid.Row="5" Click="Add_Click" Foreground="White" FontWeight="Bold" Background="#FF0AA32B" />
+                <RadioButton x:Name="ActiveRadioButton" Grid.Column="1" Content="Active" HorizontalAlignment="Left" Margin="11,14,0,0" Grid.Row="5" VerticalAlignment="Top" FontSize="22" Height="29" Width="79"/>
+                <RadioButton x:Name="InactiveRadioButton" Grid.Column="1" Content="Inactive" HorizontalAlignment="Left" Margin="127,14,0,0" Grid.Row="5" VerticalAlignment="Top" FontSize="22" Height="29" Width="94"/>
+                <Label Content="Status:" Margin="17,8,30,0" VerticalAlignment="Top" FontSize="22" Grid.Row="5" Height="39"/>
+                <Image x:Name="KoiImagePath" Grid.Column="1" HorizontalAlignment="Left" Height="226" Margin="251,7,0,0" Grid.Row="1" VerticalAlignment="Top" Width="190" Grid.RowSpan="4"/>
+                <ComboBox Padding="5,5,5,5" FontSize="22"  x:Name="VarietyIdComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" HorizontalAlignment="Left" Height="46" Margin="10,0,0,0" VerticalAlignment="Center" Width="199" Grid.Column="1" Grid.Row="3"/>
+                <ListBox x:Name="AchivementsListBox" 
+                    FontSize="16"
+                    VerticalAlignment="Top" 
+                    BorderThickness="0" Height="251" Margin="17,98,41,0" Grid.Row="5" Grid.ColumnSpan="2">
+                    <ListBox.Background>
+                        <SolidColorBrush Color="White" Opacity="0.5"/>
+                    </ListBox.Background>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="5" Padding="10" BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                                <Border.Background>
+                                    <SolidColorBrush Color="White" Opacity="1"/>
+                                </Border.Background>
+                                <StackPanel Orientation="Horizontal" >
+                                    <StackPanel Margin="10,5,0,5">
+                                        <TextBlock FontSize="13" Text="Registration Id:"/>
+                                        <TextBlock Width="50"  Text="{Binding Id}" FontWeight="Bold" Foreground="CornflowerBlue" />
+                                    </StackPanel>
+                                    <StackPanel Margin="30,5,0,5">
+                                        <TextBlock FontSize="13" Text="Show:"/>
+                                        <TextBlock Width="195"  Text="{Binding ShowName}" FontWeight="Bold" Foreground="CornflowerBlue" />
+                                    </StackPanel>
+                                    <StackPanel Margin="30,5,0,5">
+                                        <TextBlock FontSize="13" Text="Total Score:"/>
+                                        <TextBlock Width="50"  Text="{Binding TotalScore}" FontWeight="Bold" Foreground="ForestGreen" />
+                                    </StackPanel>
+                                    <StackPanel Margin="30,5,0,5">
+                                        <TextBlock FontSize="13" Text="Rank:"/>
+                                        <TextBlock Width="50"  Text="{Binding Rank}" FontWeight="Bold" Foreground="Red" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Label Content="Achivements:" Margin="69,54,225,0" VerticalAlignment="Top" FontSize="22" Grid.Row="5" Height="39" Grid.Column="1" FontWeight="Bold" Foreground="White">
+                    <Label.Background>
+                        <SolidColorBrush Color="#FF22AA40" Opacity="1"/>
+                    </Label.Background>
+                </Label>
             </Grid>
         </Grid>
         <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" Height="43" Margin="35,40,0,0" Click="BtnHomePage" Background="#FF659AE5" FontWeight="Bold" Foreground="Snow"/>

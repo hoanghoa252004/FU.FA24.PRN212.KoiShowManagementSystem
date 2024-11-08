@@ -127,7 +127,23 @@ namespace BusinessLogicLayer.Implementation
                 }
                 else
                 {
-                    result = await _repository.Show.Update(dto);
+                    if(dto.Status.Equals("OnGoing", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        bool checks = (await _repository.Show.GetAll()).Any(s => s.Status.Equals("OnGoing", StringComparison.OrdinalIgnoreCase) == true
+                                                                                || s.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase) == true);
+                        if(checks == true)
+                        {
+                            throw new Exception("Can not publish this show as there is an ongoing show at this time !");
+                        }
+                        else
+                        {
+                            result = await _repository.Show.Update(dto);
+                        }
+                    }
+                    else
+                    {
+                        result = await _repository.Show.Update(dto);
+                    }
                 }
             }
             return result;
@@ -202,6 +218,14 @@ namespace BusinessLogicLayer.Implementation
             {
                 return false;
             }
+        }
+
+        public async Task<IEnumerable<RegistrationDTO>> GetAllKoiParticipants(int showId)
+        {
+            var result = (await _repository.Registration.GetRegistrationsByShow(showId))
+                                    .Where(r => r.Status!.Equals("Accepted", StringComparison.OrdinalIgnoreCase) == true
+                                            || r.Status!.Equals("Scored", StringComparison.OrdinalIgnoreCase) == true);
+            return result;
         }
     }
 }

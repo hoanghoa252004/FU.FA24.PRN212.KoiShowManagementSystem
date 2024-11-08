@@ -65,7 +65,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Label Content="Manage Variety" HorizontalAlignment="Left" Height="77" Margin="457,-92,0,0" VerticalAlignment="Top" Width="363"  FontSize="48" FontWeight="Bold">
+        <Label Content="VARIETY MANAGEMENT WINDOW" HorizontalAlignment="Left" Height="77" Margin="196,-83,0,0" VerticalAlignment="Top" Width="812"  FontSize="48" FontWeight="Bold">
             <Label.Background>
                 <SolidColorBrush Color="White" Opacity="0.6"/>
             </Label.Background>

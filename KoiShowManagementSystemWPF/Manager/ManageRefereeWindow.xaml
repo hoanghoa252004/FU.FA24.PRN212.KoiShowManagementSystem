@@ -45,7 +45,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Label Content="Manage Referee" HorizontalAlignment="Center" Height="77" Margin="0,34,0,0" VerticalAlignment="Top" Width="379"  FontSize="48" FontWeight="Bold">
+        <Label Content="REFEREE MANAGEMENT WINDOW" HorizontalAlignment="Center" Height="77" Margin="0,34,0,0" VerticalAlignment="Top" Width="797"  FontSize="48" FontWeight="Bold">
             <Label.Background>
                 <SolidColorBrush Color="White" Opacity="0.6"/>
             </Label.Background>
