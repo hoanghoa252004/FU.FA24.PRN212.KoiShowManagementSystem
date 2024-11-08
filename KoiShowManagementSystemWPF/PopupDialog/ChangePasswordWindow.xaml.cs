@@ -68,6 +68,7 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                 Id = _user.Id,
                 Name = _user.Name,
                 Phone = _user.Phone,
+                Email = _user.Email,
                 Status = true,
                 Password = txtNewPass.Text,
             };

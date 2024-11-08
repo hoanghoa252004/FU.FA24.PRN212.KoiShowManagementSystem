@@ -139,6 +139,7 @@ namespace KoiShowManagementSystemWPF.Member
                 Name = txtName.Text,
                 Phone = txtPhone.Text,
                 Password = _user.Password,
+                Email = _user.Email,
                 Status = true
             };
 
