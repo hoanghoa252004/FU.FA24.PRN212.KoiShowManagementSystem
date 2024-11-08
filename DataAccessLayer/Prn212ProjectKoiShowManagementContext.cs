@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace DataAccessLayer;
 
@@ -36,7 +37,17 @@ public partial class Prn212ProjectKoiShowManagementContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server =(local); database =PRN212_Project_KoiShowManagement;uid=sa;pwd=12345;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer(GetConnectionString());
+
+    private string GetConnectionString()
+    {
+        IConfiguration config = new ConfigurationBuilder()
+             .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", true, true)
+                    .Build();
+        var strConn = config["ConnectionStrings:DefaultConnectionStringDB"];
+        return strConn;
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

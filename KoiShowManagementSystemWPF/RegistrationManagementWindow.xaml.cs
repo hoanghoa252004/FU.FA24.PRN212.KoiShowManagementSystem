@@ -19,12 +19,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KoiShowManagementSystemWPF.Member
+namespace KoiShowManagementSystemWPF
 {
     /// <summary>
-    /// Interaction logic for RegistrationWindow.xaml
+    /// Interaction logic for RegistrationManagementWindow.xaml
     /// </summary>
-    public partial class RegistrationWindow : Window
+    public partial class RegistrationManagementWindow : Window
     {
         private readonly IRegistrationService _service;
         private readonly IKoiService _koiService;
@@ -35,7 +35,7 @@ namespace KoiShowManagementSystemWPF.Member
         // 1 là search.
         // 2 là get all.
         // 3 là get pendings.
-        public RegistrationWindow(UserDTO user)
+        public RegistrationManagementWindow(UserDTO user)
         {
             _service = RegistrationService.Instance;
             _koiService = KoiService.Instance;
@@ -430,7 +430,7 @@ namespace KoiShowManagementSystemWPF.Member
 
         private void BtnHomePage(object sender, RoutedEventArgs e)
         {
-            MemberProfileWindow window = new MemberProfileWindow(_user);
+            ProfileWindow window = new ProfileWindow(_user);
             window.Show();
             this.Close();
         }

@@ -236,7 +236,7 @@ namespace KoiShowManagementSystemWPF.Member
 
         private void BtnHomePage(object sender, RoutedEventArgs e)
         {
-            MemberProfileWindow window = new MemberProfileWindow(_user);
+            ProfileWindow window = new ProfileWindow(_user);
             window.Show();
             this.Close();
         }

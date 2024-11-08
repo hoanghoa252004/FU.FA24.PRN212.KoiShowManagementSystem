@@ -10,7 +10,7 @@
         >
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
-            <ImageBrush ImageSource="/Member/a_koi_pond_vn_background_by_drechenaux_dg1zucf-fullview.jpg"/>
+            <ImageBrush ImageSource="/Image/a_koi_pond_vn_background_by_drechenaux_dg1zucf-fullview.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="47*"/>

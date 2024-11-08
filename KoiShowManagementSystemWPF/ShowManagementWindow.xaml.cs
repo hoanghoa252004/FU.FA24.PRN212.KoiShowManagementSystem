@@ -2,6 +2,7 @@
 using BusinessLogicLayer.Interface;
 using DTOs;
 using Entities;
+using KoiShowManagementSystemWPF.Manager;
 using KoiShowManagementSystemWPF.Member;
 using KoiShowManagementSystemWPF.PopupDialog;
 using System;
@@ -18,7 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KoiShowManagementSystemWPF.Manager
+namespace KoiShowManagementSystemWPF
 {
     /// <summary>
     /// Interaction logic for ShowManagementWindow.xaml
@@ -296,7 +297,7 @@ namespace KoiShowManagementSystemWPF.Manager
 
         private void BtnHomePage(object sender, RoutedEventArgs e)
         {
-            MemberProfileWindow window = new MemberProfileWindow(_user);
+            ProfileWindow window = new ProfileWindow(_user);
             window.Show();
             this.Close();
         }

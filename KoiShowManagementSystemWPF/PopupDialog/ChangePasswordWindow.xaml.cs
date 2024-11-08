@@ -77,7 +77,7 @@ namespace KoiShowManagementSystemWPF.PopupDialog
             if (updateResult)
             {
                 MessageBox.Show("Password updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                MemberProfileWindow window = new MemberProfileWindow(_user);
+                ProfileWindow window = new ProfileWindow(_user);
                 window.Show();
                 //this.Close();
             }
@@ -90,7 +90,7 @@ namespace KoiShowManagementSystemWPF.PopupDialog
 
         private void Cancel_Button(object sender, RoutedEventArgs e)
         {
-            MemberProfileWindow  window = new MemberProfileWindow(_user);
+            ProfileWindow window = new ProfileWindow(_user);
             window.Show();
             this.Close();
         }

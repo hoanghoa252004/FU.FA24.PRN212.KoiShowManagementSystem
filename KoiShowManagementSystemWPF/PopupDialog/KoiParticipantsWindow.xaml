@@ -9,7 +9,7 @@
      Title="KoiParticipants" Height="480" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Manager/pngtree-vibrant-watercolor-painting-on-canvas-abstract-art-background-in-light-green-image_13709924.png"/>
+            <ImageBrush ImageSource="/Image/pngtree-vibrant-watercolor-painting-on-canvas-abstract-art-background-in-light-green-image_13709924.png"/>
         </Grid.Background>
         <Label Content="Koi Participants" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" Foreground="#FFD42222" Width="231">
             <Label.Background>
