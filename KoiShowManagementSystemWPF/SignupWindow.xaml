@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="SignupWindow" Height="558" Width="598">
     <Grid>
         <Grid.ColumnDefinitions>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.PopupDialog"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="AddRegistrationDialog" Height="510" Width="565">
     <Grid>
         <ComboBox FontSize="22" x:Name="KoiComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" HorizontalAlignment="Left" Height="39" Margin="10,65,0,0" VerticalAlignment="Top" Width="310"/>

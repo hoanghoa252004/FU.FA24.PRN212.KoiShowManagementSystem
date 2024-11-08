@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Manager"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="ManageRefereeWindow" Height="877" Width="1360" Loaded="Window_Loaded">
+        Title="ManageRefereeWindow" Height="663" Width="1335" Loaded="Window_Loaded">
 
 
     <Grid >
@@ -20,7 +20,7 @@
             <RowDefinition Height="55*"/>
         </Grid.RowDefinitions>
 
-        <Grid HorizontalAlignment="Left" Height="673" VerticalAlignment="Top" Width="614" Margin="30,149,0,0" Grid.RowSpan="4">
+        <Grid HorizontalAlignment="Left" Height="432" VerticalAlignment="Top" Width="667" Margin="30,149,0,0" Grid.RowSpan="3">
             <Grid.Background>
                 <SolidColorBrush Color="#FFE4F1F3" Opacity="0.5"/>
             </Grid.Background>
@@ -29,43 +29,47 @@
                 <ColumnDefinition Width="64*"/>
                 <ColumnDefinition Width="199*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Referee:" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" FontSize="22"/>
-            <TextBox x:Name="txtSearch" TextWrapping="Wrap" Text="Enter a name" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="69,81,221,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2">
-            </TextBox>
+            <Label Content="Referee:" HorizontalAlignment="Left" Margin="13,34,0,0" VerticalAlignment="Top" FontSize="22" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="txtSearch" TextWrapping="Wrap" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="19,25,291,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2"/>
 
-            <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="218,81,0,0" Click="BtnSearch" Grid.Column="2"/>
-            <Label Content="Status" HorizontalAlignment="Left" Height="60" Margin="51,419,0,0" VerticalAlignment="Top" Width="75" FontWeight="DemiBold" FontSize="22" Grid.ColumnSpan="2" />
-
-            <RadioButton x:Name="TrueRadioButton" Content="True" HorizontalAlignment="Left" Margin="118,434,0,0" VerticalAlignment="Top" FontSize="22" Grid.Column="1"  Width="86" Grid.ColumnSpan="2"/>
-            <RadioButton x:Name="FalseRadioButton" Content="False" HorizontalAlignment="Center" Margin="0,434,0,0" VerticalAlignment="Top" FontSize="22" Grid.Column="2" Width="86" />
-
-            <Button Content="Add" HorizontalAlignment="Left" Height="64" Margin="44,556,0,0" VerticalAlignment="Top" Width="120" FontSize="20" Click="Add_Button" Grid.ColumnSpan="2"/>
-            <Button Content="Delete" HorizontalAlignment="Left" Height="66" Margin="160,556,0,0" VerticalAlignment="Top" Width="118" FontSize="20" Grid.Column="2" RenderTransformOrigin="0.608,2.246" Click="Delete_Button" />
-            <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="54" Margin="123,215,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" Grid.Column="1" Grid.ColumnSpan="2" />
-            <TextBox x:Name="EmailTextBox" HorizontalAlignment="Left" Height="54" Margin="123,275,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" Grid.Column="1" Grid.ColumnSpan="2" />
-            <TextBox x:Name="PhoneTextBox" HorizontalAlignment="Left" Height="54" Margin="126,346,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" Grid.Column="1" Grid.ColumnSpan="2" />
-            <Label Content="Name" HorizontalAlignment="Center" Height="60" Margin="0,215,0,0" VerticalAlignment="Top" Width="125" FontWeight="DemiBold" FontSize="22" Grid.ColumnSpan="2" />
-            <Label Content="Email" HorizontalAlignment="Center" Height="60" Margin="0,275,0,0" VerticalAlignment="Top" Width="125" FontWeight="DemiBold" FontSize="22" Grid.ColumnSpan="2" />
-            <Label Content="Phone" HorizontalAlignment="Left" Height="60" Margin="51,346,0,0" VerticalAlignment="Top" Width="125" FontWeight="DemiBold" FontSize="22" Grid.ColumnSpan="2" />
-            <Button Content="Update" HorizontalAlignment="Left" Height="64" Margin="0,556,0,0" VerticalAlignment="Top" Width="116" FontSize="20" Grid.Column="2" RenderTransformOrigin="0.608,2.246" Click="Update_Button" />
-            <Button Content="All" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="36" Height="57" Margin="20,81,0,0" Click="GetAllReferee_Button" Grid.Column="1"/>
+            <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="169,25,0,0" Click="BtnSearch" Grid.Column="2"/>
+            <Button Content="Get All" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="85" Height="57" Margin="285,26,0,0" Click="GetAllReferee_Button" Grid.Column="2"/>
+            <DataGrid x:Name="dgData" HorizontalAlignment="Left" Height="301" Margin="13,112,0,0" VerticalAlignment="Top" Width="641" AutoGenerateColumns="False" FontSize="18" IsReadOnly="True" SelectionChanged="dgData_SelectionChanged" Grid.ColumnSpan="3" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Width="*" MinWidth="60" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Name" Width="*" MinWidth="200" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Phone" Width="*" MinWidth="100"  Binding="{Binding Phone}"/>
+                    <DataGridTextColumn Header="Email" Width="*" MinWidth="100" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="Role" Width="*" MinWidth="60" Binding="{Binding Role}"/>
+                    <DataGridTextColumn Header="Status" Width="*" MinWidth="60" Binding="{Binding Status}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
-        <DataGrid x:Name="dgData" HorizontalAlignment="Left" Height="673" Margin="680,149,0,0" VerticalAlignment="Top" Width="641" AutoGenerateColumns="False" Grid.RowSpan="4" FontSize="18" IsReadOnly="True" SelectionChanged="dgData_SelectionChanged" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Width="*" MinWidth="60" Binding="{Binding Id }"/>
-                <DataGridTextColumn Header="Name" Width="*" MinWidth="200" Binding="{Binding Name }"/>
-                <DataGridTextColumn Header="Phone" Width="*" MinWidth="100"  Binding="{Binding Phone }"/>
-                <DataGridTextColumn Header="Email" Width="*" MinWidth="100" Binding="{Binding Email }"/>
-                <DataGridTextColumn Header="Role" Width="*" MinWidth="60" Binding="{Binding Role }"/>
-                <DataGridTextColumn Header="Status" Width="*" MinWidth="60" Binding="{Binding Status }"/>
-            </DataGrid.Columns>
-        </DataGrid>
         <Label Content="Manage Referee" HorizontalAlignment="Center" Height="77" Margin="0,34,0,0" VerticalAlignment="Top" Width="379"  FontSize="48" FontWeight="Bold">
             <Label.Background>
                 <SolidColorBrush Color="White" Opacity="0.6"/>
             </Label.Background>
         </Label>
         <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" Height="43" Margin="30,34,0,0" Click="BtnHomePage" Background="#FF659AE5" FontWeight="Bold" Foreground="Snow"/>
+        <Grid Margin="799,149,38,21" Grid.RowSpan="4">
+            <Grid.Background>
+                <SolidColorBrush Color="White" Opacity="0.615"/>
+            </Grid.Background>
+            <Label Content="Status" HorizontalAlignment="Left" Height="60" Margin="21,0,0,0" VerticalAlignment="Center" Width="75" FontWeight="DemiBold" FontSize="22" />
+
+            <RadioButton x:Name="TrueRadioButton" Content="True" HorizontalAlignment="Left" Margin="143,0,0,0" VerticalAlignment="Center" FontSize="22"  Width="86"/>
+            <RadioButton x:Name="FalseRadioButton" Content="False" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="22" Width="86" Margin="218,0,0,0" />
+
+            <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="54" Margin="143,16,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" />
+            <TextBox x:Name="EmailTextBox" HorizontalAlignment="Left" Height="54" Margin="143,81,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" />
+            <TextBox x:Name="PhoneTextBox" HorizontalAlignment="Left" Height="54" Margin="143,147,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="323" Padding="15,10,0,0" FontSize="22" />
+            <Label Content="Name" HorizontalAlignment="Left" Height="34" Margin="19,26,0,0" VerticalAlignment="Top" Width="124" FontWeight="DemiBold" FontSize="22" />
+            <Label Content="Email" HorizontalAlignment="Left" Height="43" Margin="21,92,0,0" VerticalAlignment="Top" Width="124" FontWeight="DemiBold" FontSize="22" />
+            <Label Content="Phone" HorizontalAlignment="Left" Height="39" Margin="22,154,0,0" VerticalAlignment="Top" Width="124" FontWeight="DemiBold" FontSize="22" />
+            <Button Content="Add" HorizontalAlignment="Left" Height="64" Margin="29,374,0,0" VerticalAlignment="Top" Width="120" FontSize="20" Click="Add_Button"/>
+            <Button Content="Delete" HorizontalAlignment="Left" Height="66" Margin="361,374,0,0" VerticalAlignment="Top" Width="118" FontSize="20" RenderTransformOrigin="0.608,2.246" Click="Delete_Button" />
+            <Button Content="Update" HorizontalAlignment="Left" Height="64" Margin="201,374,0,0" VerticalAlignment="Top" Width="116" FontSize="20" RenderTransformOrigin="0.608,2.246" Click="Update_Button" />
+        </Grid>
 
     </Grid>
 </Window>

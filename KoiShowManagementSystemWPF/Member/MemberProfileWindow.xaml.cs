@@ -40,7 +40,6 @@ namespace KoiShowManagementSystemWPF.Member
                 // Load Button:
                 btnShows.Visibility = Visibility.Visible;
                 btnRegistrations.Visibility = Visibility.Visible;
-                btnKois.Visibility = Visibility.Visible;
                 if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
                 {
                     btnReferees.Visibility = Visibility.Visible;
@@ -49,6 +48,10 @@ namespace KoiShowManagementSystemWPF.Member
                 if (_user.Role!.Equals("Referee", StringComparison.OrdinalIgnoreCase) == true)
                 {
                     btnScoring.Visibility = Visibility.Visible;
+                }
+                if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    btnKois.Visibility = Visibility.Visible;
                 }
             }
         }

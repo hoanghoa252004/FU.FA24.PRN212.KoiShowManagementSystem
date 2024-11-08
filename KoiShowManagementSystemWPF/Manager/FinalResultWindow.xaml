@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.Manager"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="FinalResultWindow" Height="480" Width="800">
     <Grid>
         <Grid.Background>
@@ -19,7 +20,11 @@
                 <DataGridTextColumn Width="*" Header="Rank" Binding="{Binding Rank}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Final Result" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" Foreground="#FFD42222" Background="#FFEADF0F" Width="170"/>
+        <Label Content="Final Result" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" Foreground="#FFD42222" Width="170">
+            <Label.Background>
+                <SolidColorBrush Color="#FFFFF100" Opacity="0.6"/>
+            </Label.Background>
+        </Label>
         <Button x:Name="btnAnnouceScore" Content="Annouce Result" FontSize="20" Click="BtnAnnouceScore" Margin="625,382,10,0" FontWeight="Bold" Height="52" VerticalAlignment="Top">
             <Button.Background>
                 <SolidColorBrush Color="#FF3DCA05" Opacity="0.5"/>

@@ -15,7 +15,7 @@
             <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="208*"/>
         </Grid.ColumnDefinitions>
-        <Grid Margin="25,99,980,36" Grid.ColumnSpan="2">
+        <Grid Margin="25,99,949,36" Grid.ColumnSpan="2">
             <Grid.Background>
                 <SolidColorBrush Color="White" Opacity="0.6"/>
             </Grid.Background>
@@ -23,12 +23,12 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel>
-                <Button Visibility="Collapsed" Click='BtnShows'  x:Name="btnShows" Margin="0,30,0,10" Content="Shows" FontSize="20" Width="200" Height="50"/>
-                <Button Visibility="Collapsed"  x:Name="btnRegistrations" Margin="0,30,0,10" Content="Registrations" FontSize="20" Width="200" Height="50" Click="BtnRegistrations"/>
-                <Button Visibility="Collapsed"  x:Name="btnKois" Margin="0,30,0,10" Content="Kois" FontSize="20" Height="50" Width="199" Click="BtnKois"/>
-                <Button Visibility="Collapsed"  x:Name="btnReferees" Margin="0,30,0,10" Content="Referees" FontSize="20" Height="50" Width="199" Click="BtnReferees"/>
-                <Button Visibility="Collapsed"  x:Name="btnVarieties" Margin="0,30,0,10" Content="Varieties" FontSize="20" Height="50" Width="199" Click="BtnVarieties"/>
-                <Button Visibility="Collapsed"  x:Name="btnScoring" Margin="0,30,0,10" Content="Scoring" FontSize="20" Height="50" Width="199" Click="BTnScoring"/>
+                <Button Visibility="Collapsed"   Click='BtnShows'  x:Name="btnShows" Margin="0,30,0,10" Content="Shows" FontSize="20" Width="200" Height="50" Background="#FF07A75C" FontWeight="Bold" Foreground="White"/>
+                <Button Visibility="Collapsed"  x:Name="btnRegistrations" Margin="0,30,0,10" Content="Registrations" FontSize="20" Width="200" Height="50" Click="BtnRegistrations" Background="#FF07A75C" FontWeight="Bold" Foreground="White"/>
+                <Button Visibility="Collapsed"  x:Name="btnKois" Margin="0,30,0,10" Content="Kois" FontSize="20" Height="50" Width="199" Click="BtnKois" Background="#FF07A75C" FontWeight="Bold" Foreground="White"/>
+                <Button Visibility="Collapsed"  x:Name="btnReferees" Margin="0,30,0,10" Content="Referees" FontSize="20" Height="50" Width="199" Click="BtnReferees" Background="#FF07A75C" FontWeight="Bold" Foreground="White"/>
+                <Button Visibility="Collapsed" x:Name="btnVarieties" Margin="0,30,0,10" Content="Varieties" FontSize="20" Height="50" Width="199" Click="BtnVarieties" Background="#FF07A75C" FontWeight="Bold" Foreground="White"/>
+                <Button Visibility="Collapsed"  x:Name="btnScoring" Margin="0,30,0,10" Content="Scoring" FontSize="20" Height="50" Width="199" Click="BTnScoring" Background="#FF07A75C" FontWeight="Bold" Foreground="White"/>
             </StackPanel>
         </Grid>
         <Grid Margin="215,10,0,10" Grid.ColumnSpan="2">
@@ -41,7 +41,7 @@
                     <SolidColorBrush Color="White" Opacity="0.6"/>
                 </Label.Background>
             </Label>
-            <Grid Margin="25,11,30,26" Grid.Row="1">
+            <Grid Margin="89,11,30,26" Grid.Row="1">
                 <Grid.Background>
                     <SolidColorBrush Color="White" Opacity="0.6"/>
                 </Grid.Background>
@@ -60,14 +60,14 @@
                 <Label Content="Email:" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Margin="34,0,751,0" Grid.ColumnSpan="2" Height="39"/>
                 <Label Content="Phone:" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Margin="34,0,751,0" Grid.ColumnSpan="2" Height="40"/>
                 <Label Content="Password:" VerticalAlignment="Center" FontSize="22" Grid.Row="3" Margin="34,0,751,0" Grid.ColumnSpan="2" Height="39"/>
-                <TextBox IsReadOnly="True" x:Name="txtName" Grid.Column="1" TextWrapping="Wrap" Text="Tran Hoang Hoa" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="14,0,15,0"/>
-                <Button Content="Edit Information" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Margin="275,0,0,0" Grid.Column="1"/>
-                <Button Content="Change Password" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Margin="495,0,0,0" Grid.Column="1"/>
-                <TextBox IsReadOnly="True" x:Name="txtEmail" Grid.Column="1" TextWrapping="Wrap" Text="HoaTHSE184053@fpt.edu.vn" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="1" Margin="14,0,15,0"/>
-                <TextBox IsReadOnly="True" x:Name="txtPhone" Grid.Column="1" TextWrapping="Wrap" Text="0393147372" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="2" Margin="14,0,15,0"/>
-                <PasswordBox IsEnabled="False" x:Name="txtPassword" Grid.Column="1" Margin="15,0,15,0" Grid.Row="3" VerticalAlignment="Center" Height="58" FontSize="22" Padding="15,10,0,0" Password="*******************" HorizontalContentAlignment="Stretch"/>
+                <TextBox IsReadOnly="True" x:Name="txtName" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="14,0,15,0"/>
+                <Button Content="Edit Information" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Grid.Column="1" Background="#FF29C4D7" FontWeight="Bold"/>
+                <Button Content="Change Password" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" FontSize="20" Width="200" Height="50" Margin="454,0,0,0" Grid.Column="1" Background="#FF29C4D7" FontWeight="Bold"/>
+                <TextBox IsReadOnly="True" x:Name="txtEmail" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="1" Margin="14,0,15,0"/>
+                <TextBox IsReadOnly="True" x:Name="txtPhone" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Grid.Row="2" Margin="14,0,15,0" />
+                <PasswordBox  IsEnabled="False" x:Name="txtPassword" Grid.Column="1" Margin="15,0,15,0" Grid.Row="3" VerticalAlignment="Center" Height="58" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Password="*****************"/>
             </Grid>
-            <Button Content="Logout" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="105" Height="33" Margin="880,10,0,0" Background="#FFDB2B2B" Foreground="White" FontWeight="Bold" Click="BtnLogout"/>
         </Grid>
+        <Button Content="Logout" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="105" Height="41" Margin="34,20,0,0" Background="#FFDB2B2B" Foreground="White" FontWeight="Bold" Click="BtnLogout"/>
     </Grid>
 </Window>
