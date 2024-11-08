@@ -67,11 +67,18 @@ namespace KoiShowManagementSystemWPF.PopupDialog
         {
             // Tính Percentage còn lại:
             decimal remainingPercentage = CalculateRemainingPercentage();
-            AddCriterionDialog criterionDialog = new AddCriterionDialog(remainingPercentage);
-            if (criterionDialog.ShowDialog() == true)
+            if(remainingPercentage <= 0)
             {
-                _criteria.Add(criterionDialog.NewCriterion);
-                CriteriaListBox.Items.Refresh(); // Refresh ListView to display newly added Criterion
+                MessageBox.Show("Criteria has already up to 100% !", "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                AddCriterionDialog criterionDialog = new AddCriterionDialog(remainingPercentage);
+                if (criterionDialog.ShowDialog() == true)
+                {
+                    _criteria.Add(criterionDialog.NewCriterion);
+                    CriteriaListBox.Items.Refresh(); // Refresh ListView to display newly added Criterion
+                }
             }
         }
         private T FindVisualChild<T>(DependencyObject parent, string name = null!) where T : FrameworkElement
@@ -212,6 +219,50 @@ namespace KoiShowManagementSystemWPF.PopupDialog
                 MessageBox.Show(ex.Message, "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void BtnRemoveCriteria(object sender, RoutedEventArgs e)
+        {
+            // Lấy Criteria từ nút Remove
+            var button = sender as FrameworkElement;
+            var criteria = button?.Tag as CriterionDTO;
+            if (criteria != null)
+            {
+                var c = _criteria.SingleOrDefault(cr => cr.Description == criteria.Description
+                                                        && cr.Percentage == criteria.Percentage
+                                                        && cr.Name == criteria.Name);
+                if (c != null)
+                {
+                    _criteria.Remove(criteria);
+                    CriteriaListBox.ItemsSource = _criteria;
+                    CriteriaListBox.Items.Refresh();
+                }
+            }
+        }
+
+        private void BtnUpdateCriteria(object sender, RoutedEventArgs e)
+        {
+            // Lấy Criteria từ nút Remove
+            var button = sender as FrameworkElement;
+            var criteria = button?.Tag as CriterionDTO;
+            if (criteria != null)
+            {
+                var c = _criteria.SingleOrDefault(cr => cr.Description == criteria.Description
+                                                        && cr.Percentage == criteria.Percentage
+                                                        && cr.Name == criteria.Name);
+                if (c != null)
+                {
+                    UpdateCriterionDialog dialog = new UpdateCriterionDialog(c, CalculateRemainingPercentage() + c.Percentage);
+                    if (dialog.ShowDialog() == true)
+                    {
+                        int index = _criteria.IndexOf(c);
+                        _criteria.RemoveAt(index);
+                        _criteria.Insert(index, dialog._criterion);
+                        CriteriaListBox.Items.Refresh();
+                    }
+                }
+            }
+        }
+
         private decimal CalculateRemainingPercentage()
         {
             // Tính Percentage còn lại:

@@ -12,9 +12,9 @@
         <Label Content="Name:" Margin="10,50,70,0" VerticalAlignment="Top" FontSize="18" Height="35"/>
         <Label  Content="Description:" Margin="10,136,70,0" VerticalAlignment="Top" FontSize="18" Height="34"/>
         <TextBox x:Name="txtDescription" TextWrapping="Wrap" VerticalAlignment="Top" Height="190" FontSize="20" Padding="15,10,15,0" HorizontalContentAlignment="Stretch" Margin="10,170,10,0"/>
-        <Label Content="Add Criterion" Margin="118,10,100,0" VerticalAlignment="Top" FontSize="18" Height="35" FontWeight="Bold"/>
+        <Label Content="Update Criterion" Margin="103,10,102,0" VerticalAlignment="Top" FontSize="18" Height="35" FontWeight="Bold"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="15,469,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="18" Click="BtnCancel"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="271,469,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="18" Click="BtnSubmit"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="252,469,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="18" Click="BtnSubmit"/>
         <TextBox x:Name="txtPercentage" TextWrapping="Wrap" VerticalAlignment="Top" Height="46" FontSize="20" Padding="15,6,0,0" HorizontalContentAlignment="Stretch" Margin="10,400,9,0" />
         <Label Content="Percentage:" Margin="10,365,70,0" VerticalAlignment="Top" FontSize="18" Height="35"/>
 
