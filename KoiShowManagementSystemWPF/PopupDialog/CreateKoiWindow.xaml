@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KoiShowManagementSystemWPF.PopupDialog"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="CreateKoiWindow" Height="758" Width="601">
     <Grid>
         <Label Content="Name:" Margin="22,23,445,0" VerticalAlignment="Top" FontSize="22" Height="39"/>

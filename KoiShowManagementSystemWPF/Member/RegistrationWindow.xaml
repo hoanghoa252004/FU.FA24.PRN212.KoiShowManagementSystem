@@ -9,13 +9,17 @@
     Title="KoiManagementWindow" Height="880" Width="1450">
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
-            <SolidColorBrush Color="#FFDEDA12" Opacity="0.3"/>
+            <ImageBrush ImageSource="/Member/yxvtrkc3crfz.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="47*"/>
             <RowDefinition Height="285*"/>
         </Grid.RowDefinitions>
-        <Label Content="REGISTRATION WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Height="74" Width="586"/>
+        <Label Content="REGISTRATION WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Height="74" Width="586">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </Label.Background>
+        </Label>
         <Grid Grid.Row="1">
             <Grid.Background>
                 <SolidColorBrush Color="#FFEC8181" Opacity="0.3"/>
@@ -30,7 +34,7 @@
                     <RowDefinition Height="97*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
-                    <SolidColorBrush Color="#FF20E47A" Opacity="0.3"/>
+                    <SolidColorBrush Color="White" Opacity="0.3"/>
                 </Grid.Background>
                 <Label Content="Registration:" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" FontSize="22"/>
                 <TextBox x:Name="txtSearch" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" FontSize="22" Padding="10,5,0,0" HorizontalContentAlignment="Stretch" Margin="146,16,138,0"/>
@@ -58,7 +62,7 @@
                     <RowDefinition Height="160*"/>
                 </Grid.RowDefinitions>
                 <Grid.Background>
-                    <SolidColorBrush Color="#FFB63737" Opacity="0.5"/>
+                    <SolidColorBrush Color="White" Opacity="0.5"/>
                 </Grid.Background>
                 <Label Content="Registration Information:" HorizontalAlignment="Left" Margin="253,0,0,0" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Height="39" Width="278"/>
                 <Label Content="ID:" Margin="10,0,685,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39"/>
@@ -84,7 +88,7 @@
             <Button Visibility="Collapsed"  x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="662,672,0,0" Grid.Column="1" Click="BtnDelete"/>
             <Grid Grid.ColumnSpan="2" Margin="678,571,10,67">
                 <Grid.Background>
-                    <SolidColorBrush Color="#FF437ED5" Opacity="0.5"/>
+                    <SolidColorBrush Color="White" Opacity="0.5"/>
                 </Grid.Background>
                 <Label Content="Result:" Margin="10,0,670,0" VerticalAlignment="Top" FontSize="22" Height="39"/>
                 <StackPanel Visibility="Collapsed" x:Name="PanelResult" Orientation="Horizontal" Margin="97,0,10,0" >
@@ -103,6 +107,6 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="115" Height="43" Margin="35,0,0,0" Click="BtnHomePage"/>
+        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="115" Height="43" Margin="35,0,0,0" Click="BtnHomePage" Background="#FF0080A3" Foreground="White" FontWeight="Bold"/>
     </Grid>
 </Window>
