@@ -146,19 +146,11 @@ namespace DataAccessLayer.Implementation
 
                 if (user != null)
                 {
-                    if (user.RoleId == 2) 
-                    {
-                       
+                    
                         user.Name = dto.Name;
                         user.Password = dto.Password;
                         user.Phone = dto.Phone;
                         user.Status = dto.Status;
-                    }
-                    else 
-                    {
-                        user.Name = dto.Name;
-                        user.Phone = dto.Phone;
-                    }
 
                     context.Users.Update(user);
                     await context.SaveChangesAsync();

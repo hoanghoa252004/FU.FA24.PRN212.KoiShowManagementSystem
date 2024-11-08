@@ -22,7 +22,7 @@
         <Label Content="Email" HorizontalAlignment="Left" Height="60" Margin="51,160,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
         <Label Content="Password" HorizontalAlignment="Left" Height="60" Margin="51,220,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
         <Label Content="Phone" HorizontalAlignment="Left" Height="60" Margin="51,280,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="22" />
-        <TextBlock x:Name="ErrorMessageTextBlock" Foreground="Red" Margin="36,355,48,137" FontSize="18"/>
+        <TextBlock x:Name="ErrorMessageTextBlock" Foreground="Red" Margin="62,355,67,116" FontSize="18" TextWrapping="Wrap" />
         <Button Content="Cancel" HorizontalAlignment="Left" Height="53" Margin="110,441,0,0" VerticalAlignment="Top" Width="112" FontSize="20" Click="Cancel_Button" />
         <Button Content="Submit" HorizontalAlignment="Left" Height="53" Margin="265,441,0,0" VerticalAlignment="Top" Width="111" FontSize="20" Click="Create_Button" />
         <Button Content="Reset" HorizontalAlignment="Left" Height="53" Margin="419,441,0,0" VerticalAlignment="Top" Width="112" FontSize="20" Click="Reset_Button" RenderTransformOrigin="0.516,-0.259" />

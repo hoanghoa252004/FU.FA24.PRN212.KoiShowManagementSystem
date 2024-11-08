@@ -1,5 +1,8 @@
-﻿using DTOs;
+﻿using BusinessLogicLayer.Implementation;
+using BusinessLogicLayer.Interface;
+using DTOs;
 using KoiShowManagementSystemWPF.Manager;
+using KoiShowManagementSystemWPF.PopupDialog;
 using KoiShowManagementSystemWPF.Referee;
 using System;
 using System.Collections.Generic;
@@ -23,8 +26,10 @@ namespace KoiShowManagementSystemWPF.Member
     public partial class MemberProfileWindow : Window
     {
         private UserDTO _user = null!;
+        private readonly IUserService _userService;
         public MemberProfileWindow(UserDTO user)
         {
+            _userService = UserService.Instance;
             _user = user;
             InitializeComponent();
             LoadData();
@@ -105,6 +110,55 @@ namespace KoiShowManagementSystemWPF.Member
             LoginWindow window = new LoginWindow();
             window.Show();
             this.Close();
+        }
+
+        private async void EditInformation_Button(object sender, RoutedEventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPassword.Password) || string.IsNullOrEmpty(txtPhone.Text))
+            {
+                MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!long.TryParse(txtPhone.Text, out long phoneNumber) || txtPhone.Text.Length != 10 || phoneNumber < 0)
+            {
+                MessageBox.Show("Please enter a valid 10-digit phone number.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (txtName.Text == _user.Name && txtPhone.Text == _user.Phone)
+            {
+                MessageBox.Show("No changes detected. Please update the information before saving.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+
+            var userDTO = new UserDTO
+            {
+                Id = _user.Id,
+                Name = txtName.Text,
+                Phone = txtPhone.Text,
+                Password = _user.Password,
+                Status = true
+            };
+
+            bool updateResult = await _userService.UpdateUser(userDTO);
+            if (updateResult)
+            {
+                MessageBox.Show("User updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("User update failed. User might not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+        private void ChangePassword_Button(object sender, RoutedEventArgs e)
+        {
+            ChangePasswordWindow window = new ChangePasswordWindow(_user);
+            window.ShowDialog();
+            //this.Close(); ko được Close vì đây là show dialog
         }
     }
 }

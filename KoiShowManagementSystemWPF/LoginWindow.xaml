@@ -23,7 +23,7 @@
             <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="52" Margin="185,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="318" Padding="15,10,0,0" FontSize="22"/>
             <Label Content="User name" HorizontalAlignment="Left" Height="42" Margin="34,110,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
             <Label Content="Password" HorizontalAlignment="Left" Height="60" Margin="34,269,0,0" VerticalAlignment="Top" Width="122" FontWeight="DemiBold" FontSize="18" />
-            <Button Content="Sign Up" HorizontalAlignment="Left" Height="50" Margin="110,356,0,0" VerticalAlignment="Top" Width="101" FontSize="20"/>
+            <Button Content="Sign Up" HorizontalAlignment="Left" Height="50" Margin="110,356,0,0" VerticalAlignment="Top" Width="101" FontSize="20" Click="SignUp_Button"/>
             <Button Content="Submit" HorizontalAlignment="Left" Height="48" Margin="373,358,0,0" VerticalAlignment="Top" Width="101" FontSize="20" Click="BtnSubmit"/>
         </Grid>
     </Grid>
