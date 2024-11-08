@@ -31,6 +31,9 @@ namespace KoiShowManagementSystemWPF.Manager
         private readonly IUserService _userService;
         private  ShowDTO _selectedShow = null!;
         private readonly UserDTO _user = null!;
+        private int? _lastBehavior = null!;
+        // 1 là search.
+        // default null || 2 là get all
         public ShowManagementWindow(UserDTO user)
         {
             InitializeComponent();
@@ -46,11 +49,16 @@ namespace KoiShowManagementSystemWPF.Manager
         {
             var showList = await _showService.GetAll(_user.Id);
             ShowGrid.ItemsSource = showList;
-            btnCreate.Visibility = Visibility.Visible;
             btnPublish.Visibility = Visibility.Collapsed;
             //btnAnnouceScore.Visibility = Visibility.Collapsed;
             btnScoring.Visibility = Visibility.Collapsed;
             btnReviewScore.Visibility = Visibility.Collapsed;
+            if (_user.Role!.Equals("Member", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                btnUpdate.Visibility = Visibility.Collapsed;
+                btnDelete.Visibility = Visibility.Collapsed;
+                btnCreate.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void BtnCreate(object sender, RoutedEventArgs e)
@@ -102,6 +110,7 @@ namespace KoiShowManagementSystemWPF.Manager
                     {
                         ShowGrid.ItemsSource = result;
                         ResetTextBox();
+                        _lastBehavior = 1;
                     }
                     else
                     {
@@ -159,20 +168,6 @@ namespace KoiShowManagementSystemWPF.Manager
             }
             else if (_user.Role!.Equals("Admin", StringComparison.OrdinalIgnoreCase) == true)
             {
-                // UPCOMING
-                if (dto.Status.Equals("UpComing", StringComparison.OrdinalIgnoreCase) == true)
-                {
-                    btnUpdate.Visibility = Visibility.Visible;
-                    btnDelete.Visibility = Visibility.Visible;
-                    btnPublish.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    btnUpdate.Visibility = Visibility.Collapsed;
-                    btnDelete.Visibility = Visibility.Collapsed;
-                    btnPublish.Visibility = Visibility.Collapsed;
-                }
-
                 // ONGOING:
                 if (dto.Status.Equals("OnGoing", StringComparison.OrdinalIgnoreCase) == true)
                 {
@@ -208,7 +203,7 @@ namespace KoiShowManagementSystemWPF.Manager
             if (_selectedShow != null)
             {
                 IEnumerable<ShowDTO> result = null!;
-                if (!string.IsNullOrWhiteSpace(txtSearch.Text) == true)
+                if (_lastBehavior == 1)
                 {
                     result = await _showService.Search(_user.Id, txtSearch.Text);
                     ShowGrid.ItemsSource = result;
@@ -244,9 +239,9 @@ namespace KoiShowManagementSystemWPF.Manager
             CriteriaListBox.ItemsSource = null;
             RefereeListBox.ItemsSource = null;
             btnRegister.Visibility = Visibility.Collapsed;
-            btnCreate.Visibility = Visibility.Collapsed;
-            btnUpdate.Visibility = Visibility.Collapsed;
-            btnDelete.Visibility = Visibility.Collapsed;
+            btnReviewScore.Visibility = Visibility.Collapsed;
+            btnPublish.Visibility = Visibility.Collapsed;
+            btnScoring.Visibility = Visibility.Collapsed;
         }
 
         private async void BtnReviewScore(object sender, RoutedEventArgs e)
@@ -353,12 +348,26 @@ namespace KoiShowManagementSystemWPF.Manager
         {
             if(_selectedShow != null)
             {
-                var varieties = await _varietyService.GetAll();
-                var referees = await _userService.GetAllReferee();
-                UpdateShowDialog dialog = new UpdateShowDialog(varieties.ToList(), referees.ToList(), _selectedShow);
-                dialog.ShowDialog();    
-                RefreshWindow();
+                if(_selectedShow.Status.Equals("UpComing", StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    var varieties = await _varietyService.GetAll();
+                    var referees = await _userService.GetAllReferee();
+                    UpdateShowDialog dialog = new UpdateShowDialog(varieties.ToList(), referees.ToList(), _selectedShow);
+                    dialog.ShowDialog();
+                    RefreshWindow();
+                }
+                else
+                {
+                    MessageBox.Show("This show can not be updated as it is " + _selectedShow.Status, "Failed:", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
+        }
+
+        private async void BtnGetAll(object sender, RoutedEventArgs e)
+        {
+            var showList = await _showService.GetAll(_user.Id);
+            ShowGrid.ItemsSource = showList;
+            _lastBehavior = 2;
         }
     }
 }

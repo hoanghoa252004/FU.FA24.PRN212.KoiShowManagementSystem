@@ -35,14 +35,14 @@ namespace BusinessLogicLayer.Implementation
             var show = await _repository.Show.GetById(showId);
             if(show != null)
             {
-                if (show.Status.ToLower().Equals("Upcoming"))
+                if (show.Status.Equals("Upcoming", StringComparison.OrdinalIgnoreCase) == true)
                 {
                     bool result = await _repository.Show.Delete(showId);
                     return result;
                 }
                 else
                 {
-                    throw new Exception("This show can not be deleted !");
+                    throw new Exception("This show can not be deleted  as it is "+ show.Status +"!");
                 }
             }
             else

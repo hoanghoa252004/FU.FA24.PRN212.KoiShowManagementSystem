@@ -37,8 +37,8 @@
                     <SolidColorBrush Color="#FFABFFD2" Opacity="0.3"/>
                 </Grid.Background>
                 <Label Content="Show:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" FontSize="22"/>
-                <TextBox x:Name="txtSearch" TextWrapping="Wrap" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="83,18,145,0"/>
-                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="430,18,0,0" Click="BtnSearch"/>
+                <TextBox x:Name="txtSearch" TextWrapping="Wrap" VerticalAlignment="Top" Height="57" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="83,18,197,0"/>
+                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="100" Height="57" Margin="380,18,0,0" Click="BtnSearch" Background="#FF31D78A" FontWeight="Bold" Foreground="White"/>
                 <DataGrid CanUserAddRows="False" IsReadOnly="True"  x:Name="ShowGrid" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,104,10,10" FontSize="18" SelectionChanged="SelectShow" Grid.RowSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}"/>
@@ -47,6 +47,7 @@
                         <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                <Button Content="Get All" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="77" Height="57" Margin="485,18,0,0" Click="BtnGetAll" Background="#FFFFA407" FontWeight="Bold" Foreground="White"/>
             </Grid>
             <Grid Margin="30,39,40,515" Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -70,14 +71,14 @@
                 <TextBox x:Name="txtDescription" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="192" FontSize="22" Padding="15,10,15,10" HorizontalContentAlignment="Stretch" Margin="10,8,24,0" Grid.Row="3"/>
                 <TextBox x:Name="txtRegisterDate" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="10,14,685,0" Grid.Row="2"/>
                 <Label Content="Status:" Margin="404,0,542,0" VerticalAlignment="Center" FontSize="22" Grid.Row="1" Height="39" Grid.Column="1"/>
-                <TextBox x:Name="txtStatus" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="518,0,419,0" Grid.Row="1"/>
+                <TextBox x:Name="txtStatus" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="518,0,388,0" Grid.Row="1"/>
 
                 <Label Content="Entrance Fee:" Margin="404,0,495,0" VerticalAlignment="Center" FontSize="22" Grid.Row="2" Height="39" Grid.Column="1"/>
                 <TextBox x:Name="txtEntranceFee" IsReadOnly="True" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="47" FontSize="22" Padding="15,10,0,0" HorizontalContentAlignment="Stretch" Margin="560,0,343,0" Grid.Row="2"/>
-                <StackPanel Orientation="Horizontal" Margin="675,0,10,0" Grid.Column="1" Grid.Row="1" >
-                    <Button x:Name="btnPublish" Content="Publish" FontSize="20" Height="57" Width="90" Background="#FF6CC218" Click="BtnPublish" FontWeight="Bold"/>
-                    <Button x:Name="btnScoring" Content="Scoring" FontSize="20" Height="57" Width="110" Background="#FFD0B70A" Click="BtnScoring" FontWeight="Bold"/>
-                    <Button x:Name="btnReviewScore" Content="Review Score" FontSize="20" Background="#FF199DC9" Width="135" Click="BtnReviewScore" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" Margin="675,41,10,63" Grid.Column="1" Grid.RowSpan="3" >
+                    <Button x:Name="btnPublish" Content="Publish" FontSize="20" Height="57" Width="90" Background="#FF6CC218" Click="BtnPublish" FontWeight="Bold" Foreground="White"/>
+                    <Button x:Name="btnScoring" Content="Scoring" FontSize="20" Height="57" Width="110" Background="#FFDCC525" Click="BtnScoring" FontWeight="Bold" Foreground="White"/>
+                    <Button x:Name="btnReviewScore" Content="Review Score" FontSize="20" Background="#FF199DC9" Width="135" Click="BtnReviewScore" FontWeight="Bold" Foreground="White" Height="57"/>
                 </StackPanel>
 
             </Grid>
@@ -201,12 +202,12 @@
                 <StackPanel.Background>
                     <SolidColorBrush Color="Black" Opacity="0.1"/>
                 </StackPanel.Background>
-                <Button x:Name="btnUpdate" Visibility="Collapsed" Margin="0,0,100,0" Content="Update" FontSize="20" Width="100" Height="44" Click="BtnUpdate"/>
-                <Button x:Name="btnCreate" Visibility="Collapsed" Margin="0,0,100,0" Content="Create" FontSize="20" Width="100" Height="44" Click="BtnCreate"/>
-                <Button x:Name="btnDelete" Visibility="Collapsed" Margin="0,0,100,0" Content="Delete" FontSize="20" Width="100" Height="44" Click="BtnDelete"/>
-                <Button  x:Name="btnRegister" Visibility="Collapsed" Content="Register Now" FontSize="20" Width="159" Height="44" Click="BtnRegister" Background="#FF12B142" FontWeight="Bold" Foreground="White"/>
+                <Button x:Name="btnUpdate"  Margin="0,0,100,0" Content="Update" FontSize="20" Width="100" Height="44" Click="BtnUpdate" Background="#FF2381CA" FontWeight="Bold" Foreground="White"/>
+                <Button x:Name="btnCreate"  Margin="0,0,100,0" Content="Create" FontSize="20" Width="100" Height="44" Click="BtnCreate"  Background="#FF38CA23" FontWeight="Bold" Foreground="White"/>
+                <Button x:Name="btnDelete" Margin="0,0,100,0" Content="Delete" FontSize="20" Width="100" Height="44" Click="BtnDelete"  Background="#FFCA2C23" FontWeight="Bold" Foreground="White"/>
+                <Button Visibility="Collapsed"  x:Name="btnRegister"  Content="Register Now" FontSize="20" Width="159" Height="44" Click="BtnRegister" Background="#FF0ABF41" FontWeight="Bold" Foreground="White"/>
             </StackPanel>
         </Grid>
-        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="115" Height="43" Margin="35,0,0,0" Click="BtnHomePage"/>
+        <Button Content="Home page" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="123" Height="43" Margin="35,0,0,0" Click="BtnHomePage" FontWeight="Bold" Foreground="White" Background="#FF1E84CB"/>
     </Grid>
 </Window>

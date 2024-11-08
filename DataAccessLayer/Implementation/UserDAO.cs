@@ -145,13 +145,11 @@ namespace DataAccessLayer.Implementation
                 var user = await context.Users.FindAsync(dto.Id);
 
                 if (user != null)
-                {
-                    
-                        user.Name = dto.Name;
-                        user.Password = dto.Password;
-                        user.Phone = dto.Phone;
-                        user.Status = dto.Status;
-
+                {                    user.Name = dto.Name;
+                    user.Password = dto.Password;
+                    user.Phone = dto.Phone;
+                    user.Status = dto.Status;
+                    user.Email = dto.Email;
                     context.Users.Update(user);
                     await context.SaveChangesAsync();
                     return true;
@@ -166,33 +164,30 @@ namespace DataAccessLayer.Implementation
         {
             using (var context = new Prn212ProjectKoiShowManagementContext())
             {
-                var referee = await context.RefereeDetails
-                    .Include(rd => rd.Show)
-                    .Include(rd => rd.User)
-                    .Where(r => r.UserId == userId)
-                    .FirstOrDefaultAsync();
-
-                if (referee != null)
+                // Tìm User:
+                var user = await context.Users.SingleOrDefaultAsync(u => u.Id == userId);
+                if (user != null)
                 {
-                    var shows = await context.Shows
-                        .Where(s => s.RefereeDetails.Any(rd => rd.UserId == userId))
-                        .ToListAsync();
-
-                    bool hasScoringShow = shows.Any(s => s.Status.Equals("Scoring", StringComparison.OrdinalIgnoreCase));
-
-                    if (hasScoringShow)
+                    // Check xem nó có chấm cái nào chưa:
+                    var refereeDetails = await context.RefereeDetails.Where(rd => rd.UserId == userId).ToListAsync();
+                    if (refereeDetails != null && refereeDetails.Count > 0 && refereeDetails.Any() == true)
                     {
-                        referee.User.Status = false;
-                        context.Users.Update(referee.User);
+                        // Nếu chấm rồi => xóa mềm:
+                        user.Status = false;
+                        await context.SaveChangesAsync();
+                        return true;
                     }
                     else
                     {
-                        context.Users.Remove(referee.User);
+                        context.Remove(user);
+                        await context.SaveChangesAsync();
+                        return true;
                     }
-                    await context.SaveChangesAsync();
-                    return true;
                 }
-                return false;
+                else
+                {
+                    return false;
+                }
             }
         }
 
